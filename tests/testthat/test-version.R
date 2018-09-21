@@ -1,7 +1,6 @@
+context("version")
 
-context("organizations")
-
-# get_organizations
+# get_version
 test_that("The connection to the test url gets a response", {
     skip_on_cran()
 
@@ -13,14 +12,15 @@ test_that("The connection to the test url gets a response", {
 })
 
 test_that("We geta warning when there is no url", {
-    expect_warning(get_organizations(api_key = api_key), "Please add a valid URL")
+    expect_warning(get_version(api_key = api_key), "Please add a valid URL")
 })
 
 test_that("We geta warning when there is no api_key", {
-    expect_warning(get_organizations(base_url = base_url),"Please add a valid API token for the URL you are trying to access")
+    expect_warning(get_version(base_url = base_url),"Please add a valid API token for the URL you are trying to access")
 })
 
-test_that("The organizations is read correctly", {
-    test_organizations <- get_organizations(base_url, api_key)
-    expect_true(exists("test_organizations"))
+test_that("The version is read correctly", {
+    test_version <- get_version(base_url, api_key)
+    expect_true(exists("test_version"))
 })
+
