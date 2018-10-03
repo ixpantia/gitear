@@ -1,0 +1,30 @@
+---
+title: "Access Gitea from R"
+author: "ixpantia"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Gitea is a community managed, lightweight code hosting solution  were projects
+and their respective git repositories can be managed  <https://gitea.io>. This
+package gives an interface to the 'Gitea' API to  access and manage
+repositories, issues and organizations directly in R.
+
+## Get information about your projects
+
+```{r}
+organizations <- get_an_organization("ixpantia", base_url, api_key)
+```
