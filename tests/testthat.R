@@ -4,4 +4,3 @@ library(jsonlite)
 
 test_check("gitear")
 
-test()

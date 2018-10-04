@@ -17,5 +17,6 @@ get_org_list_hooks(org, base_url, api_key)
 List an organization's webhooks
 }
 \examples{
-get_org_list_hooks("Organizacion_1", "https://try.gitea.io", "token 6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
+get_org_list_hooks("Organizacion_1", "https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
+
 }
