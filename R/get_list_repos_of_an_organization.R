@@ -1,18 +1,18 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description List an organization's webhooks
-#' @title Return list an organization's webhooks
+#' @description Get list an organization's repos
+#' @title Return list an organization's repos
 #' 
-#' @param org Name of the organization
+#' @param org Name of the organization to get repos
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
 #' @examples
-#' get_org_list_hooks("Organizacion_1", "https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
+#' get_list_repos_org("Organizacion_1", "https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
 #' 
 #'@export
-get_org_list_hooks <- function(org, base_url, api_key){
+get_list_repos_org <- function(org, base_url, api_key){
     if (missing(org)) {
         warning("Please add a valid name of the organization")
     } else if (missing(api_key)) {
@@ -22,7 +22,7 @@ get_org_list_hooks <- function(org, base_url, api_key){
     }else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/orgs"), org,"hooks")
+            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/orgs"), org, "repos")
             
             authorization <- paste("token", api_key)
             r <- GET(gitea_url, add_headers(Authorization = authorization), accept_json())
@@ -30,9 +30,9 @@ get_org_list_hooks <- function(org, base_url, api_key){
             # To convert http errors to R errors
             stop_for_status(r)
             
-            content_org_list_hooks <- content(r, as = "text")
-            content_org_list_hooks <- fromJSON(content_org_list_hooks)
-            content_org_list_hooks <- as.data.frame(content_org_list_hooks)
-            return(content_org_list_hooks)
+            content_list_repos_org <- content(r, as = "text")
+            content_list_repos_org <- fromJSON(content_list_repos_org)
+            content_list_repos_org <- as.data.frame(content_list_repos_org)
+            return(content_list_repos_org)
         })
 }

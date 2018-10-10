@@ -2,14 +2,15 @@
 #' @import jsonlite
 #'
 #' @description Get an organization
-#'
 #' @title Return an organization
+#' 
 #' @param org Name of the organization to get
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
 #' @examples
-#' get_an_organization("Organizacion_1", "https://try.gitea.io", "token 6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
+#' get_an_organization("Organizacion_1", "https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
+#' 
 #'@export
 get_an_organization <- function(org, base_url, api_key){
     if (missing(org)) {
@@ -25,7 +26,6 @@ get_an_organization <- function(org, base_url, api_key){
 
             authorization <- paste("token", api_key)
             r <- GET(gitea_url, add_headers(Authorization = authorization), accept_json())
-
             
             # To convert http errors to R errors
             stop_for_status(r)
