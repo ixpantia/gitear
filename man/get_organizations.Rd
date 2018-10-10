@@ -12,7 +12,7 @@ get_organizations(base_url, api_key)
 \item{api_key}{The user's API token key for the gitea service}
 }
 \description{
-Returns list the current user's organizations#'
+Returns list the current user's organizations
 }
 \examples{
 get_organizations("https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")

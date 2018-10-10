@@ -14,7 +14,7 @@ get_an_organization(org, base_url, api_key)
 \item{api_key}{The user's API token key for the gitea service}
 }
 \description{
-Get an organization#'
+Get an organization
 }
 \examples{
 get_an_organization("Organizacion_1", "https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
