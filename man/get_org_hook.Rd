@@ -19,5 +19,6 @@ get_org_hook(id, org, base_url, api_key)
 Get a hook
 }
 \examples{
-get_org_hook(126, "Organizacion_1", "https://try.gitea.io", "token 6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
+get_org_hook(126, "Organizacion_1", "https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
+
 }

@@ -1,7 +1,7 @@
 
-context("get an organization")
+context("get list an organization's repos")
 
-# get_an_organization
+# get_list_repos_org
 test_that("The connection to the test url gets a response", {
     skip_on_cran()
 
@@ -15,20 +15,20 @@ test_that("The connection to the test url gets a response", {
 })
 
 test_that("We geta warning when there is no url", {
-    expect_warning(get_an_organization(org = org, api_key = api_key), "Please add a valid URL")
+    expect_warning(get_list_repos_org(org = org, api_key = api_key), "Please add a valid URL")
 })
 
 test_that("We geta warning when there is no api_key", {
-    expect_warning(get_an_organization(org = org, base_url = base_url),"Please add a valid API token for the URL you are trying to access")
+    expect_warning(get_list_repos_org(org = org, base_url = base_url),"Please add a valid API token for the URL you are trying to access")
 })
 
 test_that("We geta warning when there is no name of organization", {
-    expect_warning(get_an_organization(base_url = base_url, api_key = api_key),"Please add a valid name of the organization")
+    expect_warning(get_list_repos_org(base_url = base_url, api_key = api_key),"Please add a valid name of the organization")
 })
 
 test_that("The organization is read correctly", {
-    test_an_organization <- get_an_organization(org, base_url, api_key)
-    expect_true(exists("test_an_organization"))
+    test_lis_org_repos <- get_list_repos_org(org, base_url, api_key)
+    expect_true(exists("test_lis_org_repos"))
 })
 
 

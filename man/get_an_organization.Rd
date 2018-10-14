@@ -17,5 +17,6 @@ get_an_organization(org, base_url, api_key)
 Get an organization
 }
 \examples{
-get_an_organization("Organizacion_1", "https://try.gitea.io", "token 6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
+get_an_organization("Organizacion_1", "https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
+
 }
