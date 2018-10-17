@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Get an organization#'
+#' @description Get an organization
 #' @title Return an organization
 #' 
 #' @param org Name of the organization to get

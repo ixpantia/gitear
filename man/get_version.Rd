@@ -14,3 +14,4 @@ get_version(base_url, api_key)
 \description{
 Returns the version of the Gitea application
 }
+

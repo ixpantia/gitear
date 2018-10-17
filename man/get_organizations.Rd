@@ -12,5 +12,5 @@ get_organizations(base_url, api_key)
 \item{api_key}{The user's API token key for the gitea service}
 }
 \description{
-Returns list the current user's organizations#'
+Returns list the current user's organizations
 }
