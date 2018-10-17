@@ -29,5 +29,3 @@ get_organizations <- function(base_url, api_key){
             return(content_organizations)
         })
 }
-
-
