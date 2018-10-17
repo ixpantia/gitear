@@ -16,7 +16,3 @@ get_list_repos_org(org, base_url, api_key)
 \description{
 Get list an organization's repos
 }
-\examples{
-get_list_repos_org("Organizacion_1", "https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
-
-}

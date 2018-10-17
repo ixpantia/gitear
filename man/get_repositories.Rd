@@ -14,7 +14,3 @@ get_repositories(base_url, api_key)
 \description{
 Returns the repositories of the Gitea application#'
 }
-\examples{
-get_repositories("https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
-
-}

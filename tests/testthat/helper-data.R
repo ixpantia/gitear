@@ -1,9 +1,10 @@
 library(httr)
 library(jsonlite)
 
-base_url <- "https://try.gitea.io"
-api_key <- "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1"
-owner <- "fransacida"
-repo <- "abc"
-org <- "Organizacion_1" 
-id <- 126
+base_url <- Sys.getenv("URI")
+api_key <- Sys.getenv("TOKEN")
+owner <- Sys.getenv("USUARIO")
+
+repo <- Sys.getenv("REPOSITORIO_PRUEBA")
+org <- Sys.getenv("ORGANIZACION_PRUEBA") 
+id_hook <- Sys.getenv("ID_HOOK")
