@@ -12,11 +12,12 @@ get_overview_state_issues <- function(base_url, api_key){
             s <-  ((get_issues(base_url, api_key ,org, rep))$state)
             
             sa <- paste("ORG:", org, " REPO:",rep , " TITULO:",t," DESCRIPCION:", b," ESTADO:", s)
-            print(sa)
+            sa
+            return(result) 
             }
     }
 }
 
-get_overview_state_issues("https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
+print(get_overview_state_issues("https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1"))
  
 
