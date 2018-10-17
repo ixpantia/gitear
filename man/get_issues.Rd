@@ -16,5 +16,5 @@ get_issues(base_url, api_key, owner, repo)
 \item{repo}{The reposository for the gitea service}
 }
 \description{
-Returns the issues of the Gitea application#'
+Returns the issues of the Gitea application
 }

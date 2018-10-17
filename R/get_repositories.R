@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Returns the repositories of the Gitea application#'
+#' @description Returns the repositories of the Gitea application
 #' @title Returns the repositories
 #' 
 #' @param base_url The base URL for your gitea server (no trailing '/')

@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Returns list the current user's organizations#'
+#' @description Returns list the current user's organizations
 #' @title Returns the organizations of the user
 #' 
 #' @param base_url The base URL for your gitea server (no trailing '/')

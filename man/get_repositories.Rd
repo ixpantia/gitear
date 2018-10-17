@@ -12,5 +12,5 @@ get_repositories(base_url, api_key)
 \item{api_key}{The user's API token key for the gitea service}
 }
 \description{
-Returns the repositories of the Gitea application#'
+Returns the repositories of the Gitea application
 }
