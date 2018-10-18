@@ -31,4 +31,26 @@ test_that("The organization is read correctly", {
     expect_true(exists("test_an_organization"))
 })
 
+test_that("The calculation of obtaining an organization gives the expected result", {
+
+    value_an_organization <- get_an_organization(org, base_url, api_key)
+    
+    expect_equal(TRUE, !is.null(value_an_organization))
+    
+    expect_that(value_an_organization, is_a("data.frame"))
+   
+    expect_true(unique(value_an_organization$id) == 6)
+    
+    expect_output(str(value_an_organization$username), "organizacion_1")
+    
+    expect_true(value_an_organization$full_name == "")
+    
+    expect_true(unique(value_an_organization$avatar_url) == "https://cliente.ixpantia.com/avatars/6")
+    
+    expect_true(unique(value_an_organization$description) == "Organización de prueba número 1.")
+    
+    expect_true(unique(value_an_organization$website) == "")
+    
+    expect_true(unique(value_an_organization$location) == "Costa Rica")
+})
 
