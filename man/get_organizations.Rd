@@ -14,7 +14,3 @@ get_organizations(base_url, api_key)
 \description{
 Returns list the current user's organizations#'
 }
-\examples{
-get_organizations("https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
-
-}

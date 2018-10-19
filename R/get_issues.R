@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Returns the issues of the Gitea application#'
+#' @description Returns the issues of the Gitea application
 #' @title Returns the issues
 #' 
 #' @param base_url The base URL for your gitea server (no trailing '/')
