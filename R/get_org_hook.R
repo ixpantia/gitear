@@ -9,9 +9,6 @@
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
-#' @examples
-#' get_org_hook(126, "Organizacion_1", "https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
-#'
 #'@export
 get_org_hook <- function(id, org, base_url, api_key){
     if (missing(id)) {

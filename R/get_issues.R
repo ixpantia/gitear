@@ -9,9 +9,6 @@
 #' @param owner The user's owner for the gitea service
 #' @param repo The reposository for the gitea service
 #'
-#' @examples
-#' print(get_issues("https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1" ,"fransacida", "abc"))
-#'
 #'@export
 get_issues <- function(base_url, api_key, owner, repo){
     if (missing(base_url)) {
