@@ -34,3 +34,10 @@ test_that("The hook is read correctly", {
     test_get_org_hook <- get_org_hook(id_hook, org, base_url, api_key)
     expect_true(exists("test_get_org_hook"))
 })
+
+test_that("The calculation of obtaining one hook gives the expected result", {
+    value_hook <- get_org_hook(id_hook, org, base_url, api_key)
+    expect_equal(TRUE, !is.null(value_hook))
+    expect_that(value_hook, is_a("data.frame"))
+    expect_true(nrow(value_hook) == 1)
+})
