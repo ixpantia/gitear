@@ -31,4 +31,10 @@ test_that("The organization is read correctly", {
     expect_true(exists("test_an_organization"))
 })
 
-
+test_that("The calculation of obtaining an organization gives the expected result", {
+    value_an_organization <- get_an_organization(org, base_url, api_key)
+    expect_equal(TRUE, !is.null(value_an_organization))
+    expect_that(value_an_organization, is_a("data.frame"))
+    expect_true(unique(value_an_organization$id) == id_org)
+    expect_output(str(value_an_organization$username), org)
+})

@@ -30,3 +30,10 @@ test_that("The list hook is read correctly", {
     test_org_list_hooks <- get_org_list_hooks(org, base_url, api_key)
     expect_true(exists("test_org_list_hooks"))
 })
+
+test_that("The calculation of obtaining hook list gives the expected result", {
+    value_list_hook <- get_org_list_hooks(org, base_url, api_key)
+    expect_equal(TRUE, !is.null(value_list_hook))
+    expect_that(value_list_hook, is_a("data.frame"))
+    expect_true(nrow(value_list_hook) > 0)
+})
