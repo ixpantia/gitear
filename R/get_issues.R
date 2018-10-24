@@ -1,16 +1,13 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Returns the issues of the Gitea application#'
+#' @description Returns the issues of the Gitea application
 #' @title Returns the issues
 #' 
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #' @param owner The user's owner for the gitea service
 #' @param repo The reposository for the gitea service
-#'
-#' @examples
-#' print(get_issues("https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1" ,"fransacida", "abc"))
 #'
 #'@export
 get_issues <- function(base_url, api_key, owner, repo){

@@ -26,3 +26,8 @@ test_that("The version is read correctly", {
     expect_true(exists("test_version"))
 })
 
+test_that("The calculation of obtaining version gives the expected result", {
+    value_version <- get_repositories(base_url, api_key)
+    expect_equal(TRUE, !is.null(value_version))
+    expect_that(value_version, is_a("list"))
+})

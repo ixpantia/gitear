@@ -6,7 +6,7 @@ test_that("The connection to the test url gets a response", {
     skip_on_cran()
 
     base_url <- sub("/$", "", base_url)
-    gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/version"))
+    gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),owner,repo,"issues")
     
     authorization <- paste("token", api_key)
     r <- GET(gitea_url, add_headers(Authorization = authorization), accept_json(), config = httr::config(ssl_verifypeer = FALSE))
@@ -34,4 +34,11 @@ test_that("We geta warning when there is no repository", {
 test_that("The issues is read correctly", {
     test_issues <- get_issues(base_url, api_key, owner, repo)
     expect_true(exists("test_issues"))
+})
+
+test_that("The calculation of obtaining issues gives the expected result", {
+    value_issues <- get_issues(base_url, api_key, owner, repo)
+    expect_equal(TRUE, !is.null(value_issues))
+    expect_that(value_issues, is_a("data.frame"))
+    expect_true(nrow(value_issues)>0)
 })

@@ -9,12 +9,9 @@
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
-#' @examples
-#' get_org_hook(126, "Organizacion_1", "https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
-#'
 #'@export
-get_org_hook <- function(id, org, base_url, api_key){
-    if (missing(id)) {
+get_org_hook <- function(id_hook, org, base_url, api_key){
+    if (missing(id_hook)) {
         warning("Please add a id valid of hook")
     } else if (missing(org)) {
         warning("Please add a valid name of the organization")
@@ -25,7 +22,7 @@ get_org_hook <- function(id, org, base_url, api_key){
     }else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/orgs"), org,"hooks", id)
+            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/orgs"), org,"hooks", id_hook)
             
             authorization <- paste("token", api_key)
             r <- GET(gitea_url, add_headers(Authorization = authorization), accept_json())

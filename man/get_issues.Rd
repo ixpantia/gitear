@@ -16,9 +16,5 @@ get_issues(base_url, api_key, owner, repo)
 \item{repo}{The reposository for the gitea service}
 }
 \description{
-Returns the issues of the Gitea application#'
-}
-\examples{
-print(get_issues("https://try.gitea.io", "6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1" ,"fransacida", "abc"))
-
+Returns the issues of the Gitea application
 }
