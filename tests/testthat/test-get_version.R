@@ -8,7 +8,8 @@ test_that("The connection to the test url gets a response", {
     gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/version"))
 
     authorization <- paste("token", api_key)
-    r <- GET(gitea_url, add_headers(Authorization = authorization), accept_json(), config = httr::config(ssl_verifypeer = FALSE))
+    r <- GET(gitea_url, add_headers(Authorization = authorization),
+             accept_json(), config = httr::config(ssl_verifypeer = FALSE))
     
     expect_true(r$status_code %in% c(200, 403, 500))
 })
