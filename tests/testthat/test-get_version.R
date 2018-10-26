@@ -19,7 +19,8 @@ test_that("We geta warning when there is no url", {
 })
 
 test_that("We geta warning when there is no api_key", {
-    expect_warning(get_version(base_url = base_url),"Please add a valid API token for the URL you are trying to access")
+    expect_warning(get_version(base_url = base_url), 
+                   "Please add a valid API token")
 })
 
 test_that("The version is read correctly", {
