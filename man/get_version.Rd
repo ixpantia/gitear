@@ -14,6 +14,4 @@ get_version(base_url, api_key)
 \description{
 Returns the version of the Gitea application
 }
-\examples{
-get_version("https://try.gitea.io", "token 6ebcaefdaaf06aa7f59b4efc5faa4bcf1b56cfb1")
-}
+

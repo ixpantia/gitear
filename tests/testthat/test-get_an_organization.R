@@ -8,7 +8,9 @@ test_that("The connection to the test url gets a response", {
     base_url <- sub("/$", "", base_url)
     gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/orgs"), org)
     
-    r <- GET(gitea_url, add_headers(Authorization=api_key), accept_json())
+    authorization <- paste("token", api_key)
+    r <- GET(gitea_url, add_headers(Authorization = authorization), accept_json(), config = httr::config(ssl_verifypeer = FALSE))
+    
     expect_true(r$status_code %in% c(200, 403, 500))
 })
 
@@ -27,4 +29,12 @@ test_that("We geta warning when there is no name of organization", {
 test_that("The organization is read correctly", {
     test_an_organization <- get_an_organization(org, base_url, api_key)
     expect_true(exists("test_an_organization"))
+})
+
+test_that("The calculation of obtaining an organization gives the expected result", {
+    value_an_organization <- get_an_organization(org, base_url, api_key)
+    expect_equal(TRUE, !is.null(value_an_organization))
+    expect_that(value_an_organization, is_a("data.frame"))
+    expect_true(unique(value_an_organization$id) == id_org)
+    expect_output(str(value_an_organization$username), org)
 })

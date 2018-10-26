@@ -7,7 +7,9 @@ test_that("The connection to the test url gets a response", {
     base_url <- sub("/$", "", base_url)
     gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/version"))
 
-    r <- GET(gitea_url, add_headers(Authorization=api_key), accept_json(), config = httr::config(ssl_verifypeer = FALSE))
+    authorization <- paste("token", api_key)
+    r <- GET(gitea_url, add_headers(Authorization = authorization), accept_json(), config = httr::config(ssl_verifypeer = FALSE))
+    
     expect_true(r$status_code %in% c(200, 403, 500))
 })
 
@@ -24,3 +26,8 @@ test_that("The version is read correctly", {
     expect_true(exists("test_version"))
 })
 
+test_that("The calculation of obtaining version gives the expected result", {
+    value_version <- get_repositories(base_url, api_key)
+    expect_equal(TRUE, !is.null(value_version))
+    expect_that(value_version, is_a("list"))
+})
