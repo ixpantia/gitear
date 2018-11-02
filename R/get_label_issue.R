@@ -7,8 +7,8 @@
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #' @param owner The owner of the repo
-#' @param repo The reposository for the gitea service
-#' @param id_issue Index of the issue to get
+#' @param repo The reposository name for the gitea service
+#' @param id_issue Index of the issue
 #'
 #'@export
 get_label_issue <- function(base_url, api_key, owner, repo, id_issue){
