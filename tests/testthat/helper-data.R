@@ -10,3 +10,5 @@ org <- Sys.getenv("ORGANIZACION_PRUEBA")
 id_org <- Sys.getenv("ID_ORG")
 
 id_hook <- Sys.getenv("ID_HOOK")
+
+id_issue <- Sys.getenv("ID_ISSUE")
