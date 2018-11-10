@@ -11,10 +11,12 @@ extraer_incidentes <- function(lista_intancia) {
     } else {
         try({
             for (ins in lista) {
-                issues <- (get_issues(ins$inst1[1], ins$inst1[2], ins$inst1[3], ins$inst1[4]))
-                print(issues)
-                }
+                issues <- (get_issues(ins[1], ins[2], ins[3], ins[4]))
+                print(issues$title)
+            }
         })
+        
+        print(hilera)
     }
 }
 
