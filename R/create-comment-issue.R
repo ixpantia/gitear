@@ -10,7 +10,6 @@
 #' @param repo The name of the repo for the gitea service
 #' @param id_issue Index of the issue to get
 #' @param body Respresent of content comments
-#' 
 #'
 #'@export
 create_comment_issue <- function(base_url, api_key, owner, repo, id_issue, body){
@@ -44,6 +43,3 @@ create_comment_issue <- function(base_url, api_key, owner, repo, id_issue, body)
             return(add_comment_issue)
         })
 }
-
-base_url
-create_comment_issue(base_url, api_key, owner, repo, id_issue, "Comentario probando")
