@@ -15,7 +15,6 @@ test_that("The connection to the test url gets a response", {
     expect_true(r$status_code %in% c(200, 403, 500))
 })
 
-
 test_that("We geta warning when there is no url", {
     expect_warning(get_issues( api_key = api_key, owner = owner, repo = repo),
                    "Please add a valid URL")
