@@ -11,42 +11,30 @@
 #' 
 #' @return list (invisibly) with the status result of the API
 #' 
-create_issue <- function(base_url, api_key, titulo, incidente){
- #   /repos/{owner}/{repo}/issues 
+create_issue <- function(base_url, api_key, title, body){
     if (missing(base_url)) {
         warning("Please add a valid URL")
     } else if (missing(api_key)) {
         warning("Please add a valid API token")
-    } else if (missing(titulo)) {
+    } else if (missing(title)) {
         warning("Please add a valid title")
-    } else if (missing(incidente)) {
+    } else if (missing(body)) {
         warning("Please add a valid body")
     } else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1",
-                                   sub("^/", "", "/repos"), owner,repo,"issues")
-       
+            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"), 
+                                   owner, repo, "issues")
+        
             authorization <- paste("token", api_key)
             
-            requestBody <- data.frame(
-                title = titulo,
-                body = incidente
-            )
+            request_body <- as.list(data.frame(title = title, body = body))
             
             r <- POST(gitea_url, add_headers(Authorization = authorization),
-                      content_type_json(), encode = "json", 
-                      body = as.list(requestBody))
+                      content_type_json(), encode = "json", body = request_body)
             
             content_issue <- content(r, as = "text")
             content_issue <- fromJSON(content_issue)
-            content_issue
-            return(content_issues)
+            return(content_issue)
             })
 }
-
-titulo = "Prueba de Rstudio"
-incidente = "Esperando a que funcione"
-print(create_issue(base_url, api_key, title ,body))
-
-    
