@@ -12,8 +12,7 @@ test_that("The connection to the test url gets a response", {
     r <- GET(gitea_url, add_headers(Authorization = authorization), 
              accept_json())
     
-    # Revisar !!!
-    expect_false(r$status_code %in% c(200, 403, 500))
+    expect_true(r$status_code %in% c(200, 403, 500))
 })
 
 test_that("We geta warning when there is no url", {
