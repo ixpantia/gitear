@@ -9,11 +9,11 @@ test_that("The connection to the test url gets a response", {
                            owner, repo, "issues")
     
     authorization <- paste("token", api_key)
-    request_body <- as.list(data.frame(title, body))
+    request_body <- as.list(data.frame(title = title, body = body))
     
     r <- POST(gitea_url, add_headers(Authorization = authorization),
               content_type_json(), encode = "json", body = request_body)
-
+    
     expect_equal(r$status_code, 201)
 })
 
