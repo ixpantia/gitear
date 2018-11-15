@@ -13,7 +13,7 @@ test_that("The connection to the test url gets a response", {
     
     r <- POST(gitea_url, add_headers(Authorization = authorization),
               content_type_json(), encode = "json", body = request_body)
-r
+    
     expect_equal(r$status_code, 201)
 })
 
