@@ -14,4 +14,3 @@ get_organizations(base_url, api_key)
 \description{
 Returns list the current user's organizations
 }
-
