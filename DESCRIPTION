@@ -1,6 +1,6 @@
 Package: gitear
 Title: Client to the 'gitea' API 
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: c(
   person(family="ixpantia, SRL", role = "aut", email = "hola@ixpantia.com"),
   person("Frans", "van Dunné", role="cre", email="frans@ixpantia.com"),
@@ -19,5 +19,5 @@ LazyData: true
 Suggests: testthat,
     knitr,
     rmarkdown
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 VignetteBuilder: knitr
