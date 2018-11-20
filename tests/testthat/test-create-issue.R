@@ -18,32 +18,50 @@ test_that("The connection to the test url gets a response", {
 })
 
 test_that("We geta warning when there is no url", {
-    expect_warning(create_issue(api_key = api_key, title = title, body = body),
+    expect_warning(create_issue(api_key = api_key, owner = owner, repo = repo,
+                                title = title, body = body),
                    "Please add a valid URL")
 })
 
 test_that("We geta warning when there is no api_key", {
-    expect_warning(create_issue(base_url = base_url, title = title, body = body),
+    expect_warning(create_issue(base_url = base_url, owner = owner, repo = repo,
+                                title = title, body = body),
                    "Please add a valid API token")
+})
+
+test_that("We geta warning when there is no owner", {
+    expect_warning(create_issue(base_url = base_url, api_key = api_key,
+                                repo = repo, title = title, body = body),
+                   "Please add a valid owner")
+})
+
+test_that("We geta warning when there is no repository", {
+    expect_warning(create_issue(base_url = base_url, api_key = api_key,
+                                owner = owner, title = title, body = body),
+                   "Please add a valid repository")
 })
 
 test_that("We geta warning when there is no title", {
     expect_warning(create_issue(base_url = base_url, api_key = api_key,
+                                owner = owner, repo = repo,
                                 body = body), "Please add a valid title")
 })
 
 test_that("We geta warning when there is no body", {
     expect_warning(create_issue(base_url = base_url, api_key = api_key,
+                                owner = owner, repo = repo,
                                 title = title), "Please add a valid body")
 })
 
 test_that("The issues create is read correctly", {
-    test_create_issues <- create_issue(base_url, api_key, title, body)
+    test_create_issues <- create_issue(base_url, api_key, owner, repo, title,
+                                       body)
     expect_true(exists("test_create_issues"))
 })
 
 test_that("The calculation of create an issues gives the expected result", {
-    value_create_issues <- create_issue(base_url, api_key, title, body)
+    value_create_issues <- create_issue(base_url, api_key, owner,
+                                                    repo, title, body)
     expect_equal(TRUE, !is.null(value_create_issues))
     expect_that(value_create_issues, is_a("list"))
 })

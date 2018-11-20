@@ -4,7 +4,7 @@
 \alias{create_issue}
 \title{Create an issue}
 \usage{
-create_issue(base_url, api_key, title, body)
+create_issue(base_url, api_key, owner, repo, title, body)
 }
 \arguments{
 \item{base_url}{URL prefix for your gitea server (no trailing '/')}
@@ -13,7 +13,11 @@ create_issue(base_url, api_key, title, body)
 
 \item{owner}{Owner of the repo}
 
-\item{repo}{Is the name of the repo.}
+\item{repo}{Is the name of the repo}
+
+\item{title}{Is the title of the issue}
+
+\item{body}{Is the body of the issue}
 }
 \value{
 list (invisibly) with the status result of the API
