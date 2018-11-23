@@ -56,5 +56,4 @@ test_that("Obtaining an time issues gives the expected result", {
                                            api_key = api_key, owner = owner,
                                            repo = repo, id_issue = id_issue)
     expect_equal(TRUE, !is.null(value_labels_issues))
-    expect_that(value_labels_issues, is_a("data.frame"))
 })
