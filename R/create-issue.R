@@ -13,7 +13,7 @@
 #' 
 #' @return list (invisibly) with the status result of the API
 #' 
-#'@export
+#' @export
 create_issue <- function(base_url, api_key, owner, repo, title, body){
     if (missing(base_url)) {
         warning("Please add a valid URL")
