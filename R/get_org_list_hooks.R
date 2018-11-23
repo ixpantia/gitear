@@ -32,6 +32,7 @@ get_org_list_hooks <- function(org, base_url, api_key){
             content_org_list_hooks <- content(r, as = "text")
             content_org_list_hooks <- fromJSON(content_org_list_hooks)
             content_org_list_hooks <- as.data.frame(content_org_list_hooks)
+            
             return(content_org_list_hooks)
         })
 }

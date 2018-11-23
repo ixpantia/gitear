@@ -34,6 +34,7 @@ get_issues <- function(base_url, api_key, owner, repo){
 
             content_issues <- content(r, as = "text")
             content_issues <- fromJSON(content_issues)
+            
             return(content_issues)
         })
 }

@@ -32,6 +32,7 @@ get_an_organization <- function(org, base_url, api_key){
             content_an_organization <- content(r, as = "text")
             content_an_organization <- fromJSON(content_an_organization)
             content_an_organization <- as.data.frame(content_an_organization)
+            
             return(content_an_organization)
         })
 }

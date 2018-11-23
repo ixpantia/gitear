@@ -33,7 +33,8 @@ get_label_issue <- function(base_url, api_key, owner, repo, id_issue){
                      accept_json())
             
             content_label_issue <- content(r, as = "text")
-            content_label_issue <- fromJSON(content_label_issue)
+            content_label_issue <- as.data.frame(content_label_issue)
+            
             return(content_label_issue)
         })
 }

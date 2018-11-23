@@ -71,5 +71,5 @@ test_that("Add an tracked times issues gives the expected result", {
                                                  repo, id_issue, time)
     class(value_times_issues)
     expect_equal(TRUE, !is.null(value_times_issues))
-    expect_that(value_times_issues, is_a("list"))
+    expect_that(value_times_issues, is_a("data.frame"))
 })

@@ -34,7 +34,7 @@ get_list_comments_repository <- function(base_url, api_key, owner, repo){
             
             content_list_comments_repository <- content(r, as = "text")
             content_list_comments_repository <- fromJSON(content_list_comments_repository)
-            content_list_comments_repository
+
             return(content_list_comments_repository)
         })
 }
