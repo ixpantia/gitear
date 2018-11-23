@@ -28,6 +28,7 @@ get_version <- function(base_url, api_key){
 
             content_version <- content(r, "parse")
             content_version <- as.data.frame(content_version)
+
             return(content_version)
         })
 }

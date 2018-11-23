@@ -34,6 +34,7 @@ get_list_comments_issue <- function(base_url, api_key, owner, repo, id_issue){
             
             content_list_comments_issue <- content(r, as = "text")
             content_list_comments_issue <- fromJSON(content_list_comments_issue)
+            
             return(content_list_comments_issue)
         })
 }

@@ -40,6 +40,8 @@ create_comment_issue <- function(base_url, api_key, owner, repo, id_issue, body)
             
             add_comment_issue <- content(r, as = "text")
             add_comment_issue <- fromJSON(add_comment_issue)
+            add_comment_issue <- as.data.frame(add_comment_issue)
+            
             return(add_comment_issue)
         })
 }

@@ -32,5 +32,5 @@ test_that("The repositories is read correctly", {
 test_that("Obtaining repositories list gives the expected result", {
     value_list_rep <- get_repositories(base_url, api_key)
     expect_equal(TRUE, !is.null(value_list_rep))
-    expect_that(value_list_rep, is_a("list"))
+    expect_that(value_list_rep, is_a("data.frame"))
 })

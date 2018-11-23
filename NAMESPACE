@@ -3,6 +3,7 @@
 export(add_tracked_time_issue)
 export(create_comment_issue)
 export(create_issue)
+export(edit_issue)
 export(get_an_issue)
 export(get_an_organization)
 export(get_issues_closed_state)

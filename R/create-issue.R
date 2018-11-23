@@ -42,6 +42,7 @@ create_issue <- function(base_url, api_key, owner, repo, title, body){
             
             content_issue <- content(r, as = "text")
             content_issue <- fromJSON(content_issue)
+
             return(content_issue)
             })
 }

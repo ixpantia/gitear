@@ -71,5 +71,5 @@ test_that("Create comment an issues gives the expected result", {
                                                         owner, repo, 
                                                         id_issue, body)
     expect_equal(TRUE, !is.null(value_create_comment_issues))
-    expect_that(value_create_comment_issues, is_a("list"))
+    expect_that(value_create_comment_issues, is_a("data.frame"))
 })
