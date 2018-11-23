@@ -17,3 +17,5 @@ title <- Sys.getenv("TITLE")
 body <- Sys.getenv("BODY")
 
 time <- Sys.getenv("TIME")
+
+id_comment <-Sys.getenv("ID_COMMENT")
