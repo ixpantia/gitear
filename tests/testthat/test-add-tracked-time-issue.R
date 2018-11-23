@@ -14,7 +14,7 @@ test_that("The connection to the test url gets a response", {
 
     r <- POST(gitea_url, add_headers(Authorization = authorization),
               content_type_json(), encode = "json", body = request_body)
-    
+    r
     expect_true(r$status_code %in% c(200, 403, 500))
 })
 
@@ -71,5 +71,5 @@ test_that("Add an tracked times issues gives the expected result", {
                                                  repo, id_issue, time)
     class(value_times_issues)
     expect_equal(TRUE, !is.null(value_times_issues))
-    expect_that(value_times_issues, is_a("list"))
+    expect_that(value_times_issues, is_a("data.frame"))
 })

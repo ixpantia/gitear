@@ -13,6 +13,7 @@
 #' 
 #' @return list (invisibly) with the status result of the API
 #' 
+#'@export
 create_issue <- function(base_url, api_key, owner, repo, title, body){
     if (missing(base_url)) {
         warning("Please add a valid URL")
@@ -41,6 +42,7 @@ create_issue <- function(base_url, api_key, owner, repo, title, body){
             
             content_issue <- content(r, as = "text")
             content_issue <- fromJSON(content_issue)
+
             return(content_issue)
             })
 }

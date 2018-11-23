@@ -40,6 +40,8 @@ add_tracked_time_issue <- function(base_url, api_key, owner, repo, id_issue, tim
             
             content_tracked_time <- content(r, as = "text")
             content_tracked_time <- fromJSON(content_tracked_time)
+            content_tracked_time <- as.data.frame(content_tracked_time)
+            
             return (content_tracked_time)
         })
 }
