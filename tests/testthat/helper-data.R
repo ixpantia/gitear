@@ -18,3 +18,6 @@ body <- Sys.getenv("BODY")
 state <- Sys.getenv("STATE")
 
 time <- Sys.getenv("TIME")
+
+id_comment <-Sys.getenv("ID_COMMENT")
+
