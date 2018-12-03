@@ -16,7 +16,7 @@ get_organizations <- function(base_url, api_key){
     } else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1",
+            gitea_url <- file.path(base_url, "api/v1", 
                                    sub("^/", "", "/user/orgs"))
             
             authorization <- paste("token", api_key)

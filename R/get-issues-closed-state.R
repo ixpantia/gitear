@@ -6,6 +6,7 @@
 #' 
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
+#' 
 #' @param owner The user's owner for the gitea service
 #' @param repo The reposository for the gitea service
 #'
@@ -22,9 +23,9 @@ get_issues_closed_state <- function(base_url, api_key, owner, repo){
     } else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1",
-                                   sub("^/", "", "/repos"), owner,
-                                   repo,"issues?state=closed")
+            gitea_url <- file.path(base_url, "api/v1", 
+                                   sub("^/", "", "/repos"), owner, 
+                                   repo, "issues?state=closed")
             
             authorization <- paste("token", api_key)
             r <- GET(gitea_url, add_headers(Authorization = authorization),
