@@ -36,8 +36,8 @@ edit_issue <- function(base_url, api_key, owner, repo, id_issue, body, state, ti
     } else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                                   owner,repo,"issues",id_issue)
+            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"), 
+                                   owner, repo, "issues", id_issue)
             
             authorization <- paste("token", api_key)
       

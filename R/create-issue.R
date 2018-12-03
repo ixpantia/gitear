@@ -6,8 +6,10 @@
 #'
 #' @param base_url URL prefix for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
+#' 
 #' @param owner Owner of the repo
 #' @param repo Is the name of the repo
+#' 
 #' @param title Is the title of the issue
 #' @param body Is the body of the issue
 #' 
