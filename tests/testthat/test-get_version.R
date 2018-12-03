@@ -29,7 +29,7 @@ test_that("The version is read correctly", {
 })
 
 test_that("The calculation of obtaining version gives the expected result", {
-    value_version <- get_repositories(base_url, api_key)
+    value_version <- get_version(base_url, api_key)
     expect_equal(TRUE, !is.null(value_version))
-    expect_that(value_version, is_a("list"))
+    expect_that(value_version, is_a("data.frame"))
 })

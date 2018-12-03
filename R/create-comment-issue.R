@@ -1,17 +1,18 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Returns list all comments on an issue
-#' @title Returns get a list all comments on an issue
+#' @description Add a comment to an issue
+#' @title Adding a comment to an issue
 #' 
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #' @param owner The owner of the repo
 #' @param repo The name of the repo for the gitea service
 #' @param id_issue Index of the issue to get
+#' @param body Respresent of content comments
 #'
 #'@export
-get_list_comments_issue <- function(base_url, api_key, owner, repo, id_issue){
+create_comment_issue <- function(base_url, api_key, owner, repo, id_issue, body){
     if (missing(base_url)) {
         warning("Please add a valid URL")
     } else if (missing(api_key)) {
@@ -22,6 +23,8 @@ get_list_comments_issue <- function(base_url, api_key, owner, repo, id_issue){
         warning("Please add a valid repository")
     } else if (missing(id_issue)) {
         warning("Please add a index of the issue")
+    } else if (missing(body)) {
+        warning("Please add a valid body")
     } else
         try({
             base_url <- sub("/$", "", base_url)
@@ -29,12 +32,16 @@ get_list_comments_issue <- function(base_url, api_key, owner, repo, id_issue){
                                    owner,repo,"issues",id_issue, "comments")
             
             authorization <- paste("token", api_key)
-            r <- GET(gitea_url, add_headers(Authorization = authorization),
-                     accept_json())
+           
+            request_body <- as.list(data.frame(body = body))
             
-            content_list_comments_issue <- content(r, as = "text")
-            content_list_comments_issue <- fromJSON(content_list_comments_issue)
+            r <- POST(gitea_url, add_headers(Authorization = authorization),
+                      content_type_json(), encode = "json", body = request_body)
             
-            return(content_list_comments_issue)
+            add_comment_issue <- content(r, as = "text")
+            add_comment_issue <- fromJSON(add_comment_issue)
+            add_comment_issue <- as.data.frame(add_comment_issue)
+            
+            return(add_comment_issue)
         })
 }

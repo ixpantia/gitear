@@ -14,4 +14,8 @@ id_hook <- Sys.getenv("ID_HOOK")
 id_issue <- Sys.getenv("ID_ISSUE")
 
 title <- Sys.getenv("TITLE")
-body <-  Sys.getenv("BODY")
+
+body <- Sys.getenv("BODY")
+state <- Sys.getenv("STATE")
+
+time <- Sys.getenv("TIME")
