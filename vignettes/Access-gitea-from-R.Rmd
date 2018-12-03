@@ -26,5 +26,5 @@ repositories, issues and organizations directly in R.
 ## Get information about your projects
 
 ```{r}
-organizations <- get_an_organization("ixpantia", base_url, api_key)
+# organizations <- get_an_organization("ixpantia", base_url, api_key)
 ```

@@ -1,5 +1,6 @@
 library(httr)
 library(jsonlite)
+library(gitear)
 
 base_url <- Sys.getenv("URI")
 api_key <- Sys.getenv("TOKEN")

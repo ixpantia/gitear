@@ -1,0 +1,67 @@
+---
+title: "Access different issues of different instances"
+author: "ixpantia"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options: 
+chunk_output_type: console
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Gitea is a community managed, lightweight code hosting solution  were projects
+and their respective git issues can be managed  <https://gitea.io>. This
+package gives an interface to the 'Gitea' API to  access and manage
+issues, issues of differents instances directly in R.
+
+## Get information about your issues of differents instances
+
+The figure sizes have been customised so that you can easily put two images side-by-side. 
+
+```{r}
+
+base_url <- Sys.getenv("URI")
+api_key <- Sys.getenv("TOKEN")
+owner <- Sys.getenv("USUARIO")
+
+instancia_1 <- c(base_url, api_key, owner, "repositorio_1")
+instancia_2 <- c(base_url, api_key, owner,"repositorio_2")
+instancia_3 <- c("http://localhost:3000", "7aff7351eda050a1e847a8064e50376b090cbd7c", "Prueba_Instancia","repo")
+
+lista <- list()
+lista$inst1 <- instancia_1
+lista$inst2 <- instancia_2
+lista$inst3 <- instancia_3
+
+diff_inst_open_issues <- function(lista_intancia) {
+    hilera <- NA
+    if (missing(lista_intancia)) {
+        warning("Please add a valid list")
+    } else {
+        try({
+            lista_intancia = as.data.frame(lista_intancia)
+            for (ins in lista_intancia) {
+                issues <- (gitear::get_issues_open_state(ins[1], ins[2], ins[3],
+                                                 ins[4]))
+                hilera <- append(hilera, paste("Titulo: ", issues$title,
+                                               "Contenido: ",issues$body))
+            }
+        })
+        return (as.data.frame(hilera))
+    }
+}
+
+resultado <- diff_inst_open_issues(lista)
+
+print(resultado)
+```
+
