@@ -4,16 +4,16 @@
 \alias{get_org_hook}
 \title{Return a hook}
 \usage{
-get_org_hook(id_hook, org, base_url, api_key)
+get_org_hook(base_url, api_key, org, id_hook)
 }
 \arguments{
-\item{org}{Name of the organization}
-
 \item{base_url}{The base URL for your gitea server (no trailing '/')}
 
 \item{api_key}{The user's API token key for the gitea service}
 
-\item{id}{Id of the hook to get}
+\item{org}{Name of the organization}
+
+\item{id_hook}{Id of the hook to get}
 }
 \description{
 Get a hook

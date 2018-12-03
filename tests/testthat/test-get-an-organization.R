@@ -15,27 +15,27 @@ test_that("The connection to the test url gets a response", {
 })
 
 test_that("We geta warning when there is no url", {
-    expect_warning(get_an_organization(org = org, api_key = api_key),
+    expect_warning(get_an_organization(api_key = api_key, org = org), 
                    "Please add a valid URL")
 })
 
 test_that("We geta warning when there is no api_key", {
-    expect_warning(get_an_organization(org = org, base_url = base_url),
+    expect_warning(get_an_organization(base_url = base_url, org = org), 
                    "Please add a valid API token")
 })
 
 test_that("We geta warning when there is no name of organization", {
-    expect_warning(get_an_organization(base_url = base_url, api_key = api_key),
+    expect_warning(get_an_organization(base_url = base_url, api_key = api_key), 
                    "Please add a valid name of the organization")
 })
 
 test_that("The organization is read correctly", {
-    test_an_organization <- get_an_organization(org, base_url, api_key)
+    test_an_organization <- get_an_organization(base_url, api_key, org)
     expect_true(exists("test_an_organization"))
 })
 
 test_that("Obtaining an organization gives the expected result", {
-    value_an_organization <- get_an_organization(org, base_url, api_key)
+    value_an_organization <- get_an_organization(base_url, api_key, org)
     expect_equal(TRUE, !is.null(value_an_organization))
     expect_that(value_an_organization, is_a("data.frame"))
     expect_true(unique(value_an_organization$id) == id_org)

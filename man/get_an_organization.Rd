@@ -4,14 +4,14 @@
 \alias{get_an_organization}
 \title{Return an organization}
 \usage{
-get_an_organization(org, base_url, api_key)
+get_an_organization(base_url, api_key, org)
 }
 \arguments{
-\item{org}{Name of the organization to get}
-
 \item{base_url}{The base URL for your gitea server (no trailing '/')}
 
 \item{api_key}{The user's API token key for the gitea service}
+
+\item{org}{Name of the organization to get}
 }
 \description{
 Get an organization

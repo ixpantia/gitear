@@ -22,8 +22,8 @@ get_list_comments_repository <- function(base_url, api_key, owner, repo){
     } else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                                   owner,repo,"issues/comments")
+            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"), 
+                                   owner, repo, "issues/comments")
             
             authorization <- paste("token", api_key)
             r <- GET(gitea_url, add_headers(Authorization = authorization),
@@ -32,9 +32,9 @@ get_list_comments_repository <- function(base_url, api_key, owner, repo){
             # To convert http errors to R errors
             stop_for_status(r)
             
-            content_list_comments_repository <- content(r, as = "text")
-            content_list_comments_repository <- fromJSON(content_list_comments_repository)
+            list_com_repository <- content(r, as = "text")
+            list_com_repository <- fromJSON(list_com_repository)
 
-            return(content_list_comments_repository)
+            return(list_com_repository)
         })
 }

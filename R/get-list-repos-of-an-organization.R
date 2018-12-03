@@ -4,18 +4,19 @@
 #' @description Get list an organization's repos
 #' @title Return list an organization's repos
 #' 
-#' @param org Name of the organization to get repos
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
+#' @param org Name of the organization to get repos
+#' 
 #'@export
-get_list_repos_org <- function(org, base_url, api_key){
-    if (missing(org)) {
-        warning("Please add a valid name of the organization")
+get_list_repos_org <- function(base_url, api_key, org){
+    if (missing(base_url)) {
+        warning("Please add a valid URL")
     } else if (missing(api_key)) {
         warning("Please add a valid API token")
-    } else if (missing(base_url)) {
-        warning("Please add a valid URL")
+    } else if (missing(org)) {
+        warning("Please add a valid name of the organization")
     }else
         try({
             base_url <- sub("/$", "", base_url)
