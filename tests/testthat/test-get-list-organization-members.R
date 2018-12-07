@@ -29,7 +29,6 @@ test_that("We geta warning when there is no name of organization", {
     expect_warning(get_list_org_members(base_url = base_url, api_key = api_key), 
                    "Please add a valid name of the organization")
 })
-get_list_org_members(base_url, api_key, org)
 
 test_that("The organization is read correctly", {
     test_list_org_memb <- get_list_org_members(base_url, api_key, org)
