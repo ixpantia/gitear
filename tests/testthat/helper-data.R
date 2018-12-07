@@ -1,5 +1,6 @@
 library(httr)
 library(jsonlite)
+library(gitear)
 
 base_url <- Sys.getenv("URI")
 api_key <- Sys.getenv("TOKEN")
@@ -14,10 +15,11 @@ id_hook <- Sys.getenv("ID_HOOK")
 id_issue <- Sys.getenv("ID_ISSUE")
 
 title <- Sys.getenv("TITLE")
+
 body <- Sys.getenv("BODY")
 state <- Sys.getenv("STATE")
 
 time <- Sys.getenv("TIME")
 
-id_comment <-Sys.getenv("ID_COMMENT")
 
+id_comment <-Sys.getenv("ID_COMMENT")
