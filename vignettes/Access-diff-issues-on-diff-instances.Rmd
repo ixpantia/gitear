@@ -32,10 +32,17 @@ The figure sizes have been customised so that you can easily put two images side
 base_url <- Sys.getenv("URI")
 api_key <- Sys.getenv("TOKEN")
 owner <- Sys.getenv("USUARIO")
+repo1 <- Sys.getenv("REPOSITORIO_1")
+repo2 <- Sys.getenv("REPOSITORIO_2")
+repo3 <- Sys.getenv("REPOSITORIO_3")
 
-instancia_1 <- c(base_url, api_key, owner, "repositorio_1")
-instancia_2 <- c(base_url, api_key, owner,"repositorio_2")
-instancia_3 <- c("http://localhost:3000", "7aff7351eda050a1e847a8064e50376b090cbd7c", "Prueba_Instancia","repo")
+base_local <- Sys.getenv("URL_LOCAL")
+owner_local <- Sys.getenv("OWNER_LOCAL")
+api_key_local <- Sys.getenv("TOKEN_LOCAL")
+
+instancia_1 <- c(base_url, api_key, owner, repo1)
+instancia_2 <- c(base_url, api_key, owner,repo2)
+instancia_3 <- c(base_local, api_key_local, owner_local,repo3)
 
 lista <- list()
 lista$inst1 <- instancia_1
@@ -43,25 +50,27 @@ lista$inst2 <- instancia_2
 lista$inst3 <- instancia_3
 
 diff_inst_open_issues <- function(lista_intancia) {
-    hilera <- NA
-    if (missing(lista_intancia)) {
+   # lista_resultado <- data.frame(titulo = character(0), contenido = character(0))
+     if (missing(lista_intancia)) {
         warning("Please add a valid list")
-    } else {
-        try({
-            lista_intancia = as.data.frame(lista_intancia)
-            for (ins in lista_intancia) {
-                issues <- (gitear::get_issues_open_state(ins[1], ins[2], ins[3],
-                                                 ins[4]))
-                hilera <- append(hilera, paste("Titulo: ", issues$title,
-                                               "Contenido: ",issues$body))
+        } else {
+            try({
+            for (ins in lista) {
+               issues <- (gitear::get_issues_open_state(ins[1], ins[2], ins[3],
+                                                ins[4]))
+           
+             for(i in 1:length(issues)){
+                 if(!is.na(issues[i, 5])){
+                    print (c(issues[i, 5], issues[i, 6]))
+                 }
+                }
             }
         })
-        return (as.data.frame(hilera))
     }
 }
 
-resultado <- diff_inst_open_issues(lista)
+diff_inst_open_issues(lista)
 
-print(resultado)
+
 ```
 
