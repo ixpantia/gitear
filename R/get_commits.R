@@ -25,7 +25,8 @@ get_commits <- function(base_url, api_key, owner, repo, branch){
             base_url <- sub("/$", "", base_url)
             gitea_url <- file.path(base_url, "api/v1",
                                    sub("^/", "", "/repos"), owner,repo,
-                                   "commits", branch, "statuses")
+                                   "commits", branch,
+                                   "statuses")
 
             authorization <- paste("token", api_key)
             r <- GET(gitea_url, add_headers(Authorization = authorization),
