@@ -41,10 +41,10 @@ get_issues_open_state <- function(base_url, api_key, owner, repo) {
         page_issues <- fromJSON(page_issues)
         page_issues <- flatten(as.data.frame(page_issues))
 
-        if (nrow(page_issues) == 0) {
-          content_issues <- page_issues
-          break
+        if (page != 1 && nrow(page_issues) == 0) {
+           break
         }
+
         if (page == 1) {
             content_issues <- page_issues
         } else {
