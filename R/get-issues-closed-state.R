@@ -43,7 +43,8 @@ get_issues_closed_state <- function(base_url, api_key, owner, repo){
         page_issues <- flatten(as.data.frame(page_issues))
 
         if (nrow(page_issues) == 0) {
-          break
+           content_issues <- page_issues
+           break
         }
         if (page == 1) {
             content_issues <- page_issues
