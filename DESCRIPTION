@@ -1,6 +1,6 @@
 Package: gitear
 Title: Client to the 'gitea' API 
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: c(
   person(family="ixpantia, SRL", role = "aut", email = "hola@ixpantia.com"),
   person("Frans", "van Dunné", role="cre", email="frans@ixpantia.com"),
