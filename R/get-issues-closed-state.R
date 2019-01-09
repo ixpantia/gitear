@@ -24,7 +24,6 @@ get_issues_closed_state <- function(base_url, api_key, owner, repo){
     try({
       page <- 1
       while (TRUE) {
-        print(page)
         base_url <- sub("/$", "", base_url)
         gitea_url <- file.path(base_url, "api/v1",
                                sub("^/", "", "/repos"),
