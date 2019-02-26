@@ -1,5 +1,6 @@
 # gitear
 
+<a href="url"><img src="gitear.png" align="right" width="30%"></a>
 
 # Overview
 
@@ -42,9 +43,6 @@ With gitear you have a set of functions to request your data from the gitea API 
 | get_times_issue | |
 | get_version | |
 | get_commits | |
-
-
-
 
 ## Getting help
 
