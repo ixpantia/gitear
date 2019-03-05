@@ -22,8 +22,8 @@ With gitear you have a set of functions to request your data from the gitea API 
 | Function | Output |
 | -------- | ------ |
 | add_tracked_time_issue | |
-| create_comment_issue | |
-| create_issue | |
+| create_comment_issue | A table with the columns: id, html_url, pull_request_url, issue_url, user.id, user.login, user.full_name, user.email, user.avatar_url, user.language, user.username, body, created_at, updated_at|
+| create_issue | A list with $id, $url, $number, $user, $title, $body, $labels, $milestone, $assignee, $assignees, $state, $comments, $created_at, $updated_at, $closed_at, $due_date, $pull_request|
 | edit_comment | |
 | edit_issue | |
 | get_an_issue | |
