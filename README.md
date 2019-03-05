@@ -30,11 +30,11 @@ With gitear you have a set of functions to request your data from the gitea API 
 | get_an_organization | A dataframe with the variables id, username, full_name, avatar_url, description, website, location|
 | get_issues_closed_state | A dataframe containing id, url, number, title, body, labels, milestones, assignees, state, comments, created_at, updated_at, closed_at, due_date, pull_request, user.id, user.login, user.full_name, user.email, user.avatar_url, user.language, user.username, assignee.id, assignee.login, assignee.full_name, asignee.email, assignee.avatar_url, assignee.language, assignee.username |
 | get_issues_open_state | A dataframe containing id, url, number, title, body, labels, milestones, assignees, state, comments, created_at, updated_at, closed_at, due_date, pull_request, user.id, user.login, user.full_name, user.email, user.avatar_url, user.language, user.username, assignee.id, assignee.login, assignee.full_name, asignee.email, assignee.avatar_url, assignee.language, assignee.username|
-| get_label_issue | |
-| get_list_org_teams | |
-| get_list_comments_issue | |
-| get_list_comments_repository | |
-| get_list_org_members | |
+| get_label_issue | A dataframe with one variable: content_label_issue |
+| get_list_org_teams | Dataframe with id, name, description, permission and units |
+| get_list_comments_issue | A dataframe containing id, html_url, pull_request_url, issue_url, user, body, created_at, updated_at |
+| get_list_comments_repository | A dataframe containing id, html_url, pull_request_url, issue_url, user, body, created_at, updated_at |
+| get_list_org_members | A dataframe with id, login, full_name, email, avatar_url, language, username |
 | get_list_repos_org | |
 | get_org_hook | |
 | get_org_list_hooks | |
