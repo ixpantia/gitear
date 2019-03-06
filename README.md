@@ -35,13 +35,13 @@ With gitear you have a set of functions to request your data from the gitea API 
 | get_list_comments_issue | A dataframe containing id, html_url, pull_request_url, issue_url, user, body, created_at, updated_at |
 | get_list_comments_repository | A dataframe containing id, html_url, pull_request_url, issue_url, user, body, created_at, updated_at |
 | get_list_org_members | A dataframe with id, login, full_name, email, avatar_url, language, username |
-| get_list_repos_org | |
+| get_list_repos_org | A data frame containing id, owner, name, full_name, description, empty, private, fork,  parent, mirror, size, html_url, ssh_url, clone_url, website, stars_count, forks_count, watchers_count, open_issues_count, default_branch, archived, created_at, updated_at, permissions  |
 | get_org_hook | |
 | get_org_list_hooks | |
-| get_organizations | | 
+| get_organizations | id, username, full_name, avatar_url, description, website, location| 
 | get_repositories | |  
-| get_times_issue | |
-| get_version | |
+| get_times_issue | A data frame with message and url |
+| get_version | A data frame with one variable: version |
 | get_commits | |
 
 ## Getting help
