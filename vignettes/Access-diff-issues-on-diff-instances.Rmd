@@ -4,7 +4,7 @@ author: "ixpantia"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Access multiple Gitea instances}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 editor_options: 
@@ -27,8 +27,7 @@ issues, issues of differents instances directly in R.
 
 The figure sizes have been customised so that you can easily put two images side-by-side. 
 
-```{r}
-
+```{r eval FALSE}
 base_url <- Sys.getenv("URI")
 api_key <- Sys.getenv("TOKEN")
 owner <- Sys.getenv("USUARIO")
@@ -70,7 +69,5 @@ diff_inst_open_issues <- function(lista_intancia) {
 }
 
 diff_inst_open_issues(lista)
-
-
 ```
 

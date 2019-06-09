@@ -4,7 +4,7 @@ author: "ixpantia"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Acess Gitea from R}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -25,6 +25,6 @@ repositories, issues and organizations directly in R.
 
 ## Get information about your projects
 
-```{r}
-# organizations <- get_an_organization("ixpantia", base_url, api_key)
+```{r eval=FALSE}
+organizations <- get_an_organization("ixpantia", base_url, api_key)
 ```
