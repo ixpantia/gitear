@@ -19,8 +19,6 @@ get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
         warning("Please add a valid owner")
     } else if (missing(repo)) {
         warning("Please add a valid repository")
-    } else if (missing(id_issue)) {
-        warning("Please add a index of the issue")
     } else
         try({
             base_url <- sub("/$", "", base_url)
@@ -36,11 +34,30 @@ get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
             content_an_issue <- fromJSON(content_an_issue)
 
             # Data frame wrangling
-            if (full_info == TRUE) {
-                content <- content_an_issue %>%
-                    select
+            if (full_info == FALSE) {
+                # Sacarlo usuarios que crearon el tiquete
+                users <- issues$user
+                users <- as_tibble(users) %>%
+                    select(username) %>%
+                    rename(author = username)
+
+                # Sacar usuarios que han sido asigandos al tiquete
+                assignees <- issues$assignee
+                assignees <- as_tibble(assignees) %>%
+                    select(username) %>%
+                    rename(assignee = username)
+
+                # Unirlo por posicion
+                issues_content <- issues %>%
+                    select(number, title, created_at, updated_at, due_date) %>%
+                    bind_cols(users, assignees)
+
+                # Return object filtered out
+                return(issues_content)
+
+            } else {
+                return(content_an_issue)
             }
 
-            return(content_an_issue)
         })
 }
