@@ -1,18 +1,16 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Returns get an issue
-#' @title Returns an issue
-#' 
+#' @description Returns open issues in an specific repository
+#' @title Returns open issues from an specific repository
+#'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
-#' 
-#' @param owner The owner of the repo
-#' @param repo The reposository for the gitea service
-#' @param id_issue Index of the issue to get
+#' @param owner The owner of the repo (The name of the project where the repo belongs)
+#' @param repo The repository name for the gitea service
 #'
 #'@export
-get_an_issue <- function(base_url, api_key, owner, repo, id_issue){
+get_issues <- function(base_url, api_key, owner, repo) {
     if (missing(base_url)) {
         warning("Please add a valid URL")
     } else if (missing(api_key)) {
@@ -26,17 +24,17 @@ get_an_issue <- function(base_url, api_key, owner, repo, id_issue){
     } else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", 
-                                   sub("^/", "", "/repos"), 
-                                   owner, repo, "issues", id_issue)
-            
+            gitea_url <- file.path(base_url, "api/v1",
+                                   sub("^/", "", "/repos"),
+                                   owner, repo, "issues")
+
             authorization <- paste("token", api_key)
             r <- GET(gitea_url, add_headers(Authorization = authorization),
                      accept_json())
-            
+
             content_an_issue <- content(r, as = "text")
             content_an_issue <- fromJSON(content_an_issue)
-            
+
             return(content_an_issue)
         })
 }
