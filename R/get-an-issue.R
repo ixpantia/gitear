@@ -10,7 +10,7 @@
 #' @param repo The repository name for the gitea service
 #'
 #'@export
-get_issues <- function(base_url, api_key, owner, repo) {
+get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
     if (missing(base_url)) {
         warning("Please add a valid URL")
     } else if (missing(api_key)) {
@@ -34,6 +34,12 @@ get_issues <- function(base_url, api_key, owner, repo) {
 
             content_an_issue <- content(r, as = "text")
             content_an_issue <- fromJSON(content_an_issue)
+
+            # Data frame wrangling
+            if (full_info == TRUE) {
+                content <- content_an_issue %>%
+                    select
+            }
 
             return(content_an_issue)
         })
