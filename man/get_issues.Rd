@@ -14,6 +14,8 @@ get_issues(base_url, api_key, owner, repo, full_info = FALSE)
 \item{owner}{The owner of the repo (The name of the project where the repo belongs)}
 
 \item{repo}{The repository name for the gitea service}
+
+\item{full_info}{If FALSE this will select specific columns from the issues data}
 }
 \description{
 Returns open issues in an specific repository
