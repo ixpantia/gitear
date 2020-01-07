@@ -60,7 +60,7 @@ get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
                                     sep = "T") %>%
                     mutate(created_time = stringr::str_remove(created_time,
                                                               pattern = "Z"),
-                           update_time = stringr::str_remove(updated_time,
+                           updated_time = stringr::str_remove(updated_time,
                                                              pattern = "Z"))
 
                 # Return object filtered out
