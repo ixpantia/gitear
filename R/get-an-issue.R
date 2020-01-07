@@ -37,19 +37,19 @@ get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
             # Data frame wrangling
             if (full_info == FALSE) {
                 # Sacarlo usuarios que crearon el tiquete
-                users <- issues$user
+                users <- content_an_issue$user
                 users <- as_tibble(users) %>%
                     select(username) %>%
                     rename(author = username)
 
                 # Sacar usuarios que han sido asigandos al tiquete
-                assignees <- issues$assignee
+                assignees <- content_an_issue$assignee
                 assignees <- as_tibble(assignees) %>%
                     select(username) %>%
                     rename(assignee = username)
 
                 # Unirlo por posicion
-                issues_content <- issues %>%
+                issues_content <- content_an_issue %>%
                     select(number, title, created_at, updated_at, due_date) %>%
                     bind_cols(users, assignees)
 
