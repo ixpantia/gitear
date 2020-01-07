@@ -51,7 +51,17 @@ get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
                 # Unirlo por posicion
                 issues_content <- content_an_issue %>%
                     select(number, title, created_at, updated_at, due_date) %>%
-                    bind_cols(users, assignees)
+                    bind_cols(users, assignees) %>%
+                    tidyr::separate(col = created_at,
+                                    into = c("created_date", "created_time"),
+                                    sep = "T") %>%
+                    tidyr::separate(col = updated_at,
+                                    into = c("updated_date", "updated_time"),
+                                    sep = "T") %>%
+                    mutate(created_time = stringr::str_remove(created_time,
+                                                              pattern = "Z"),
+                           update_time = stringr::str_remove(updated_time,
+                                                             pattern = "Z"))
 
                 # Return object filtered out
                 return(issues_content)
