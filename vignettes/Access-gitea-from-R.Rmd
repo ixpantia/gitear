@@ -23,8 +23,35 @@ and their respective git repositories can be managed  <https://gitea.io>. This
 package gives an interface to the 'Gitea' API to  access and manage
 repositories, issues and organizations directly in R.
 
+## Starting with `gitear`
+
+If you want to start using the functions from `gitear` you should first go to
+your ixplorer and create an API KEY. You will find this under your avatar,
+configuration, application and then generate a new token.
+
+Be aware that you should save this token somewhere because its shown just once.
+
+This is going to be your API TOKEN.
+
+Then you can use a function like this:
+
+```{r, eval = FALSE}
+## Credenciales
+key <- "gfdsgfd8ba18a866bsdfgsdfgs3a2dc9303453b0c92dcfb19"
+url_ixpantia <- "https://secure.ixpantia.com"
+
+## Prueba funcion
+issues <- get_issues(base_url = url_prueba,
+                       api_key = llave,
+                       owner = "ixpantia",
+                       repo = "ixmandash")
+```
+
+
+
+
 ## Get information about your projects
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
 organizations <- get_an_organization("ixpantia", base_url, api_key)
 ```
