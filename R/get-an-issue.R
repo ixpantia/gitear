@@ -34,6 +34,9 @@ get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
             content_an_issue <- content(r, as = "text")
             content_an_issue <- fromJSON(content_an_issue)
 
+            #TODO: Si credenciales son erroneas no hay error correcto aqui.
+            # para probar imprimir content_an_issue
+
             # Data frame wrangling
             if (full_info == FALSE) {
                 # Sacarlo usuarios que crearon el tiquete
