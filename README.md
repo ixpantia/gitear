@@ -54,9 +54,9 @@ In order to work with environmental variables to make your scripts safer
 from somebody getting your credentials, you can follow the next
 workflow:
 
-1- Create an .Renviron file with your credentials 2- Restart your R
-session 3- Store your credentials in an object for using it in your
-script
+1.  Create an .Renviron file with your credentials
+2.  Restart your R session
+3.  Store your credentials in an object for using it in your script
 
 Your script could look something like this:
 
