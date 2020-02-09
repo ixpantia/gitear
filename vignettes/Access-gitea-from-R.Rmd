@@ -61,7 +61,7 @@ example_key <- Sys.getenv("example_key")
 example_url <- Sys.getenv("example_url")
 ```
 
-## Get information about your projects
+## Get information about your organization
 
 ```{r, eval=FALSE}
 organizations <- get_an_organization(base_url = example_url,
@@ -71,6 +71,7 @@ organizations <- get_an_organization(base_url = example_url,
 organization
 ```
 
+## Get info from one project
 
 ```{r}
 repos <- get_list_repos_org(base_url = example_url, 
@@ -80,4 +81,4 @@ repos <- get_list_repos_org(base_url = example_url,
 glimpse(repos)
 ```
 
-
+## Overview of tiquets
