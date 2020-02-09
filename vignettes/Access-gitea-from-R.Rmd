@@ -16,6 +16,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+library(gitear)
+library(dplyr)
 ```
 
 Gitea is a community managed, lightweight code hosting solution  were projects
@@ -36,22 +39,45 @@ This is going to be your API TOKEN.
 Then you can use a function like this:
 
 ```{r, eval = FALSE}
-## Credenciales
-key <- "gfdsgfd8ba18a866bsdfgsdfgs3a2dc9303453b0c92dcfb19"
+## Library
+library(gitear)
+
+## Credentials
+api_token <- "gfdsgfd8ba18a866bsdfgsdfgs3a2dc9303453b0c92dcfb19"
 url_ixpantia <- "https://secure.ixpantia.com"
 
-## Prueba funcion
-issues <- get_issues(base_url = url_prueba,
-                       api_key = llave,
+## Example function use:
+issues <- get_issues(base_url = url_ixpantia,
+                       api_key = api_token,
                        owner = "ixpantia",
                        repo = "ixmandash")
 ```
 
+For the examples below, we are going to use credentials stored in a .Renviron
+file, which we are going to call from this variables:
 
-
+```{r}
+example_key <- Sys.getenv("example_key")
+example_url <- Sys.getenv("example_url")
+```
 
 ## Get information about your projects
 
 ```{r, eval=FALSE}
-organizations <- get_an_organization("ixpantia", base_url, api_key)
+organizations <- get_an_organization(base_url = example_url,
+                                     api_key = example_key,
+                                     org = "ixpantia") 
+
+organization
 ```
+
+
+```{r}
+repos <- get_list_repos_org(base_url = example_url, 
+                   api_key = example_key, 
+                   org = "ixpantia")
+
+glimpse(repos)
+```
+
+
