@@ -77,129 +77,38 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
 <div id="gitear" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#gitear" class="anchor"></a>gitear</h1></div>
+<a href="#gitear" class="anchor"></a>gitear <a href="url"><img src="gitear.png" align="right" width="30%"></a>
+</h1></div>
+<!-- badges: start -->
 
-</div>
-<div id="overview" class="section level1">
-<h1 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h1>
-<p>gitear is a package that communicates with the <a href="https://gitea.io/en-us/">gitea</a> API. It makes posible to request your self-hosted Git service data and import it to R in a tidy data frame.</p>
+<p>The goal of gitear is to request your self-hosted Git service data and import it to R in a tidy data frame.</p>
+<p><code>gitear</code> is a package that communicates with the <a href="https://gitea.io/en-us/">gitea</a> API.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>For the installation of the development version, you can install gitear from github:</p>
-<pre><code><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">devtools::install_github("ixpantia/gitear")</a></code></pre>
+<p>You can install the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"ixpantia/gitear"</span>)</a></code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>With gitear you have a set of functions to request your data from the gitea API and also to edit issues.</p>
-<table class="table">
-<thead><tr class="header">
-<th>Function</th>
-<th>Output</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>add_tracked_time_issue</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>create_comment_issue</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>create_issue</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>edit_comment</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>edit_issue</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>get_an_issue</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>get_an_organization</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>get_issues_closed_state</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>get_issues_open_state</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>get_label_issue</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>get_list_org_teams</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>get_list_comments_issue</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>get_list_comments_repository</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>get_list_org_members</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>get_list_repos_org</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>get_org_hook</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>get_org_list_hooks</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>get_organizations</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>get_repositories</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>get_times_issue</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>get_version</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>get_commits</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="getting-help" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-help" class="anchor"></a>Getting help</h2>
+<p>First go to your gitea self hosted service and grab your API Token. Then you should be able to the following:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gitear)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">## Credentials</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">api_token &lt;-<span class="st"> "gfdsgfd8ba18a866bsdfgsdfgs3a2dc9303453b0c92dcfb19"</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">url_ixpantia &lt;-<span class="st"> "https://secure.ixpantia.com"</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">## Example function use:</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">issues &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_issues.html">get_issues</a></span>(<span class="dt">base_url =</span> url_ixpantia,</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">                       <span class="dt">api_key =</span> api_token,</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">                       <span class="dt">owner =</span> <span class="st">"ixpantia"</span>,</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">                       <span class="dt">repo =</span> <span class="st">"ixmandash"</span>)</a></code></pre></div>
 </div>
 </div>
-
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -224,7 +133,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="url"><img src="gitear.png" align="right" width="30%"></a></li>
+<li><a href="https://cran.r-project.org/package=gitear"><img src="https://www.r-pkg.org/badges/version/gitear" alt="CRAN status"></a></li>
 </ul>
 </div>
 </div>

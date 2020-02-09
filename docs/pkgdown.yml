@@ -1,5 +1,7 @@
-pandoc: 2.7.2
+pandoc: 2.3.1
 pkgdown: 1.4.1
 pkgdown_sha: ~
-articles: []
+articles:
+  Access-diff-issues-on-diff-instances: Access-diff-issues-on-diff-instances.html
+  Access-gitea-from-R: Access-gitea-from-R.html
 
