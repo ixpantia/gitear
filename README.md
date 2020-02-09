@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# gitear <a href="url"><img src="gitear.png" align="right" width="30%"></a>
+# gitear <a href="url"><img src="img/gitear.png" align="right" width="30%"></a>
 
 <!-- badges: start -->
 

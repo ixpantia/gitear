@@ -15,7 +15,7 @@ library(gitear)
 library(dplyr)
 ```
 
-# gitear <a href="url"><img src="gitear.png" align="right" width="30%"></a>
+# gitear <a href="url"><img src="img/gitear.png" align="right" width="30%"></a>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/gitear)](https://cran.r-project.org/package=gitear)
