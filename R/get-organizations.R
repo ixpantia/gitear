@@ -33,9 +33,9 @@ get_organizations <- function(base_url, api_key){
         })
 }
 
-#' @title Returns the organizations of the admin
-#' @description Returns list the current user's organizations to admin level
-#' @details
+#' @title Returns the organizations for an administrator user
+#' @description Returns the list of organizations for a user with an administrator role
+#' @details This function works only in the case that the `api_key` is associated with a user with administrator role
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
