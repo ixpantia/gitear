@@ -11,7 +11,7 @@
 #' @param repo The name of the repo
 #' @param id_issue Index of the issue to add tracked time to
 #'
-#' @param time The time to add the issue in seconds
+#' @param time The time to add to the issue in seconds
 #'
 #'@export
 add_tracked_time_issue <- function(base_url, api_key, owner, repo, id_issue, time){

@@ -11,9 +11,9 @@
 #' @param repo The name of the repo
 #' @param id_issue Index of the issue to edit
 #'
-#' @param body  The new ticket body text
-#' @param state The ticket state
-#' @param title The new ticket title text
+#' @param body  The new issue body text
+#' @param state The issue state
+#' @param title The new issue title text
 #'
 #'@export
 edit_issue <- function(base_url, api_key, owner, repo, id_issue, body, state, title){
