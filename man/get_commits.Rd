@@ -4,7 +4,7 @@
 \alias{get_commits}
 \title{Returns the repository commits}
 \usage{
-get_commits(base_url, api_key, owner, repo, branch)
+get_commits(base_url, api_key, owner, repo)
 }
 \arguments{
 \item{base_url}{The base URL for your gitea server (no trailing '/')}
@@ -14,8 +14,6 @@ get_commits(base_url, api_key, owner, repo, branch)
 \item{owner}{The name of the project where the repository exists}
 
 \item{repo}{The repository name of which you want to obtain the information}
-
-\item{branch}{The branch name}
 }
 \description{
 Returns the repository commits of the Gitea application

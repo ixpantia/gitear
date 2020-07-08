@@ -34,3 +34,4 @@ test_that("Getting users gives the expected result", {
   expect_equal(TRUE, !is.null(value_list_users))
   expect_that(value_list_users, is_a("data.frame"))
 })
+

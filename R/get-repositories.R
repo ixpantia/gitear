@@ -3,7 +3,7 @@
 #'
 #' @description Returns the repositories of the Gitea application
 #' @title Returns the repositories
-#' 
+#'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
@@ -16,9 +16,9 @@ get_repositories <- function(base_url, api_key){
     } else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", 
+            gitea_url <- file.path(base_url, "api/v1",
                                    sub("^/", "", "/repos/search"))
-            
+
             authorization <- paste("token", api_key)
             r <- GET(gitea_url, add_headers(Authorization = authorization),
                      accept_json())
@@ -29,7 +29,7 @@ get_repositories <- function(base_url, api_key){
             content_repositories <- content(r, as = "text")
             content_repositories <- fromJSON(content_repositories)
             content_repositories <- as.data.frame(content_repositories)
-            
+
             return(content_repositories)
         })
 }

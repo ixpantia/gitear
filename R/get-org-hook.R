@@ -3,10 +3,9 @@
 #'
 #' @description Get a hook
 #' @title Return a hook
-#' 
+#'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
-#' 
 #' @param org Name of the organization
 #' @param id_hook Id of the hook to get
 #'
@@ -23,21 +22,21 @@ get_org_hook <- function(base_url, api_key, org, id_hook){
     }else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", 
-                                   sub("^/", "", "/orgs"), 
+            gitea_url <- file.path(base_url, "api/v1",
+                                   sub("^/", "", "/orgs"),
                                    org, "hooks", id_hook)
-            
+
             authorization <- paste("token", api_key)
             r <- GET(gitea_url, add_headers(Authorization = authorization),
                      accept_json())
-            
+
             # To convert http errors to R errors
             stop_for_status(r)
-            
+
             content_org_hook <- content(r, as = "text")
             content_org_hook <- fromJSON(content_org_hook)
             content_org_hook <- as.data.frame(content_org_hook)
-            
+
             return(content_org_hook)
         })
 }
