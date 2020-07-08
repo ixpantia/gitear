@@ -3,17 +3,17 @@
 #'
 #' @description Edit an issue
 #' @title Edit an issue
-#' 
+#'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
-#' 
+#'
 #' @param owner The owner of the repo
 #' @param repo The name of the repo
 #' @param id_issue Index of the issue to edit
-#' 
-#' @param body The time to add the issue
-#' @param state The time to add the issue
-#' @param title The time to add the issue
+#'
+#' @param body  The new ticket body text
+#' @param state The ticket state
+#' @param title The new ticket title text
 #'
 #'@export
 edit_issue <- function(base_url, api_key, owner, repo, id_issue, body, state, title){
@@ -36,11 +36,11 @@ edit_issue <- function(base_url, api_key, owner, repo, id_issue, body, state, ti
     } else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"), 
+            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
                                    owner, repo, "issues", id_issue)
-            
+
             authorization <- paste("token", api_key)
-      
+
             request_body <- as.list(data.frame(body = body, state = state,
                                                title = title))
 
@@ -49,7 +49,7 @@ edit_issue <- function(base_url, api_key, owner, repo, id_issue, body, state, ti
 
             content_edit_issue <- content(r, as = "text")
             content_edit_issue <- fromJSON(content_edit_issue)
-            
+
             return (content_edit_issue)
         })
 }
