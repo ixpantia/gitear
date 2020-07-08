@@ -13,7 +13,8 @@ Description: 'Gitea' is a community managed, lightweight code hosting solution
 Depends: R (>= 3.4.4)
 Imports:
     httr,
-    jsonlite
+    jsonlite,
+    magrittr
 License: MIT + file LICENCE
 Encoding: UTF-8
 LazyData: true
