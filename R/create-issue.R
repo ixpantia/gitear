@@ -32,7 +32,7 @@ create_issue <- function(base_url, api_key, owner, repo, title, body){
     } else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path("https:/", base_url, "api/v1", sub("^/", "", "/repos"),
+            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
                                    owner, repo, "issues")
 
             authorization <- paste("token", api_key)
@@ -42,6 +42,10 @@ create_issue <- function(base_url, api_key, owner, repo, title, body){
             r <- POST(gitea_url, add_headers(Authorization = authorization),
                       content_type_json(), encode = "json", body = request_body)
 
-            return(r)
+            content_create_issue <- content(r, as = "text")
+            content_create_issue <- fromJSON(content_create_issue)
+
+            return(content_create_issue)
+
             })
 }

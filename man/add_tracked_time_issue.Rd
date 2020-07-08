@@ -17,7 +17,7 @@ add_tracked_time_issue(base_url, api_key, owner, repo, id_issue, time)
 
 \item{id_issue}{Index of the issue to add tracked time to}
 
-\item{time}{The time to add the issue}
+\item{time}{The time to add the issue in seconds}
 }
 \description{
 Add a tracked time to a issue
