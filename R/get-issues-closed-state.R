@@ -13,16 +13,18 @@
 #'@export
 get_issues_closed_state <- function(base_url, api_key, owner, repo){
   if (missing(base_url)) {
-      warning("Please add a valid URL")
+    warning("Please add a valid URL")
   } else if (missing(api_key)) {
       warning("Please add a valid API token")
   } else if (missing(owner)) {
-      warning("Please add a valid owner")
+      warning("if (missing(base_url)) {
+    Please add a valid owner")
   } else if (missing(repo)) {
       warning("Please add a valid repository")
   } else
     try({
       page <- 1
+      content_issues <- tibble()
       while (TRUE) {
         base_url <- sub("/$", "", base_url)
         gitea_url <- file.path(base_url, "api/v1",

@@ -13,19 +13,22 @@
 #'@export
 get_issues_open_state <- function(base_url, api_key, owner, repo) {
   if (missing(base_url)) {
-      warning("Please add a valid URL")
+    warning("Please add a valid URL")
   } else if (missing(api_key)) {
-      warning("Please add a valid API token")
+    warning("Please add a valid API token")
   } else if (missing(owner)) {
-      warning("Please add a valid owner")
+    warning("if (missing(base_url)) {
+    Please add a valid owner")
   } else if (missing(repo)) {
-      warning("Please add a valid repository")
+    warning("Please add a valid repository")
   } else
     try({
       page <- 1
+      content_issues <- tibble()
       while (TRUE) {
         base_url <- sub("/$", "", base_url)
-        gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
+        gitea_url <- file.path(base_url, "api/v1",
+                               sub("^/", "", "/repos"),
                                owner,
                                repo,
                                paste0("issues?page=", page))
@@ -38,17 +41,17 @@ get_issues_open_state <- function(base_url, api_key, owner, repo) {
         stop_for_status(r)
 
         page_issues <- content(r, as = "text")
-        page_issues <- fromJSON(page_issues)
-        page_issues <- flatten(as.data.frame(page_issues))
+        page_issues <- jsonlite::fromJSON(page_issues)
+        page_issues <- jsonlite::flatten(as.data.frame(page_issues))
 
         if (page != 1 && nrow(page_issues) == 0) {
-           break
+          break
         }
 
         if (page == 1) {
-            content_issues <- page_issues
+          content_issues <- page_issues
         } else {
-            content_issues <- dplyr::bind_rows(content_issues, page_issues)
+          content_issues <- dplyr::bind_rows(content_issues, page_issues)
         }
         page <- page + 1
       }
