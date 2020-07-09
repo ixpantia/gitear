@@ -1,13 +1,14 @@
 #' @import httr
 #' @import jsonlite
-#'
-#' @description Get a hook
-#' @title Return a hook
+#
+#' @title Hook information
+#' @description Get a hook information of a organizations
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
+#'
 #' @param org Name of the organization
-#' @param id_hook Id of the hook to get
+#' @param id_hook Id of the hook to get information
 #'
 #'@export
 get_org_hook <- function(base_url, api_key, org, id_hook){

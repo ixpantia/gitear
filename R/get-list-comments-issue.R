@@ -1,15 +1,15 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Returns list all comments on an issue
-#' @title Returns get a list all comments on an issue
+#' @title All comments on an issue
+#' @description Returns a list of all comments on an issue
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
-#' @param owner The owner of the repo
-#' @param repo The name of the repo for the gitea service
-#' @param id_issue Index of the issue to get
+#' @param owner The owner of the repository
+#' @param repo The name of the repository
+#' @param id_issue Index of the issue to get comments
 #'
 #'@export
 get_list_comments_issue <- function(base_url, api_key, owner, repo, id_issue){

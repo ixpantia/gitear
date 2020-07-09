@@ -1,17 +1,17 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Add a tracked time to a issue
-#' @title Tracked time to a issue
+#' @title Tracked time to an issue
+#' @description Add a tracked time to an issue
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
-#' @param owner The owner of the repo
-#' @param repo The name of the repo
+#' @param owner The owner of the repository
+#' @param repo The name of the repository
 #' @param id_issue Index of the issue to add tracked time to
 #'
-#' @param time The time to add to the issue in seconds
+#' @param time The time in seconds to add to the issue
 #'
 #'@export
 add_tracked_time_issue <- function(base_url, api_key, owner, repo, id_issue, time){

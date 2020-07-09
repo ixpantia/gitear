@@ -1,19 +1,19 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Create an issue
-#' @title Create an issue
+#' @title Create a new issue
+#' @description Create an new issue in a specific repository
 #'
 #' @param base_url URL prefix for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
-#' @param owner Owner of the repo
-#' @param repo Is the name of the repo
+#' @param owner The owner of the repository
+#' @param repo The name of the repository
 #'
-#' @param title Is the title of the issue
-#' @param body Is the body of the issue
+#' @param title The title of the issue
+#' @param body The body text of the issue
 #'
-#' @return list (invisibly) with the status result of the API
+#' @return list with results of the new issue
 #'
 #' @export
 create_issue <- function(base_url, api_key, owner, repo, title, body){

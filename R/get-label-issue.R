@@ -1,14 +1,14 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Returns an issue's labels
 #' @title Returns an issue's labels
+#' @description Returns an issue's labels
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
-#' @param owner The owner of the repo
-#' @param repo The reposository name for the gitea service
+#' @param owner The owner of the repository
+#' @param repo The name of the repository
 #' @param id_issue Index of the issue
 #'
 #'@export

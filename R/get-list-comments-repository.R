@@ -1,13 +1,14 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Returns one list all comments in a repository
-#' @title Returns list of comments in a repository
+#' @title All comments in a repository
+#' @description Returns a list of all comments in a repository
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
+#'
 #' @param owner The owner of the repository
-#' @param repo The name of repository for the gitea service
+#' @param repo The name of the repository
 #'
 #'@export
 get_list_comments_repository <- function(base_url, api_key, owner, repo){

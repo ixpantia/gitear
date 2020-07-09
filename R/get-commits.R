@@ -1,13 +1,14 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Returns the repository commits of the Gitea application
-#' @title Returns the repository commits
+#' @title Repository commits
+#' @description Returns the repository commits of a Gitea application
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
-#' @param owner The name of the project where the repository exists
-#' @param repo The repository name of which you want to obtain the information
+#'
+#' @param owner The owner of the repository
+#' @param repo The name of the repository
 #'
 #'@export
 get_commits <- function(base_url, api_key, owner, repo){

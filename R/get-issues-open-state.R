@@ -1,14 +1,14 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Returns the issues of the Gitea application
-#' @title Returns the issues in open state
+#' @title Returns the repository issues in open state
+#' @description Returns the issues in open state of a repository
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
-#' @param owner The user's owner for the gitea service
-#' @param repo The reposository for the gitea service
+#' @param owner The owner of the repository
+#' @param repo The name of the repository
 #'
 #'@export
 get_issues_open_state <- function(base_url, api_key, owner, repo) {

@@ -1,8 +1,8 @@
 #' @import httr
 #' @import jsonlite
 #'
+#' @title Organizations of the user
 #' @description Returns list the current user's organizations
-#' @title Returns the organizations of the user
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
@@ -34,8 +34,10 @@ get_organizations <- function(base_url, api_key){
 }
 
 #' @title Returns the organizations for an administrator user
-#' @description Returns the list of organizations for a user with an administrator role
-#' @details This function works only in the case that the `api_key` is associated with a user with administrator role
+#' @description Returns the list of organizations for a user with an
+#'  administrator role
+#' @details This function works only in the case that the `api_key` is
+#' associated with a user with administrator role
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service

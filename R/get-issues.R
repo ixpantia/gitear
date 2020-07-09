@@ -2,14 +2,16 @@
 #' @import jsonlite
 #' @import magrittr
 #'
-#' @description Returns open issues in an specific repository
 #' @title Returns open issues from an specific repository
+#' @description Returns open issues in an specific repository
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
-#' @param owner The owner of the repo (The name of the project where the repo belongs)
-#' @param repo The repository name for the gitea service
-#' @param full_info If FALSE this will select specific columns from the issues data
+#'
+#' @param owner The owner of the repository
+#' @param repo The name of the repository
+#' @param full_info TRUE or FALSE value. If FALSE this will select specific
+#' columns from the issues data
 #'
 #'@export
 get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
