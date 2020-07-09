@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-times-issues.R
 \name{get_times_issue}
 \alias{get_times_issue}
-\title{Returns list an issue's tracked times}
+\title{Issue's tracked times}
 \usage{
 get_times_issue(base_url, api_key, owner, repo, id_issue)
 }
@@ -11,12 +11,12 @@ get_times_issue(base_url, api_key, owner, repo, id_issue)
 
 \item{api_key}{The user's API token key for the gitea service}
 
-\item{owner}{The owner of the repo}
+\item{owner}{The owner of the repository}
 
-\item{repo}{The reposository for the gitea service}
+\item{repo}{The name of the repository}
 
 \item{id_issue}{Index of the issue}
 }
 \description{
-Returns one list an issue's tracked times
+Returns a data frame of an issue's tracked times
 }

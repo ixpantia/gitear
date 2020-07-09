@@ -11,14 +11,14 @@ create_comment_issue(base_url, api_key, owner, repo, id_issue, body)
 
 \item{api_key}{The user's API token key for the gitea service}
 
-\item{owner}{The owner of the repo}
+\item{owner}{The owner of the repository}
 
-\item{repo}{The name of the repo for the gitea service}
+\item{repo}{The name of the repository}
 
-\item{id_issue}{Index of the issue to get}
+\item{id_issue}{Index of the issue to create a comment}
 
-\item{body}{Respresent of content comments}
+\item{body}{The text that is added as a comment to the issue}
 }
 \description{
-Add a comment to an issue
+Add a comment to an issue in a gitea server
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-list-users.R
 \name{get_list_users}
 \alias{get_list_users}
-\title{Return a user list for a gitea server}
+\title{Users of a gitea server}
 \usage{
 get_list_users(base_url, api_key)
 }

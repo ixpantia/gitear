@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-repositories.R
 \name{get_repositories}
 \alias{get_repositories}
-\title{Returns the repositories}
+\title{Repositories of a gitea service}
 \usage{
 get_repositories(base_url, api_key)
 }

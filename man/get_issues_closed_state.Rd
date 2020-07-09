@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-issues-closed-state.R
 \name{get_issues_closed_state}
 \alias{get_issues_closed_state}
-\title{Returns the issues in closed state}
+\title{Returns the repository issues in closed state}
 \usage{
 get_issues_closed_state(base_url, api_key, owner, repo)
 }
@@ -11,10 +11,10 @@ get_issues_closed_state(base_url, api_key, owner, repo)
 
 \item{api_key}{The user's API token key for the gitea service}
 
-\item{owner}{The user's owner for the gitea service}
+\item{owner}{The owner of the repository}
 
-\item{repo}{The reposository for the gitea service}
+\item{repo}{The name of the repository}
 }
 \description{
-Returns the issues of the Gitea application
+Returns the issues in closed state of a repository
 }

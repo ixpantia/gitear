@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-an-organization.R
 \name{get_an_organization}
 \alias{get_an_organization}
-\title{Return an organization}
+\title{Information of an organization}
 \usage{
 get_an_organization(base_url, api_key, org)
 }
@@ -11,8 +11,8 @@ get_an_organization(base_url, api_key, org)
 
 \item{api_key}{The user's API token key for the gitea service}
 
-\item{org}{Name of the organization to get}
+\item{org}{Name of the organization}
 }
 \description{
-Get an organization
+Get information from an organization
 }

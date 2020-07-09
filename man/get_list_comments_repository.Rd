@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-list-comments-repository.R
 \name{get_list_comments_repository}
 \alias{get_list_comments_repository}
-\title{Returns list of comments in a repository}
+\title{All comments in a repository}
 \usage{
 get_list_comments_repository(base_url, api_key, owner, repo)
 }
@@ -13,8 +13,8 @@ get_list_comments_repository(base_url, api_key, owner, repo)
 
 \item{owner}{The owner of the repository}
 
-\item{repo}{The name of repository for the gitea service}
+\item{repo}{The name of the repository}
 }
 \description{
-Returns one list all comments in a repository
+Returns a list of all comments in a repository
 }

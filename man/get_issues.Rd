@@ -11,11 +11,12 @@ get_issues(base_url, api_key, owner, repo, full_info = FALSE)
 
 \item{api_key}{The user's API token key for the gitea service}
 
-\item{owner}{The owner of the repo (The name of the project where the repo belongs)}
+\item{owner}{The owner of the repository}
 
-\item{repo}{The repository name for the gitea service}
+\item{repo}{The name of the repository}
 
-\item{full_info}{If FALSE this will select specific columns from the issues data}
+\item{full_info}{TRUE or FALSE value. If FALSE this will select specific
+columns from the issues data}
 }
 \description{
 Returns open issues in an specific repository

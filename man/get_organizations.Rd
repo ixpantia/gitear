@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-organizations.R
 \name{get_organizations}
 \alias{get_organizations}
-\title{Returns the organizations of the user}
+\title{Organizations of the user}
 \usage{
 get_organizations(base_url, api_key)
 }

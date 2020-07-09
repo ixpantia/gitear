@@ -11,9 +11,9 @@ get_label_issue(base_url, api_key, owner, repo, id_issue)
 
 \item{api_key}{The user's API token key for the gitea service}
 
-\item{owner}{The owner of the repo}
+\item{owner}{The owner of the repository}
 
-\item{repo}{The reposository name for the gitea service}
+\item{repo}{The name of the repository}
 
 \item{id_issue}{Index of the issue}
 }

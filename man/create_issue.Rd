@@ -2,7 +2,7 @@
 % Please edit documentation in R/create-issue.R
 \name{create_issue}
 \alias{create_issue}
-\title{Create an issue}
+\title{Create a new issue}
 \usage{
 create_issue(base_url, api_key, owner, repo, title, body)
 }
@@ -11,17 +11,17 @@ create_issue(base_url, api_key, owner, repo, title, body)
 
 \item{api_key}{The user's API token key for the gitea service}
 
-\item{owner}{Owner of the repo}
+\item{owner}{The owner of the repository}
 
-\item{repo}{Is the name of the repo}
+\item{repo}{The name of the repository}
 
-\item{title}{Is the title of the issue}
+\item{title}{The title of the issue}
 
-\item{body}{Is the body of the issue}
+\item{body}{The body text of the issue}
 }
 \value{
-list (invisibly) with the status result of the API
+list with results of the new issue
 }
 \description{
-Create an issue
+Create an new issue in a specific repository
 }

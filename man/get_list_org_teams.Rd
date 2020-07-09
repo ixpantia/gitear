@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-list-an-org-teams.R
 \name{get_list_org_teams}
 \alias{get_list_org_teams}
-\title{Return list an organization's teams}
+\title{Organization's teams}
 \usage{
 get_list_org_teams(base_url, api_key, org)
 }
@@ -11,8 +11,8 @@ get_list_org_teams(base_url, api_key, org)
 
 \item{api_key}{The user's API token key for the gitea service}
 
-\item{org}{Name of the organization to get}
+\item{org}{Name of the organization}
 }
 \description{
-Get list an organization's teams
+Get organization's teams
 }

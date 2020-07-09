@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-list-organization-members.R
 \name{get_list_org_members}
 \alias{get_list_org_members}
-\title{Return list an organization's members}
+\title{Organization's members}
 \usage{
 get_list_org_members(base_url, api_key, org)
 }
