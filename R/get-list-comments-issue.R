@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @title All comments on an issue
+#' @title Returns all comments on an issue
 #' @description Returns a list of all comments on an issue
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')

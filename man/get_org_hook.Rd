@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-org-hook.R
 \name{get_org_hook}
 \alias{get_org_hook}
-\title{Hook information}
+\title{Returns a hook}
 \usage{
 get_org_hook(base_url, api_key, org, id_hook)
 }

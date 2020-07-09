@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-list-an-org-teams.R
 \name{get_list_org_teams}
 \alias{get_list_org_teams}
-\title{Organization's teams}
+\title{Returns organization's teams}
 \usage{
 get_list_org_teams(base_url, api_key, org)
 }

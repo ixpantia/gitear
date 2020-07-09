@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @title Repository commits
+#' @title Returns repository commits
 #' @description Returns the repository commits of a Gitea application
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')

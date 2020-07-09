@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-list-repos-of-an-organization.R
 \name{get_list_repos_org}
 \alias{get_list_repos_org}
-\title{Organization's repositories}
+\title{Returns organization's repositories}
 \usage{
 get_list_repos_org(base_url, api_key, org)
 }

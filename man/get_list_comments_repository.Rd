@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-list-comments-repository.R
 \name{get_list_comments_repository}
 \alias{get_list_comments_repository}
-\title{All comments in a repository}
+\title{Returns all comments in a repository}
 \usage{
 get_list_comments_repository(base_url, api_key, owner, repo)
 }

@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @title Organization's webhooks
+#' @title Returns organization's webhooks
 #' @description Returns a list of organization's webhooks
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')

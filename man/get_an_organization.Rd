@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-an-organization.R
 \name{get_an_organization}
 \alias{get_an_organization}
-\title{Information of an organization}
+\title{Returns an organization}
 \usage{
 get_an_organization(base_url, api_key, org)
 }

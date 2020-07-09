@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-commits.R
 \name{get_commits}
 \alias{get_commits}
-\title{Repository commits}
+\title{Returns repository commits}
 \usage{
 get_commits(base_url, api_key, owner, repo)
 }

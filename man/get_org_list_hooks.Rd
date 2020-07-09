@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-org-list-hooks.R
 \name{get_org_list_hooks}
 \alias{get_org_list_hooks}
-\title{Organization's webhooks}
+\title{Returns organization's webhooks}
 \usage{
 get_org_list_hooks(base_url, api_key, org)
 }

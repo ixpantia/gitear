@@ -2,7 +2,7 @@
 % Please edit documentation in R/create-comment-issue.R
 \name{create_comment_issue}
 \alias{create_comment_issue}
-\title{Adding a comment to an issue}
+\title{Add a comment to an issue}
 \usage{
 create_comment_issue(base_url, api_key, owner, repo, id_issue, body)
 }

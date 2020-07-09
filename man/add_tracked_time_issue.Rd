@@ -2,7 +2,7 @@
 % Please edit documentation in R/add-tracked-time-issue.R
 \name{add_tracked_time_issue}
 \alias{add_tracked_time_issue}
-\title{Tracked time to an issue}
+\title{Add tracked time to an issue}
 \usage{
 add_tracked_time_issue(base_url, api_key, owner, repo, id_issue, time)
 }

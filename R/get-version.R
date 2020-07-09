@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @title Gitea service version
+#' @title Returns gitea service version
 #' @description Returns the version of the Gitea application
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')

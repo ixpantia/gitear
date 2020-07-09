@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @title Issue's tracked times
+#' @title Returns issue's tracked times
 #' @description Returns a data frame of an issue's tracked times
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')

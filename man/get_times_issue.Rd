@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-times-issues.R
 \name{get_times_issue}
 \alias{get_times_issue}
-\title{Issue's tracked times}
+\title{Returns issue's tracked times}
 \usage{
 get_times_issue(base_url, api_key, owner, repo, id_issue)
 }

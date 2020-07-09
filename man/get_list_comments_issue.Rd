@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-list-comments-issue.R
 \name{get_list_comments_issue}
 \alias{get_list_comments_issue}
-\title{All comments on an issue}
+\title{Returns all comments on an issue}
 \usage{
 get_list_comments_issue(base_url, api_key, owner, repo, id_issue)
 }

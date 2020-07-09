@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @title Organization's repositories
+#' @title Returns organization's repositories
 #' @description Get a list of an organization's repositories
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')

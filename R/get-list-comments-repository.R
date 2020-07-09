@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @title All comments in a repository
+#' @title Returns all comments in a repository
 #' @description Returns a list of all comments in a repository
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')

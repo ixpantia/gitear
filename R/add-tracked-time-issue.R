@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @title Tracked time to an issue
+#' @title Add tracked time to an issue
 #' @description Add a tracked time to an issue
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')

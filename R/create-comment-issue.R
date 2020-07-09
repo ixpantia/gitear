@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @title Adding a comment to an issue
+#' @title Add a comment to an issue
 #' @description Add a comment to an issue in a gitea server
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')

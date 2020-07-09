@@ -1,7 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @title Information of an organization
+#' @title Returns an organization
 #' @description Get information from an organization
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
