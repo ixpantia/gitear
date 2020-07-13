@@ -1,14 +1,17 @@
 #' @import httr
 #' @import jsonlite
+#' @import magrittr
 #'
-#' @description Returns open issues in an specific repository
 #' @title Returns open issues from an specific repository
+#' @description Returns open issues in an specific repository
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
-#' @param owner The owner of the repo (The name of the project where the repo belongs)
-#' @param repo The repository name for the gitea service
-#' @param full_info If FALSE this will select specific columns from the issues data
+#'
+#' @param owner The owner of the repository
+#' @param repo The name of the repository
+#' @param full_info TRUE or FALSE value. If FALSE this will select specific
+#' columns from the issues data
 #'
 #'@export
 get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
@@ -40,29 +43,29 @@ get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
 
             # Data frame wrangling
             if (full_info == FALSE) {
-                # Sacarlo usuarios que crearon el tiquete
+                # Get users who created the ticket
                 users <- content_an_issue$user
-                users <- as_tibble(users) %>%
-                    select(username) %>%
-                    rename(author = username)
+                users <- tibble::as_tibble(users) %>%
+                    dplyr::select(username) %>%
+                    dplyr::rename(author = username)
 
-                # Sacar usuarios que han sido asigandos al tiquete
+                # Get users who have been assigned to the ticket
                 assignees <- content_an_issue$assignee
-                assignees <- as_tibble(assignees) %>%
-                    select(username) %>%
-                    rename(assignee = username)
+                assignees <- tibble::as_tibble(assignees) %>%
+                    dplyr::select(username) %>%
+                    dplyr::rename(assignee = username)
 
-                # Unirlo por posicion
+                # Join by position
                 issues_content <- content_an_issue %>%
-                    select(number, title, created_at, updated_at, due_date) %>%
-                    bind_cols(users, assignees) %>%
+                    dplyr::select(number, title, created_at, updated_at, due_date) %>%
+                    dplyr::bind_cols(users, assignees) %>%
                     tidyr::separate(col = created_at,
                                     into = c("created_date", "created_time"),
                                     sep = "T") %>%
                     tidyr::separate(col = updated_at,
                                     into = c("updated_date", "updated_time"),
                                     sep = "T") %>%
-                    mutate(created_time = stringr::str_remove(created_time,
+                    dplyr::mutate(created_time = stringr::str_remove(created_time,
                                                               pattern = "Z"),
                            updated_time = stringr::str_remove(updated_time,
                                                              pattern = "Z"))

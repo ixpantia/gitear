@@ -2,7 +2,7 @@
 % Please edit documentation in R/add-tracked-time-issue.R
 \name{add_tracked_time_issue}
 \alias{add_tracked_time_issue}
-\title{Tracked time to a issue}
+\title{Add tracked time to an issue}
 \usage{
 add_tracked_time_issue(base_url, api_key, owner, repo, id_issue, time)
 }
@@ -11,14 +11,14 @@ add_tracked_time_issue(base_url, api_key, owner, repo, id_issue, time)
 
 \item{api_key}{The user's API token key for the gitea service}
 
-\item{owner}{The owner of the repo}
+\item{owner}{The owner of the repository}
 
-\item{repo}{The name of the repo}
+\item{repo}{The name of the repository}
 
 \item{id_issue}{Index of the issue to add tracked time to}
 
-\item{time}{The time to add the issue}
+\item{time}{The time in seconds to add to the issue}
 }
 \description{
-Add a tracked time to a issue
+Add a tracked time to an issue
 }

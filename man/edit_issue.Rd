@@ -17,11 +17,11 @@ edit_issue(base_url, api_key, owner, repo, id_issue, body, state, title)
 
 \item{id_issue}{Index of the issue to edit}
 
-\item{body}{The time to add the issue}
+\item{body}{The new issue body text}
 
-\item{state}{The time to add the issue}
+\item{state}{The issue state}
 
-\item{title}{The time to add the issue}
+\item{title}{The new issue title text}
 }
 \description{
 Edit an issue

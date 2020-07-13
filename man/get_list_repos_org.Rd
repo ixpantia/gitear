@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-list-repos-of-an-organization.R
 \name{get_list_repos_org}
 \alias{get_list_repos_org}
-\title{Return list an organization's repos}
+\title{Returns organization's repositories}
 \usage{
 get_list_repos_org(base_url, api_key, org)
 }
@@ -11,8 +11,8 @@ get_list_repos_org(base_url, api_key, org)
 
 \item{api_key}{The user's API token key for the gitea service}
 
-\item{org}{Name of the organization to get repos}
+\item{org}{Name of the organization}
 }
 \description{
-Get list an organization's repos
+Get a list of an organization's repositories
 }

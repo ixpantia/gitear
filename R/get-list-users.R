@@ -1,8 +1,8 @@
 #' @import httr
 #' @import jsonlite
 #'
+#' @title Returns users of a gitea server
 #' @description User list for a gitea server
-#' @title Return a user list for a gitea server
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service

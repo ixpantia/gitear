@@ -1,28 +1,30 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Returns the issues of the Gitea application
-#' @title Returns the issues in closed state
+#' @title Returns the repository issues in closed state
+#' @description Returns the issues in closed state of a repository
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
-#' @param owner The user's owner for the gitea service
-#' @param repo The reposository for the gitea service
+#' @param owner The owner of the repository
+#' @param repo The name of the repository
 #'
 #'@export
 get_issues_closed_state <- function(base_url, api_key, owner, repo){
   if (missing(base_url)) {
-      warning("Please add a valid URL")
+    warning("Please add a valid URL")
   } else if (missing(api_key)) {
       warning("Please add a valid API token")
   } else if (missing(owner)) {
-      warning("Please add a valid owner")
+      warning("if (missing(base_url)) {
+    Please add a valid owner")
   } else if (missing(repo)) {
       warning("Please add a valid repository")
   } else
     try({
       page <- 1
+      content_issues <- tibble()
       while (TRUE) {
         base_url <- sub("/$", "", base_url)
         gitea_url <- file.path(base_url, "api/v1",

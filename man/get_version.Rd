@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-version.R
 \name{get_version}
 \alias{get_version}
-\title{Returns the version}
+\title{Returns gitea service version}
 \usage{
 get_version(base_url, api_key)
 }

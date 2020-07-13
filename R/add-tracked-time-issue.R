@@ -1,17 +1,17 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Add a tracked time to a issue
-#' @title Tracked time to a issue
-#' 
+#' @title Add tracked time to an issue
+#' @description Add a tracked time to an issue
+#'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
-#' 
-#' @param owner The owner of the repo
-#' @param repo The name of the repo
+#'
+#' @param owner The owner of the repository
+#' @param repo The name of the repository
 #' @param id_issue Index of the issue to add tracked time to
-#' 
-#' @param time The time to add the issue
+#'
+#' @param time The time in seconds to add to the issue
 #'
 #'@export
 add_tracked_time_issue <- function(base_url, api_key, owner, repo, id_issue, time){
@@ -30,20 +30,28 @@ add_tracked_time_issue <- function(base_url, api_key, owner, repo, id_issue, tim
     } else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"), 
+            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
                                    owner, repo, "issues", id_issue, "times")
-            
+
             authorization <- paste("token", api_key)
-            
+
             request_body <- as.list(data.frame(time = as.numeric(time)))
-            
+
             r <- POST(gitea_url, add_headers(Authorization = authorization),
                       content_type_json(), encode = "json", body = request_body)
-            
+
             content_tracked_time <- content(r, as = "text")
             content_tracked_time <- fromJSON(content_tracked_time)
-            content_tracked_time <- as.data.frame(content_tracked_time)
-            
+
+            repo_info <- as.data.frame(content_tracked_time$issue$repository)
+            names(repo_info) <- paste0("repo_", names(repo_info))
+
+            content_tracked_time <- as.data.frame(content_tracked_time
+                                                  [-length(content_tracked_time)])
+            content_tracked_time$issue_id <- id_issue
+
+            content_tracked_time <- cbind(content_tracked_time, repo_info)
+
             return (content_tracked_time)
         })
 }

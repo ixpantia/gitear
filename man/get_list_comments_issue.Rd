@@ -2,7 +2,7 @@
 % Please edit documentation in R/get-list-comments-issue.R
 \name{get_list_comments_issue}
 \alias{get_list_comments_issue}
-\title{Returns get a list all comments on an issue}
+\title{Returns all comments on an issue}
 \usage{
 get_list_comments_issue(base_url, api_key, owner, repo, id_issue)
 }
@@ -11,12 +11,12 @@ get_list_comments_issue(base_url, api_key, owner, repo, id_issue)
 
 \item{api_key}{The user's API token key for the gitea service}
 
-\item{owner}{The owner of the repo}
+\item{owner}{The owner of the repository}
 
-\item{repo}{The name of the repo for the gitea service}
+\item{repo}{The name of the repository}
 
-\item{id_issue}{Index of the issue to get}
+\item{id_issue}{Index of the issue to get comments}
 }
 \description{
-Returns list all comments on an issue
+Returns a list of all comments on an issue
 }

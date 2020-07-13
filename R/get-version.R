@@ -1,9 +1,9 @@
 #' @import httr
 #' @import jsonlite
 #'
+#' @title Returns gitea service version
 #' @description Returns the version of the Gitea application
-#' @title Returns the version
-#' 
+#'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
@@ -16,11 +16,11 @@ get_version <- function(base_url, api_key){
     } else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", 
+            gitea_url <- file.path(base_url, "api/v1",
                                    sub("^/", "", "/version"))
-            
+
             authorization <- paste("token", api_key)
-            r <- GET(gitea_url, add_headers(Authorization = authorization), 
+            r <- GET(gitea_url, add_headers(Authorization = authorization),
                      accept_json())
 
             # To convert http errors to R errors

@@ -1,19 +1,19 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Create an issue
-#' @title Create an issue
+#' @title Create a new issue
+#' @description Create an new issue in a specific repository
 #'
 #' @param base_url URL prefix for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
-#' @param owner Owner of the repo
-#' @param repo Is the name of the repo
+#' @param owner The owner of the repository
+#' @param repo The name of the repository
 #'
-#' @param title Is the title of the issue
-#' @param body Is the body of the issue
+#' @param title The title of the issue
+#' @param body The body text of the issue
 #'
-#' @return list (invisibly) with the status result of the API
+#' @return list with results of the new issue
 #'
 #' @export
 create_issue <- function(base_url, api_key, owner, repo, title, body){
@@ -32,7 +32,7 @@ create_issue <- function(base_url, api_key, owner, repo, title, body){
     } else
         try({
             base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path("https:/", base_url, "api/v1", sub("^/", "", "/repos"),
+            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
                                    owner, repo, "issues")
 
             authorization <- paste("token", api_key)
@@ -42,6 +42,10 @@ create_issue <- function(base_url, api_key, owner, repo, title, body){
             r <- POST(gitea_url, add_headers(Authorization = authorization),
                       content_type_json(), encode = "json", body = request_body)
 
-            return(r)
+            content_create_issue <- content(r, as = "text")
+            content_create_issue <- fromJSON(content_create_issue)
+
+            return(content_create_issue)
+
             })
 }

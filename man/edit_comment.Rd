@@ -11,14 +11,14 @@ edit_comment(base_url, api_key, owner, repo, id_comment, body)
 
 \item{api_key}{The user's API token key for the gitea service}
 
-\item{owner}{The owner of the repo}
+\item{owner}{The owner of the repository}
 
-\item{repo}{The name of the repo}
+\item{repo}{The name of the repository}
 
 \item{id_comment}{Id of the comment to edit}
 
-\item{body}{Is the content of comment}
+\item{body}{The text to replace the old comment}
 }
 \description{
-Edit a comment
+Edit a comment in a specific issue
 }
