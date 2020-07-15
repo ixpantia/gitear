@@ -13,13 +13,13 @@
 #'@export
 get_org_hook <- function(base_url, api_key, org, id_hook){
     if (missing(base_url)) {
-        warning("Please add a valid URL")
+        stop("Please add a valid URL")
     } else if (missing(api_key)) {
-        warning("Please add a valid API token")
+        stop("Please add a valid API token")
     } else if (missing(org)) {
-        warning("Please add a valid name of the organization")
+        stop("Please add a valid name of the organization")
     } else if (missing(id_hook)) {
-        warning("Please add a id valid of hook")
+        stop("Please add a id valid of hook")
     }
 
     base_url <- sub("/$", "", base_url)

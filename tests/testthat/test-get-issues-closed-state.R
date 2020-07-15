@@ -16,26 +16,26 @@ test_that("The connection to the test url gets a response", {
     expect_true(r$status_code %in% c(200, 403, 500))
 })
 
-test_that("We geta warning when there is no url", {
-    expect_warning(get_issues_closed_state(api_key = api_key, owner = owner,
+test_that("We get a error when there is no url", {
+    expect_error(get_issues_closed_state(api_key = api_key, owner = owner,
                                           repo = repo),
                    "Please add a valid URL")
 })
 
-test_that("We geta warning when there is no api_key", {
-    expect_warning(get_issues_closed_state(base_url = base_url, owner = owner,
+test_that("We get a error when there is no api_key", {
+    expect_error(get_issues_closed_state(base_url = base_url, owner = owner,
                                          repo = repo),
                    "Please add a valid API token")
 })
 
-test_that("We geta warning when there is no owner", {
-    expect_warning(get_issues_closed_state(base_url = base_url,
+test_that("We get a error when there is no owner", {
+    expect_error(get_issues_closed_state(base_url = base_url,
                                            api_key = api_key, repo = repo),
                    "Please add a valid owner")
 })
 
-test_that("We geta warning when there is no repository", {
-    expect_warning(get_issues_closed_state(base_url = base_url,
+test_that("We get a error when there is no repository", {
+    expect_error(get_issues_closed_state(base_url = base_url,
                                            api_key = api_key, owner = owner),
                    "Please add a valid repository")
 })

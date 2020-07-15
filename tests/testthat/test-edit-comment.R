@@ -18,40 +18,40 @@ test_that("The connection to the test url gets a response", {
     expect_true(r$status_code %in% c(200, 403, 500))
 })
 
-test_that("We geta warning when there is no url", {
-    expect_warning(edit_comment(api_key = api_key, owner = owner, repo = repo, 
+test_that("We get a error when there is no url", {
+    expect_error(edit_comment(api_key = api_key, owner = owner, repo = repo, 
                                 id_comment = id_comment, body = body),
                    "Please add a valid URL")
 })
 
-test_that("We geta warning when there is no api_key", {
-    expect_warning(edit_comment(base_url = base_url, owner = owner, repo = repo,
+test_that("We get a error when there is no api_key", {
+    expect_error(edit_comment(base_url = base_url, owner = owner, repo = repo,
                                 id_comment = id_comment, body = body),
                    "Please add a valid API token")
 })
 
-test_that("We geta warning when there is no owner", {
-    expect_warning(edit_comment(base_url = base_url, api_key = api_key,
+test_that("We get a error when there is no owner", {
+    expect_error(edit_comment(base_url = base_url, api_key = api_key,
                                 repo = repo, id_comment = id_comment,
                                 body = body),
                    "Please add a valid owner")
 })
 
-test_that("We geta warning when there is no repository", {
-    expect_warning(edit_comment(base_url = base_url, api_key = api_key,
+test_that("We get a error when there is no repository", {
+    expect_error(edit_comment(base_url = base_url, api_key = api_key,
                                 owner = owner, id_comment = id_comment,
                                 body = body),
                    "Please add a valid repository")
 })
 
-test_that("We geta warning when there is no id comment", {
-    expect_warning(edit_comment(base_url = base_url, api_key = api_key,
+test_that("We get a error when there is no id comment", {
+    expect_error(edit_comment(base_url = base_url, api_key = api_key,
                                 owner = owner, repo = repo, body = body), 
                    "Please add a id of the comment")
 })
 
-test_that("We geta warning when there is no body", {
-    expect_warning(edit_comment(base_url = base_url, api_key = api_key,
+test_that("We get a error when there is no body", {
+    expect_error(edit_comment(base_url = base_url, api_key = api_key,
                                 owner = owner, repo = repo,
                                 id_comment = id_comment), 
                    "Please add a valid body")

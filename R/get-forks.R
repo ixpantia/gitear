@@ -13,13 +13,13 @@
 #'@export
 get_forks <- function(base_url, api_key, owner, repo) {
   if (missing(base_url)) {
-    warning("Please add a valid URL")
+    stop("Please add a valid URL")
   } else if (missing(api_key)) {
-    warning("Please add a valid API token")
+    stop("Please add a valid API token")
   } else if (missing(owner)) {
-    warning("Please add a valid owner")
+    stop("Please add a valid owner")
   } else if (missing(repo)) {
-    warning("Please add a valid repository")
+    stop("Please add a valid repository")
   }
       base_url <- sub("/$", "", base_url)
       gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),

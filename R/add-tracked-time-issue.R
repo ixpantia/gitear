@@ -16,17 +16,17 @@
 #'@export
 add_tracked_time_issue <- function(base_url, api_key, owner, repo, id_issue, time){
     if (missing(base_url)) {
-        warning("Please add a valid URL")
+        stop("Please add a valid URL")
     } else if (missing(api_key)) {
-        warning("Please add a valid API token")
+        stop("Please add a valid API token")
     } else if (missing(owner)) {
-        warning("Please add a valid owner")
+        stop("Please add a valid owner")
     } else if (missing(repo)) {
-        warning("Please add a valid repository")
+        stop("Please add a valid repository")
     } else if (missing(id_issue)) {
-        warning("Please add a index of the issue")
+        stop("Please add a index of the issue")
     } else if (missing(time)) {
-        warning("Please add a valid time in seconds")
+        stop("Please add a valid time in seconds")
     }
 
     base_url <- sub("/$", "", base_url)
@@ -67,11 +67,17 @@ add_tracked_time_issue <- function(base_url, api_key, owner, repo, id_issue, tim
     content_tracked_time <- fromJSON(content_tracked_time)
 
     repo_info <-  as.data.frame(content_tracked_time$issue$repository)
-    names(repo_info) <- paste0("repo_", names(repo_info))
+
+    if(ncol(repo_info) != 0) {
+        names(repo_info) <- paste0("repo_", names(repo_info))
+    }
 
     content_tracked_time <-as.data.frame(content_tracked_time
                                          [-length(content_tracked_time)])
-    content_tracked_time$issue_id <- id_issue
+
+    if(nrow(content_tracked_time) != 0) {
+        content_tracked_time$issue_id <- id_issue
+    }
 
     content_tracked_time <- cbind(content_tracked_time, repo_info)
 

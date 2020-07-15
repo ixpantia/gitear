@@ -16,17 +16,17 @@
 #'@export
 edit_comment <- function(base_url, api_key, owner, repo, id_comment, body){
     if (missing(base_url)) {
-        warning("Please add a valid URL")
+        stop("Please add a valid URL")
     } else if (missing(api_key)) {
-        warning("Please add a valid API token")
+        stop("Please add a valid API token")
     } else if (missing(owner)) {
-        warning("Please add a valid owner")
+        stop("Please add a valid owner")
     } else if (missing(repo)) {
-        warning("Please add a valid repository")
+        stop("Please add a valid repository")
     } else if (missing(id_comment)) {
-        warning("Please add a id of the comment")
+        stop("Please add a id of the comment")
     } else if (missing(body)) {
-        warning("Please add a valid body")
+        stop("Please add a valid body")
     }
 
     base_url <- sub("/$", "", base_url)

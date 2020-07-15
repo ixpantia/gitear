@@ -10,9 +10,9 @@
 #'@export
 get_organizations <- function(base_url, api_key){
     if (missing(base_url)) {
-        warning("Please add a valid URL")
+        stop("Please add a valid URL")
     } else if (missing(api_key)) {
-        warning("Please add a valid API token")
+        stop("Please add a valid API token")
     }
 
     base_url <- sub("/$", "", base_url)
@@ -57,9 +57,9 @@ get_organizations <- function(base_url, api_key){
 #'@export
 get_admin_organizations <- function(base_url, api_key){
     if (missing(base_url)) {
-        warning("Please add a valid URL")
+        stop("Please add a valid URL")
     } else if (missing(api_key)) {
-        warning("Please add a valid API token")
+        stop("Please add a valid API token")
     }
 
     base_url <- sub("/$", "", base_url)
