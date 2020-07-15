@@ -27,31 +27,54 @@ add_tracked_time_issue <- function(base_url, api_key, owner, repo, id_issue, tim
         warning("Please add a index of the issue")
     } else if (missing(time)) {
         warning("Please add a valid time in seconds")
-    } else
-        try({
-            base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                                   owner, repo, "issues", id_issue, "times")
+    }
 
-            authorization <- paste("token", api_key)
+    base_url <- sub("/$", "", base_url)
+    gitea_url <- file.path(base_url,
+                           "api/v1",
+                            sub("^/", "", "/repos"),
+                            owner,
+                            repo,
+                            "issues",
+                            id_issue,
+                            "times")
 
-            request_body <- as.list(data.frame(time = as.numeric(time)))
+    authorization <- paste("token", api_key)
 
-            r <- POST(gitea_url, add_headers(Authorization = authorization),
-                      content_type_json(), encode = "json", body = request_body)
+    request_body <- as.list(data.frame(time = as.numeric(time)))
 
-            content_tracked_time <- content(r, as = "text")
-            content_tracked_time <- fromJSON(content_tracked_time)
+    r <- tryCatch(
+        POST(
+            gitea_url,
+            add_headers(Authorization = authorization),
+            content_type_json(),
+            encode = "json",
+            body = request_body
+        ),
+        error = function(cond) {
+            "Failure"
+        }
+    )
 
-            repo_info <- as.data.frame(content_tracked_time$issue$repository)
-            names(repo_info) <- paste0("repo_", names(repo_info))
+    if (class(r) != "response") {
+        stop(paste0("Error consulting the url: ", gitea_url))
+    }
 
-            content_tracked_time <- as.data.frame(content_tracked_time
-                                                  [-length(content_tracked_time)])
-            content_tracked_time$issue_id <- id_issue
+    # To convert http errors to R errors
+    stop_for_status(r)
 
-            content_tracked_time <- cbind(content_tracked_time, repo_info)
+    content_tracked_time <- content(r, as = "text")
+    content_tracked_time <- fromJSON(content_tracked_time)
 
-            return (content_tracked_time)
-        })
+    repo_info <-  as.data.frame(content_tracked_time$issue$repository)
+    names(repo_info) <- paste0("repo_", names(repo_info))
+
+    content_tracked_time <-as.data.frame(content_tracked_time
+                                         [-length(content_tracked_time)])
+    content_tracked_time$issue_id <- id_issue
+
+    content_tracked_time <- cbind(content_tracked_time, repo_info)
+
+    return (content_tracked_time)
+
 }

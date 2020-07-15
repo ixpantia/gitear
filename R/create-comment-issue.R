@@ -27,23 +27,46 @@ create_comment_issue <- function(base_url, api_key, owner, repo, id_issue, body)
         warning("Please add a index of the issue")
     } else if (missing(body)) {
         warning("Please add a valid body")
-    } else
-        try({
-            base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                                   owner, repo, "issues", id_issue, "comments")
+    }
 
-            authorization <- paste("token", api_key)
+    base_url <- sub("/$", "", base_url)
+    gitea_url <- file.path(base_url,
+                           "api/v1",
+                           sub("^/", "", "/repos"),
+                           owner,
+                           repo,
+                           "issues",
+                           id_issue,
+                           "comments")
 
-            request_body <- as.list(data.frame(body = body))
+    authorization <- paste("token", api_key)
 
-            r <- POST(gitea_url, add_headers(Authorization = authorization),
-                      content_type_json(), encode = "json", body = request_body)
+    request_body <- as.list(data.frame(body = body))
 
-            add_comment_issue <- content(r, as = "text")
-            add_comment_issue <- fromJSON(add_comment_issue)
-            add_comment_issue <- as.data.frame(add_comment_issue)
+    r <- tryCatch(
+        POST(
+            gitea_url,
+            add_headers(Authorization = authorization),
+            content_type_json(),
+            encode = "json",
+            body = request_body
+        ),
+        error = function(cond) {
+            "Failure"
+        }
+    )
 
-            return(add_comment_issue)
-        })
+    if (class(r) != "response") {
+        stop(paste0("Error consulting the url: ", gitea_url))
+    }
+
+    # To convert http errors to R errors
+    stop_for_status(r)
+
+    add_comment_issue <- content(r, as = "text")
+    add_comment_issue <- fromJSON(add_comment_issue)
+    add_comment_issue <- as.data.frame(add_comment_issue)
+
+    return(add_comment_issue)
+
 }

@@ -13,22 +13,34 @@ get_version <- function(base_url, api_key){
         warning("Please add a valid URL")
     } else if (missing(api_key)) {
         warning("Please add a valid API token")
-    } else
-        try({
-            base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1",
-                                   sub("^/", "", "/version"))
+    }
 
-            authorization <- paste("token", api_key)
-            r <- GET(gitea_url, add_headers(Authorization = authorization),
-                     accept_json())
+    base_url <- sub("/$", "", base_url)
+    gitea_url <- file.path(base_url, "api/v1",
+                           sub("^/", "", "/version"))
 
-            # To convert http errors to R errors
-            stop_for_status(r)
+    authorization <- paste("token", api_key)
+    r <- tryCatch(
+        GET(
+            gitea_url,
+            add_headers(Authorization = authorization),
+            accept_json()
+        ),
+        error = function(cond) {
+            "Failure"
+        }
+    )
 
-            content_version <- content(r, "parse")
-            content_version <- as.data.frame(content_version)
+    if (class(r) != "response") {
+        stop(paste0("Error consulting the url: ", gitea_url))
+    }
 
-            return(content_version)
-        })
+    # To convert http errors to R errors
+    stop_for_status(r)
+
+    content_version <- content(r, "parse")
+    content_version <- as.data.frame(content_version)
+
+    return(content_version)
+
 }

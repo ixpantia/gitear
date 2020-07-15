@@ -20,22 +20,39 @@ get_list_comments_repository <- function(base_url, api_key, owner, repo){
         warning("Please add a valid owner")
     } else if (missing(repo)) {
         warning("Please add a valid repository")
-    } else
-        try({
-            base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                                   owner, repo, "issues/comments")
+    }
 
-            authorization <- paste("token", api_key)
-            r <- GET(gitea_url, add_headers(Authorization = authorization),
-                     accept_json())
+    base_url <- sub("/$", "", base_url)
+    gitea_url <-
+        file.path(base_url,
+                  "api/v1",
+                  sub("^/", "", "/repos"),
+                  owner,
+                  repo,
+                  "issues/comments")
 
-            # To convert http errors to R errors
-            stop_for_status(r)
+    authorization <- paste("token", api_key)
+    r <- tryCatch(
+        GET(
+            gitea_url,
+            add_headers(Authorization = authorization),
+            accept_json()
+        ),
+        error = function(cond) {
+            "Failure"
+        }
+    )
 
-            list_com_repository <- content(r, as = "text")
-            list_com_repository <- fromJSON(list_com_repository)
+    if (class(r) != "response") {
+        stop(paste0("Error consulting the url: ", gitea_url))
+    }
 
-            return(list_com_repository)
-        })
+    # To convert http errors to R errors
+    stop_for_status(r)
+
+    list_com_repository <- content(r, as = "text")
+    list_com_repository <- fromJSON(list_com_repository)
+
+    return(list_com_repository)
+
 }

@@ -13,24 +13,36 @@ get_organizations <- function(base_url, api_key){
         warning("Please add a valid URL")
     } else if (missing(api_key)) {
         warning("Please add a valid API token")
-    } else
-        try({
-            base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1",
-                                   sub("^/", "", "/user/orgs"))
+    }
 
-            authorization <- paste("token", api_key)
-            r <- GET(gitea_url, add_headers(Authorization = authorization),
-                     accept_json())
+    base_url <- sub("/$", "", base_url)
+    gitea_url <- file.path(base_url, "api/v1",
+                           sub("^/", "", "/user/orgs"))
 
-            # To convert http errors to R errors
-            stop_for_status(r)
+    authorization <- paste("token", api_key)
+    r <- tryCatch(
+        GET(
+            gitea_url,
+            add_headers(Authorization = authorization),
+            accept_json()
+        ),
+        error = function(cond) {
+            "Failure"
+        }
+    )
 
-            content_organizations <- content(r, as = "text")
-            content_organizations <- fromJSON(content_organizations)
+    if (class(r) != "response") {
+        stop(paste0("Error consulting the url: ", gitea_url))
+    }
 
-            return(content_organizations)
-        })
+    # To convert http errors to R errors
+    stop_for_status(r)
+
+    content_organizations <- content(r, as = "text")
+    content_organizations <- fromJSON(content_organizations)
+
+    return(content_organizations)
+
 }
 
 #' @title Returns organizations for an administrator user
@@ -48,22 +60,34 @@ get_admin_organizations <- function(base_url, api_key){
         warning("Please add a valid URL")
     } else if (missing(api_key)) {
         warning("Please add a valid API token")
-    } else
-        try({
-            base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1",
-                                   sub("^/", "", "/admin/orgs"))
+    }
 
-            authorization <- paste("token", api_key)
-            r <- GET(gitea_url, add_headers(Authorization = authorization),
-                     accept_json())
+    base_url <- sub("/$", "", base_url)
+    gitea_url <- file.path(base_url, "api/v1",
+                           sub("^/", "", "/admin/orgs"))
 
-            # To convert http errors to R errors
-            stop_for_status(r)
+    authorization <- paste("token", api_key)
+    r <- tryCatch(
+        GET(
+            gitea_url,
+            add_headers(Authorization = authorization),
+            accept_json()
+        ),
+        error = function(cond) {
+            "Failure"
+        }
+    )
 
-            content_organizations <- content(r, as = "text")
-            content_organizations <- fromJSON(content_organizations)
+    if (class(r) != "response") {
+        stop(paste0("Error consulting the url: ", gitea_url))
+    }
 
-            return(content_organizations)
-        })
+    # To convert http errors to R errors
+    stop_for_status(r)
+
+    content_organizations <- content(r, as = "text")
+    content_organizations <- fromJSON(content_organizations)
+
+    return(content_organizations)
+
 }

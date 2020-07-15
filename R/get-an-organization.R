@@ -17,23 +17,29 @@ get_an_organization <- function(base_url, api_key, org){
         warning("Please add a valid API token")
     } else if (missing(org)) {
         warning("Please add a valid name of the organization")
-    }else
-        try({
-            base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1",
-                                   sub("^/", "", "/orgs"), org)
+    }
+      base_url <- sub("/$", "", base_url)
+      gitea_url <- file.path(base_url, "api/v1",
+                               sub("^/", "", "/orgs"), org)
 
-            authorization <- paste("token", api_key)
-            r <- GET(gitea_url, add_headers(Authorization = authorization),
-                     accept_json())
+       authorization <- paste("token", api_key)
+       r <- tryCatch(GET(gitea_url,
+                         add_headers(Authorization = authorization),
+                         accept_json()),
+                     error = function(cond) {"Failure"})
 
-            # To convert http errors to R errors
-            stop_for_status(r)
+       if (class(r) != "response") {
+           stop(paste0("Error consulting the url: ", gitea_url))
+       }
 
-            content_an_organization <- content(r, as = "text")
-            content_an_organization <- fromJSON(content_an_organization)
-            content_an_organization <- as.data.frame(content_an_organization)
 
-            return(content_an_organization)
-        })
+        # To convert http errors to R errors
+        stop_for_status(r)
+
+        content_an_organization <- content(r, as = "text")
+        content_an_organization <- fromJSON(content_an_organization)
+        content_an_organization <- as.data.frame(content_an_organization)
+
+        return(content_an_organization)
+
 }

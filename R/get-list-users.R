@@ -13,22 +13,34 @@ get_list_users <- function(base_url, api_key) {
     warning("Please add a valid URL")
   } else if (missing(api_key)) {
     warning("Please add a valid API token")
-  } else
-    try({
-      base_url <- sub("/$", "", base_url)
-      gitea_url <- file.path(base_url, "api/v1", "users/search")
+  }
 
-      authorization <- paste("token", api_key)
-      r <- GET(gitea_url, add_headers(Authorization = authorization),
-               accept_json())
+  base_url <- sub("/$", "", base_url)
+  gitea_url <- file.path(base_url, "api/v1", "users/search")
 
-      # To convert http errors to R errors
-      stop_for_status(r)
+  authorization <- paste("token", api_key)
+  r <- tryCatch(
+    GET(
+      gitea_url,
+      add_headers(Authorization = authorization),
+      accept_json()
+    ),
+    error = function(cond) {
+      "Failure"
+    }
+  )
 
-      content_list_users <- content(r, as = "text")
-      content_list_users <- fromJSON(content_list_users)
-      content_list_users <- as.data.frame(content_list_users)
+  if (class(r) != "response") {
+    stop(paste0("Error consulting the url: ", gitea_url))
+  }
 
-      return(content_list_users)
-    })
+  # To convert http errors to R errors
+  stop_for_status(r)
+
+  content_list_users <- content(r, as = "text")
+  content_list_users <- fromJSON(content_list_users)
+  content_list_users <- as.data.frame(content_list_users)
+
+  return(content_list_users)
+
 }

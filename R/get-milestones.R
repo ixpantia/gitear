@@ -20,20 +20,40 @@ get_milestones <- function(base_url, api_key, owner, repo){
     warning("Please add a valid owner")
   } else if (missing(repo)) {
     warning("Please add a valid repository")
-  } else
-    try({
-      base_url <- sub("/$", "", base_url)
-      gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                             owner, repo, "milestones")
+  }
 
-      authorization <- paste("token", api_key)
-      r <- GET(gitea_url, add_headers(Authorization = authorization),
-               accept_json())
+  base_url <- sub("/$", "", base_url)
+  gitea_url <-
+    file.path(base_url,
+              "api/v1",
+              sub("^/", "", "/repos"),
+              owner,
+              repo,
+              "milestones")
 
-      content_milestones <- content(r, as = "text")
-      content_milestones <- jsonlite::fromJSON(content_milestones)
-      content_milestones <- as.data.frame(content_milestones)
+  authorization <- paste("token", api_key)
 
-      return(content_milestones)
-    })
+  r <- tryCatch(
+    GET(
+      gitea_url,
+      add_headers(Authorization = authorization),
+      accept_json()
+    ),
+    error = function(cond) {
+      "Failure"
+    }
+  )
+
+  if (class(r) != "response") {
+    stop(paste0("Error consulting the url: ", gitea_url))
+  }
+
+  # To convert http errors to R errors
+  stop_for_status(r)
+  content_milestones <- content(r, as = "text")
+  content_milestones <- jsonlite::fromJSON(content_milestones)
+  content_milestones <- as.data.frame(content_milestones)
+
+  return(content_milestones)
+
 }

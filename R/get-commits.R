@@ -20,25 +20,31 @@ get_commits <- function(base_url, api_key, owner, repo){
         warning("Please add a valid owner")
     } else if (missing(repo)) {
         warning("Please add a valid repository")
-    } else
-        try({
-            base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                                   owner, repo, "commits")
+    }
 
-            authorization <- paste("token", api_key)
-            r <- GET(gitea_url, add_headers(Authorization = authorization),
-                     accept_json())
+    base_url <- sub("/$", "", base_url)
+    gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
+                           owner, repo, "commits")
 
-            # To convert http errors to R errors
-            stop_for_status(r)
+    authorization <- paste("token", api_key)
+    r <- tryCatch(GET(gitea_url,
+                      add_headers(Authorization = authorization),
+                      accept_json()),
+                  error = function(cond) {"Failure"})
 
-            content_issues <- content(r, as = "text")
-            content_issues <- fromJSON(content_issues)
-            content_issues <- as.data.frame(content_issues)
+    if (class(r) != "response") {
+        stop(paste0("Error consulting the url: ", gitea_url))
+    }
 
-            return(content_issues)
-        })
+    # To convert http errors to R errors
+    stop_for_status(r)
+
+    content_issues <- content(r, as = "text")
+    content_issues <- fromJSON(content_issues)
+    content_issues <- as.data.frame(content_issues)
+
+    return(content_issues)
+
 }
 
 

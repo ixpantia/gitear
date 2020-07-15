@@ -17,12 +17,10 @@ get_issues_closed_state <- function(base_url, api_key, owner, repo){
   } else if (missing(api_key)) {
       warning("Please add a valid API token")
   } else if (missing(owner)) {
-      warning("if (missing(base_url)) {
-    Please add a valid owner")
+      warning("Please add a valid owner")
   } else if (missing(repo)) {
       warning("Please add a valid repository")
-  } else
-    try({
+  }
       page <- 1
       content_issues <- data.frame()
       while (TRUE) {
@@ -34,8 +32,15 @@ get_issues_closed_state <- function(base_url, api_key, owner, repo){
                                paste0("issues?state=closed&page=", page))
 
         authorization <- paste("token", api_key)
-        r <- GET(gitea_url, add_headers(Authorization = authorization),
-                 accept_json())
+
+        r <- tryCatch(GET(gitea_url,
+                          add_headers(Authorization = authorization),
+                          accept_json()),
+                      error = function(cond) {"Failure"})
+
+        if (class(r) != "response") {
+          stop(paste0("Error consulting the url: ", gitea_url))
+        }
 
         # To convert http errors to R errors
         stop_for_status(r)
@@ -55,7 +60,6 @@ get_issues_closed_state <- function(base_url, api_key, owner, repo){
         }
         page <- page + 1
     }
-  })
 
   content_issues <- dplyr::select_if(content_issues,
                                      .predicate = function(x) !is.list(x))
