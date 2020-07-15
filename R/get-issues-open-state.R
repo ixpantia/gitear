@@ -24,7 +24,7 @@ get_issues_open_state <- function(base_url, api_key, owner, repo) {
   } else
     try({
       page <- 1
-      content_issues <- tibble()
+      content_issues <- data.frame()
       while (TRUE) {
         base_url <- sub("/$", "", base_url)
         gitea_url <- file.path(base_url, "api/v1",
@@ -56,5 +56,8 @@ get_issues_open_state <- function(base_url, api_key, owner, repo) {
         page <- page + 1
       }
     })
+
+  content_issues <- dplyr::select_if(content_issues,
+                                     .predicate = function(x) !is.list(x))
   return(content_issues)
 }
