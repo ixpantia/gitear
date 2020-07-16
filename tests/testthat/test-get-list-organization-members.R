@@ -5,29 +5,34 @@ test_that("The connection to the test url gets a response", {
     skip_on_cran()
 
     base_url <- sub("/$", "", base_url)
-    gitea_url <- file.path(base_url, "api/v1", 
-                           sub("^/", "", "/orgs"), org, "members") 
-    
+    gitea_url <- file.path(base_url, "api/v1",
+                           sub("^/", "", "/orgs"), org, "members")
+
     authorization <- paste("token", api_key)
-    r <- GET(gitea_url, add_headers(Authorization = authorization), 
+    r <- GET(gitea_url, add_headers(Authorization = authorization),
              accept_json(), config = httr::config(ssl_verifypeer = FALSE))
-    
+
     expect_true(r$status_code %in% c(200, 403, 500))
 })
 
 test_that("We get a error when there is no url", {
-    expect_error(get_list_org_members(api_key = api_key, org = org), 
+    expect_error(get_list_org_members(api_key = api_key, org = org),
                    "Please add a valid URL")
 })
 
 test_that("We get a error when there is no api_key", {
-    expect_error(get_list_org_members(base_url = base_url, org = org), 
+    expect_error(get_list_org_members(base_url = base_url, org = org),
                    "Please add a valid API token")
 })
 
 test_that("We get a error when there is no name of organization", {
-    expect_error(get_list_org_members(base_url = base_url, api_key = api_key), 
+    expect_error(get_list_org_members(base_url = base_url, api_key = api_key),
                    "Please add a valid name of the organization")
+})
+
+test_that("Error putting invalid url for API", {
+    expect_error(get_list_org_members("google.com", api_key, org),
+                 "Error consulting the url: ")
 })
 
 test_that("The organization is read correctly", {

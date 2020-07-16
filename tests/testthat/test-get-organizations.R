@@ -24,6 +24,11 @@ test_that("We get a error when there is no api_key", {
                    "Please add a valid API token")
 })
 
+test_that("Error putting invalid url for API", {
+    expect_error(get_organizations("google.com", api_key),
+                 "Error consulting the url: ")
+})
+
 test_that("The organizations is read correctly", {
     test_organizations <- get_organizations(base_url, api_key)
     expect_true(exists("test_organizations"))

@@ -40,6 +40,12 @@ test_that("We get a error when there is no repository", {
                    "Please add a valid repository")
 })
 
+test_that("Error putting invalid url for API", {
+    expect_error(get_issues_closed_state("google.com", api_key,
+                                         owner, repo),
+                 "Error consulting the url: ")
+})
+
 test_that("The issues is read correctly", {
     test_issues_closed_state <- get_issues_closed_state(base_url, api_key,
                                                         owner, repo)

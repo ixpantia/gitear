@@ -29,6 +29,11 @@ test_that("We get a error when there is no name of organization", {
                    "Please add a valid name of the organization")
 })
 
+test_that("Error putting invalid url for API", {
+    expect_error(get_an_organization("google.com", api_key, org),
+                 "Error consulting the url: ")
+})
+
 test_that("The organization is read correctly", {
     test_an_organization <- get_an_organization(base_url, api_key, org)
     expect_true(exists("test_an_organization"))

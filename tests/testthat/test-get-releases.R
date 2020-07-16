@@ -38,6 +38,12 @@ test_that("We get a error when there is no repository", {
                  "Please add a valid repository")
 })
 
+test_that("Error putting invalid url for API", {
+  expect_error(get_releases("google.com", api_key, owner, repo),
+               "Error consulting the url: ")
+})
+
+
 test_that("releases are read correctly", {
   test_list_org_memb <- get_releases(base_url, api_key, owner, repo)
   expect_true(exists("test_list_org_memb"))

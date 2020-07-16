@@ -48,6 +48,12 @@ test_that("We get a error when there is no index issue", {
                    "Please add a index of the issue")
 })
 
+test_that("Error putting invalid url for API", {
+    expect_error(get_list_comments_issue("google.com", api_key,
+                                         owner, repo, id_issue),
+                 "Error consulting the url: ")
+})
+
 test_that("The comments of issues is read correctly", {
     test_list_comments_issue <- get_list_comments_issue(base_url, api_key,
                                                         owner, repo, id_issue)

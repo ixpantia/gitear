@@ -53,6 +53,12 @@ test_that("We get a error when there is no body", {
                                 title = title), "Please add a valid body")
 })
 
+test_that("Error putting invalid url for API", {
+    expect_error(create_issue("google.com", api_key, owner,
+                              repo, title, body),
+                 "Error consulting the url: ")
+})
+
 test_that("The issues create is read correctly", {
     test_create_issues <- create_issue(base_url, api_key, owner, repo, title,
                                        body)

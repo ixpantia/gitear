@@ -40,6 +40,12 @@ test_that("We get a error when there is no repository", {
                  "Please add a valid repository")
 })
 
+test_that("Error putting invalid url for API", {
+  expect_error(get_commits("google.com", api_key, owner,
+                           repo),
+               "Error consulting the url: ")
+})
+
 test_that("The list all comments in a repository is read correctly", {
   test_list_commits_repository <- get_commits(base_url, api_key, owner, repo)
   expect_true(exists("test_list_commits_repository"))

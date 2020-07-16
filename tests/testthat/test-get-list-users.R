@@ -23,6 +23,11 @@ test_that("We get a error when there is no api_key", {
                  "Please add a valid API token")
 })
 
+test_that("Error putting invalid url for API", {
+  expect_error(get_list_users("google.com", api_key),
+               "Error consulting the url: ")
+})
+
 
 test_that("Users are read correctly", {
   test_list_org_memb <- get_list_users(base_url, api_key)

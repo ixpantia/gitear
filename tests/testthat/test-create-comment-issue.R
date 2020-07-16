@@ -60,6 +60,13 @@ test_that("We get a error when there is no body", {
                    "Please add a valid body")
 })
 
+test_that("Error putting invalid url for API", {
+    expect_error(create_comment_issue("google.com", api_key,
+                                      owner, repo,
+                                      id_issue, body),
+                 "Error consulting the url: ")
+})
+
 test_that("The issues comment create is read correctly", {
     test_create_comment_issues <- create_comment_issue(base_url, api_key, owner,
                                                repo, id_issue, body)

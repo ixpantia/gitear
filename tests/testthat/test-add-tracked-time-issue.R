@@ -60,6 +60,14 @@ test_that("We get a error when there is no time", {
                    "Please add a valid time in seconds")
 })
 
+test_that("Error putting invalid url for API", {
+    expect_error(add_tracked_time_issue(base_url = "google.com",
+                                        api_key = api_key, owner = owner,
+                                        repo = repo, time = time,
+                                        id_issue = id_issue),
+                 "Error consulting the url: ")
+})
+
 test_that("The add tracked times issues is read correctly", {
     test_tracked_time <- add_tracked_time_issue(base_url, api_key, owner,
                                                 repo, id_issue, time)

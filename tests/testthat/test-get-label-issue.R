@@ -45,6 +45,13 @@ test_that("We get a error when there is no index issue", {
                    "Please add a index of the issue")
 })
 
+test_that("Error putting invalid url for API", {
+    expect_error(get_label_issue(base_url = "google.com",
+                                 api_key = api_key, owner = owner,
+                                 repo = repo, id_issue = id_issue),
+                 "Error consulting the url: ")
+})
+
 test_that("The label issues is read correctly", {
     test_labels_issues <- get_label_issue(base_url, api_key, owner, repo,
                                           id_issue)

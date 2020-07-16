@@ -3,23 +3,23 @@ context("edit a comment")
 # edit_comment
 test_that("The connection to the test url gets a response", {
     skip_on_cran()
-    
+
     base_url <- sub("/$", "", base_url)
     gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
                            owner,repo,"issues/comments",id_comment)
-    
+
     authorization <- paste("token", api_key)
-    
+
     request_body <- as.list(data.frame(body = body))
-    
+
     r <- PATCH(gitea_url, add_headers(Authorization = authorization),
                content_type_json(), encode = "json", body = request_body)
-    
+
     expect_true(r$status_code %in% c(200, 403, 500))
 })
 
 test_that("We get a error when there is no url", {
-    expect_error(edit_comment(api_key = api_key, owner = owner, repo = repo, 
+    expect_error(edit_comment(api_key = api_key, owner = owner, repo = repo,
                                 id_comment = id_comment, body = body),
                    "Please add a valid URL")
 })
@@ -46,15 +46,21 @@ test_that("We get a error when there is no repository", {
 
 test_that("We get a error when there is no id comment", {
     expect_error(edit_comment(base_url = base_url, api_key = api_key,
-                                owner = owner, repo = repo, body = body), 
+                                owner = owner, repo = repo, body = body),
                    "Please add a id of the comment")
 })
 
 test_that("We get a error when there is no body", {
     expect_error(edit_comment(base_url = base_url, api_key = api_key,
                                 owner = owner, repo = repo,
-                                id_comment = id_comment), 
+                                id_comment = id_comment),
                    "Please add a valid body")
+})
+
+test_that("Error putting invalid url for API", {
+    expect_error(edit_comment("google.com", api_key, owner, repo,
+                              id_comment, body),
+                 "Error consulting the url: ")
 })
 
 test_that("The add tracked times issues is read correctly", {

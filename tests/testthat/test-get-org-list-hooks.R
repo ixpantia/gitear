@@ -30,6 +30,12 @@ test_that("We get a error when there is no name of organization", {
                    "Please add a valid name of the organization")
 })
 
+test_that("Error putting invalid url for API", {
+    expect_error(get_org_list_hooks("google.com", api_key, org),
+                 "Error consulting the url: ")
+})
+
+
 test_that("The list hook is read correctly", {
     test_org_list_hooks <- get_org_list_hooks(base_url, api_key, org)
     expect_true(exists("test_org_list_hooks"))
