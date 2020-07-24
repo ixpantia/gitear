@@ -43,25 +43,24 @@ get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
         # To convert http errors to R errors
         stop_for_status(r)
 
-        content_an_issue <- content(r, as = "text")
-        content_an_issue <- fromJSON(content_an_issue)
+        content_issues <- fromJSON(content(r, as = "text"))
 
         # Data frame wrangling
         if (full_info == FALSE) {
             # Get users who created the ticket
-            users <- content_an_issue$user
+            users <- content_issues$user
             users <- tibble::as_tibble(users) %>%
                 dplyr::select(username) %>%
                 dplyr::rename(author = username)
 
             # Get users who have been assigned to the ticket
-            assignees <- content_an_issue$assignee
+            assignees <- content_issues$assignee
             assignees <- tibble::as_tibble(assignees) %>%
                 dplyr::select(username) %>%
                 dplyr::rename(assignee = username)
 
             # Join by position
-            issues_content <- content_an_issue %>%
+            issues_content <- content_issues %>%
                 dplyr::select(number, title, created_at, updated_at, due_date) %>%
                 dplyr::bind_cols(users, assignees) %>%
                 tidyr::separate(col = created_at,
@@ -79,7 +78,7 @@ get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
             return(issues_content)
 
         } else {
-            return(content_an_issue)
+            return(content_issues)
             }
 
 }

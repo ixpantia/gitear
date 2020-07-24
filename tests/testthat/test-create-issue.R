@@ -1,21 +1,5 @@
 context("create a issue")
 
-# create_issues
-test_that("The connection to the test url gets a response", {
-    skip_on_cran()
-
-    base_url <- sub("/$", "", base_url)
-    gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                           owner, repo, "issues")
-
-    authorization <- paste("token", api_key)
-    request_body <- as.list(data.frame(title = title, body = body))
-
-    r <- POST(gitea_url, add_headers(Authorization = authorization),
-              content_type_json(), encode = "json", body = request_body)
-
-    expect_equal(r$status_code, 201)
-})
 
 test_that("We get a error when there is no url", {
     expect_error(create_issue(api_key = api_key, owner = owner, repo = repo,
@@ -60,14 +44,34 @@ test_that("Error putting invalid url for API", {
 })
 
 test_that("The issues create is read correctly", {
+
+    mockery::stub(where = create_issue,
+                  what = "POST",
+                  how = r)
+
+    mockery::stub(where = create_issue,
+                  what = "fromJSON",
+                  how = content_create_issue)
+
     test_create_issues <- create_issue(base_url, api_key, owner, repo, title,
                                        body)
+
     expect_true(exists("test_create_issues"))
 })
 
 test_that("The calculation of create an issues gives the expected result", {
+
+    mockery::stub(where = create_issue,
+                  what = "POST",
+                  how = r)
+
+    mockery::stub(where = create_issue,
+                  what = "fromJSON",
+                  how = content_create_issue)
+
     value_create_issues <- create_issue(base_url, api_key, owner,
                                         repo, title, body)
+
     expect_equal(TRUE, !is.null(value_create_issues))
     expect_that(value_create_issues, is_a("list"))
 })

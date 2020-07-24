@@ -38,7 +38,7 @@ get_version <- function(base_url, api_key){
     # To convert http errors to R errors
     stop_for_status(r)
 
-    content_version <- content(r, "parse")
+    content_version <- fromJSON(content(r, "text"))
     content_version <- as.data.frame(content_version)
 
     return(content_version)

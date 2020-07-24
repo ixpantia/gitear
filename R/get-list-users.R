@@ -37,8 +37,7 @@ get_list_users <- function(base_url, api_key) {
   # To convert http errors to R errors
   stop_for_status(r)
 
-  content_list_users <- content(r, as = "text")
-  content_list_users <- fromJSON(content_list_users)
+  content_list_users <- fromJSON(content(r, as = "text"))
   content_list_users <- as.data.frame(content_list_users)
 
   return(content_list_users)

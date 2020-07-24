@@ -39,11 +39,10 @@ get_commits <- function(base_url, api_key, owner, repo){
     # To convert http errors to R errors
     stop_for_status(r)
 
-    content_issues <- content(r, as = "text")
-    content_issues <- fromJSON(content_issues)
-    content_issues <- as.data.frame(content_issues)
+    content_commits <- fromJSON(content(r, as = "text"))
+    content_commits <- as.data.frame(content_commits)
 
-    return(content_issues)
+    return(content_commits)
 
 }
 

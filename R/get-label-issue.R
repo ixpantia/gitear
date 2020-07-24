@@ -41,8 +41,7 @@ get_label_issue <- function(base_url, api_key, owner, repo, id_issue){
             # To convert http errors to R errors
             stop_for_status(r)
 
-            content_label_issue <- content(r, as = "text")
-            content_label_issue <- jsonlite::fromJSON(content_label_issue)
+            content_label_issue <- fromJSON(content(r, as = "text"))
             content_label_issue <- as.data.frame(content_label_issue)
 
             return(content_label_issue)

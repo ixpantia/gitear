@@ -38,10 +38,8 @@ get_repositories <- function(base_url, api_key){
     # To convert http errors to R errors
     stop_for_status(r)
 
-    content_repositories <- content(r, as = "text")
-    content_repositories <- fromJSON(content_repositories)
-    content_repositories <-
-        as.data.frame(content_repositories)
+    content_repositories <- fromJSON(content(r, as = "text"))
+    content_repositories <- as.data.frame(content_repositories)
 
     return(content_repositories)
 

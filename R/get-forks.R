@@ -38,8 +38,7 @@ get_forks <- function(base_url, api_key, owner, repo) {
       # To convert http errors to R errors
       stop_for_status(r)
 
-      content_forks <- content(r, as = "text")
-      content_forks <- jsonlite::fromJSON(content_forks)
+      content_forks <- fromJSON(content(r, as = "text"))
       content_forks <- as.data.frame(content_forks)
 
       return(content_forks)

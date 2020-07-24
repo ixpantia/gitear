@@ -35,8 +35,7 @@ get_list_org_teams <- function(base_url, api_key, org){
         # To convert http errors to R errors
         stop_for_status(r)
 
-        cont_list_an_org_teams <- content(r, as = "text")
-        cont_list_an_org_teams <- fromJSON(cont_list_an_org_teams)
+        cont_list_an_org_teams <- fromJSON(content(r, as = "text"))
         cont_list_an_org_teams <- as.data.frame(cont_list_an_org_teams)
 
         return(cont_list_an_org_teams)

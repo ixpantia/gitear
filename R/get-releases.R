@@ -50,8 +50,7 @@ get_releases <- function(base_url, api_key, owner, repo){
   # To convert http errors to R errors
   stop_for_status(r)
 
-  content_releases <- content(r, as = "text")
-  content_releases <- jsonlite::fromJSON(content_releases)
+  content_releases <- fromJSON(content(r, as = "text"))
   content_releases <- as.data.frame(content_releases)
 
   return(content_releases)

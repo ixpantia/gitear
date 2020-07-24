@@ -1,18 +1,5 @@
 context("Get branches")
 
-test_that("The connection to the test url gets a response", {
-  skip_on_cran()
-
-  base_url <- sub("/$", "", base_url)
-  gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                         owner, repo, "branches")
-
-  authorization <- paste("token", api_key)
-  r <- GET(gitea_url, add_headers(Authorization = authorization),
-           accept_json())
-
-  expect_true(r$status_code %in% c(200, 403, 500))
-})
 
 test_that("We get a error when there is no url", {
   expect_error(get_branches(api_key = api_key, owner = owner,
@@ -44,12 +31,30 @@ test_that("Error putting invalid url for API", {
 })
 
 test_that("Branches are read correctly", {
-  test_list_org_memb <- get_branches(base_url, api_key, owner, repo)
-  expect_true(exists("test_list_org_memb"))
+
+  mockery::stub(where = get_branches,
+                what = "GET",
+                how = r)
+
+  mockery::stub(where = get_branches,
+                what = "fromJSON",
+                how = content_branches)
+
+  value_branches <- get_branches(base_url, api_key, owner, repo)
+  expect_true(exists("value_branches"))
 })
 
 test_that("Getting branches gives the expected result", {
+  mockery::stub(where = get_branches,
+                what = "GET",
+                how = r)
+
+  mockery::stub(where = get_branches,
+                what = "fromJSON",
+                how = content_branches)
+
   value_branches <- get_branches(base_url, api_key, owner, repo)
+
   expect_equal(TRUE, !is.null(value_branches))
   expect_that(value_branches, is_a("data.frame"))
 })

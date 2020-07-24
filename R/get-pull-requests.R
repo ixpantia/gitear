@@ -46,8 +46,7 @@ get_pull_requests <- function(base_url, api_key, owner, repo){
   # To convert http errors to R errors
   stop_for_status(r)
 
-  content_pull_req <- content(r, as = "text")
-  content_pull_req <- jsonlite::fromJSON(content_pull_req)
+  content_pull_req <- fromJSON(content(r, as = "text"))
   content_pull_req <- as.data.frame(content_pull_req)
 
   return(content_pull_req)

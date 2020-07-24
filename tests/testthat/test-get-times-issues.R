@@ -1,19 +1,6 @@
 context("get times issues")
 
-# get_times_issues
-test_that("The connection to the test url gets a response", {
-    skip_on_cran()
 
-    base_url <- sub("/$", "", base_url)
-    gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                           owner, repo, "issues", id_issue, "times")
-
-    authorization <- paste("token", api_key)
-    r <- GET(gitea_url, add_headers(Authorization = authorization),
-             accept_json())
-
-    expect_true(r$status_code %in% c(200, 403, 500))
-})
 
 test_that("We get a error when there is no url", {
     expect_error(get_times_issue(api_key = api_key, owner = owner,
@@ -52,14 +39,33 @@ test_that("Error putting invalid url for API", {
 })
 
 test_that("The times issues is read correctly", {
+
+    mockery::stub(where = get_times_issue,
+                  what = "GET",
+                  how = r)
+
+    mockery::stub(where = get_times_issue,
+                  what = "fromJSON",
+                  how = content_issue_times)
+
     test_times_issues <- get_times_issue(base_url, api_key, owner, repo,
                                          id_issue)
     expect_true(exists("test_times_issues"))
 })
 
 test_that("Obtaining an time issues gives the expected result", {
+
+    mockery::stub(where = get_times_issue,
+                  what = "GET",
+                  how = r)
+
+    mockery::stub(where = get_times_issue,
+                  what = "fromJSON",
+                  how = content_issue_times)
+
     value_times_issues <- get_times_issue(base_url, api_key, owner, repo,
                                           id_issue)
+
     expect_equal(TRUE, !is.null(value_times_issues))
     expect_that(value_times_issues, is_a("data.frame"))
 })

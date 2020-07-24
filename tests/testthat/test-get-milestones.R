@@ -1,18 +1,5 @@
 context("Get milestones")
 
-test_that("The connection to the test url gets a response", {
-  skip_on_cran()
-
-  base_url <- sub("/$", "", base_url)
-  gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                         owner, repo, "milestones")
-
-  authorization <- paste("token", api_key)
-  r <- GET(gitea_url, add_headers(Authorization = authorization),
-           accept_json())
-
-  expect_true(r$status_code %in% c(200, 403, 500))
-})
 
 test_that("We get a error when there is no url", {
   expect_error(get_milestones(api_key = api_key, owner = owner,
@@ -45,11 +32,29 @@ test_that("Error putting invalid url for API", {
 
 
 test_that("Milestones are read correctly", {
-  test_list_org_memb <- get_milestones(base_url, api_key, owner, repo)
-  expect_true(exists("test_list_org_memb"))
+
+  mockery::stub(where = get_milestones,
+                what = "GET",
+                how = r)
+
+  mockery::stub(where = get_milestones,
+                what = "fromJSON",
+                how = content_milestones)
+
+  test_list_milestones <- get_milestones(base_url, api_key, owner, repo)
+  expect_true(exists("test_list_milestones"))
 })
 
 test_that("Getting milestones gives the expected result", {
+
+  mockery::stub(where = get_milestones,
+                what = "GET",
+                how = r)
+
+  mockery::stub(where = get_milestones,
+                what = "fromJSON",
+                how = content_milestones)
+
   value_milestones <- get_milestones(base_url, api_key, owner, repo)
   expect_equal(TRUE, !is.null(value_milestones))
   expect_that(value_milestones, is_a("data.frame"))

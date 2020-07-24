@@ -1,23 +1,5 @@
 context("edit an issue")
 
-# edit_issue
-test_that("The connection to the test url gets a response", {
-    skip_on_cran()
-
-    base_url <- sub("/$", "", base_url)
-    gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"), owner,
-                           repo, "issues", id_issue)
-
-    authorization <- paste("token", api_key)
-
-    request_body <- as.list(data.frame(body = body, state = state,
-                                       title = title))
-
-    r <- PATCH(gitea_url, add_headers(Authorization = authorization),
-               content_type_json(), encode = "json", body = request_body)
-
-    expect_true(r$status_code %in% 201)
-})
 
 test_that("We get a error when there is no url", {
     expect_error(edit_issue(api_key = api_key, owner = owner, repo = repo,
@@ -82,14 +64,33 @@ test_that("Error putting invalid url for API", {
 })
 
 test_that("The edit an issue is read correctly", {
+
+    mockery::stub(where = edit_issue,
+                  what = "PATCH",
+                  how = r)
+
+    mockery::stub(where = edit_issue,
+                  what = "fromJSON",
+                  how = content_edit_issue)
+
     test_edit_issue <- edit_issue(base_url, api_key, owner, repo, id_issue,
                                     body, state, title)
     expect_true(exists("test_edit_issue"))
 })
 
 test_that("Edit an issue gives the expected result", {
+
+    mockery::stub(where = edit_issue,
+                  what = "PATCH",
+                  how = r)
+
+    mockery::stub(where = edit_issue,
+                  what = "fromJSON",
+                  how = content_edit_issue)
+
     value_edit_issue <- edit_issue(base_url, api_key, owner, repo, id_issue,
                                      body, state, title)
+
     expect_equal(TRUE, !is.null(value_edit_issue))
     expect_that(value_edit_issue, is_a("list"))
 })

@@ -1,19 +1,5 @@
 context("get list all comments in a repository")
 
-# get_list_all_comments_in_a_repository
-test_that("The connection to the test url gets a response", {
-    skip_on_cran()
-
-    base_url <- sub("/$", "", base_url)
-    gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                           owner, repo, "issues/comments")
-
-    authorization <- paste("token", api_key)
-    r <- GET(gitea_url, add_headers(Authorization = authorization),
-             accept_json())
-
-    expect_true(r$status_code %in% c(200, 403, 500))
-})
 
 test_that("We get a error when there is no url", {
     expect_error(get_list_comments_repository(api_key = api_key,
@@ -48,6 +34,15 @@ test_that("Error putting invalid url for API", {
 })
 
 test_that("The list all comments in a repository is read correctly", {
+
+    mockery::stub(where = get_list_comments_repository,
+                  what = "GET",
+                  how = r)
+
+    mockery::stub(where = get_list_comments_repository,
+                  what = "fromJSON",
+                  how = list_com_repository)
+
     test_list_comments_repository <- get_list_comments_repository(base_url,
                                                                   api_key,
                                                                   owner, repo)
@@ -55,9 +50,19 @@ test_that("The list all comments in a repository is read correctly", {
 })
 
 test_that("Obtaining issue comments gives the expected result", {
+
+    mockery::stub(where = get_list_comments_repository,
+                  what = "GET",
+                  how = r)
+
+    mockery::stub(where = get_list_comments_repository,
+                  what = "fromJSON",
+                  how = list_com_repository)
+
     value_list_comments_repository <- get_list_comments_repository(base_url,
                                                               api_key,
                                                               owner, repo)
+
     expect_equal(TRUE, !is.null(value_list_comments_repository))
     expect_that(value_list_comments_repository, is_a("data.frame"))
 })

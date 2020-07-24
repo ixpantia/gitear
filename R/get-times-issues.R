@@ -55,8 +55,7 @@ get_times_issue <- function(base_url, api_key, owner, repo, id_issue){
     # To convert http errors to R errors
     stop_for_status(r)
 
-    content_issue_times <- content(r, as = "text")
-    content_issue_times <- fromJSON(content_issue_times)
+    content_issue_times <- fromJSON(content(r, as = "text"))
     content_issue_times <- as.data.frame(content_issue_times)
 
     return (content_issue_times)
