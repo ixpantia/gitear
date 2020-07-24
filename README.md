@@ -35,17 +35,26 @@ First go to your gitea self hosted service and grab your API Token. Then
 you should be able to the following:
 
 ``` r
-library(gitear)
+# Credentials
 
-## Credentials
 api_token <- "gfdsgfd8ba18a866bsdfgsdfgs3a2dc9303453b0c92dcfb19"
-url_ixpantia <- "https://secure.ixpantia.com"
+url_ixpantia <- "https://prueba.com"
 
-## Example function use:
+# Example function use
+
 issues <- get_issues(base_url = url_ixpantia,
-                       api_key = api_token,
-                       owner = "ixpantia",
-                       repo = "ixmandash")
+                     api_key = api_token,
+                     owner = "empresa",
+                     repo = "repo_prueba")
+
+
+issues
+#>   number                      title created_date created_time updated_date
+#> 1      3 Primer tiquete para prueba   2020-07-15     23:43:42   2020-07-24
+#> 2      2 Primer tiquete para prueba   2020-07-15     23:12:37   2020-07-24
+#>   updated_time             due_date author assignee
+#> 1     14:41:47 2020-07-31T23:59:59Z   juan     juan
+#> 2     14:41:37 2020-07-31T23:59:59Z   juan     juan
 ```
 
 ## **Environmental variables:**
@@ -62,26 +71,29 @@ Your script could look something like this:
 
 ``` r
 # Storing credentials in an object
+
 example_key <- Sys.getenv("example_key")
 example_url <- Sys.getenv("example_url")
 
 # Using a function from gitear
+
 issues <- get_issues(base_url = example_url,
                      api_key = example_key,
-                     owner = "ixpantia",
-                     repo = "lacrmr")
+                     owner = "empresa",
+                     repo = "repo_prueba")
 
 # Check the output
+
 glimpse(issues)
-#> Observations: 4
-#> Variables: 9
-#> $ number       <int> 38, 26, 24, 15
-#> $ title        <chr> "lacrmr dejó de funcionar porque llave está deshabilitad…
-#> $ created_date <chr> "2020-01-25", "2019-05-03", "2019-05-03", "2019-02-07"
-#> $ created_time <chr> "00:45:48", "22:28:41", "21:28:00", "19:55:19"
-#> $ updated_date <chr> "2020-01-25", "2020-01-24", "2019-05-03", "2020-01-24"
-#> $ updated_time <chr> "00:45:52", "22:03:13", "21:28:14", "22:03:23"
-#> $ due_date     <lgl> NA, NA, NA, NA
-#> $ author       <chr> "ronny", "ronny", "ronny", "ronny"
-#> $ assignee     <chr> "ronny", "ronny", "ronny", "ronny"
+#> Rows: 2
+#> Columns: 9
+#> $ number       <int> 3, 2
+#> $ title        <chr> "Primer tiquete para prueba", "Primer tiquete para pru...
+#> $ created_date <chr> "2020-07-15", "2020-07-15"
+#> $ created_time <chr> "23:43:42", "23:12:37"
+#> $ updated_date <chr> "2020-07-24", "2020-07-24"
+#> $ updated_time <chr> "14:41:47", "14:41:37"
+#> $ due_date     <chr> "2020-07-31T23:59:59Z", "2020-07-31T23:59:59Z"
+#> $ author       <chr> "juan", "juan"
+#> $ assignee     <chr> "juan", "juan"
 ```

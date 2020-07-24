@@ -41,8 +41,7 @@ test_that("Obtaining an issue gives the expected result", {
                   what = "fromJSON",
                   how = content_issues)
 
-    value_an_issue <- get_issues(base_url, api_key, owner, repo,
-                                 full_info = TRUE)
+    value_an_issue <- get_issues(base_url, api_key, owner, repo)
     expect_equal(TRUE, !is.null(value_an_issue))
     expect_that(value_an_issue, is_a("data.frame"))
 })
