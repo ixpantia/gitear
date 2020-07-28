@@ -4,7 +4,7 @@ author: "ixpantia"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Access Gitea from R}
+  %\VignetteIndexEntry{Access_Gitea_from_R}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -35,6 +35,10 @@ content_list_repos_org <- fromJSON(system.file("helper_data/get_repos_org.json",
 
 content_list_users <- fromJSON(system.file("helper_data/get_users.json",
                                            package = "gitear"))
+
+content_commits <- fromJSON(system.file("helper_data/get_commits.json",
+                                        package = "gitear"))
+
 ```
 
 Gitea is a community managed, lightweight code hosting solution  were projects
@@ -112,8 +116,7 @@ organizations <- get_an_organization(base_url = example_url,
 glimpse(organizations)
 ```
 
-
-## Get information from one organization
+## Get repositories information from one organization
 
 And we can also see which repositories are associated with that same organization:
 
@@ -137,7 +140,6 @@ repos <- get_list_repos_org(base_url = example_url,
 glimpse(repos)
 ```
 
-
 ## User information
 
 But we can not only get information about projects and repositories, we can
@@ -156,9 +158,35 @@ mockery::stub(where = get_list_users,
 ```{r}
 # Example function use
 
-users <- get_list_users(url_ixpantia, api_token)
+users <- get_list_users(base_url = example_url, 
+                        api_key = example_key)
 
 glimpse(users)
+```
+
+## All commits from a specific repository
+
+We can also see the commits made to a certain repository in a very simple way
+
+```{r, echo = FALSE}
+mockery::stub(where = get_commits,
+              what = "GET",
+              how = r)
+
+mockery::stub(where = get_commits,
+              what = "fromJSON",
+              how = content_commits)
+```
+
+```{r}
+# Example function use
+
+commits <- get_commits(base_url = example_url, 
+                     api_key = example_key,
+                     owner = "empresa",
+                     repo = "repo_prueba")
+
+head(commits)
 ```
 
 These are just some of the functionality of gitea, there are other information
