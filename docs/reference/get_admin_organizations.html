@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Returns a hook — get_org_hook • gitear</title>
+<title>Returns organizations for an administrator user — get_admin_organizations • gitear</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Returns a hook — get_org_hook" />
-<meta property="og:description" content="Get a hook information of a organizations" />
+<meta property="og:title" content="Returns organizations for an administrator user — get_admin_organizations" />
+<meta property="og:description" content="Returns the list of organizations for a user with an
+ administrator role" />
 
 
 
@@ -115,16 +116,17 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Returns a hook</h1>
+    <h1>Returns organizations for an administrator user</h1>
     
-    <div class="hidden name"><code>get_org_hook.Rd</code></div>
+    <div class="hidden name"><code>get_admin_organizations.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get a hook information of a organizations</p>
+    <p>Returns the list of organizations for a user with an
+ administrator role</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_org_hook</span>(<span class='no'>base_url</span>, <span class='no'>api_key</span>, <span class='no'>org</span>, <span class='no'>id_hook</span>)</pre>
+    <pre class="usage"><span class='fu'>get_admin_organizations</span>(<span class='no'>base_url</span>, <span class='no'>api_key</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,16 +139,12 @@
       <th>api_key</th>
       <td><p>The user's API token key for the gitea service</p></td>
     </tr>
-    <tr>
-      <th>org</th>
-      <td><p>Name of the organization</p></td>
-    </tr>
-    <tr>
-      <th>id_hook</th>
-      <td><p>Id of the hook to get information</p></td>
-    </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function works only in the case that the `api_key` is
+associated with a user with administrator role</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

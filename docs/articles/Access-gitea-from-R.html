@@ -6,19 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Access Gitea from R • gitear</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Access Gitea from R">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="gitear">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -54,9 +54,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/Access-diff-issues-on-diff-instances.html">Access different issues of different instances</a>
-    </li>
-    <li>
       <a href="../articles/Access-gitea-from-R.html">Access Gitea from R</a>
     </li>
   </ul>
@@ -72,13 +69,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="Access-gitea-from-R_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Access Gitea from R</h1>
+      <h1 data-toc-skip>Access Gitea from R</h1>
                         <h4 class="author">ixpantia</h4>
             
-            <h4 class="date">2020-02-09</h4>
+            <h4 class="date">2020-07-28</h4>
       
       
       <div class="hidden name"><code>Access-gitea-from-R.Rmd</code></div>
@@ -92,98 +89,186 @@
 <h2 class="hasAnchor">
 <a href="#starting-with-gitear" class="anchor"></a>Starting with <code>gitear</code>
 </h2>
-<p>If you want to start using the functions from <code>gitear</code> you should first go to your ixplorer and create an API KEY. You will find this under your avatar, configuration, application and then generate a new token.</p>
+<p>If you want to start using the functions from <code>gitear</code> you should first go to your gitea service and create an API KEY. You will find this under your avatar, configuration, application and then generate a new token.</p>
 <p>Be aware that you should save this token somewhere because its shown just once.</p>
-<p>This is going to be your API TOKEN.</p>
-<p>Then you can use a function like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">## Library</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gitear)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">## Credentials</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">api_token &lt;-<span class="st"> "gfdsgfd8ba18a866bsdfgsdfgs3a2dc9303453b0c92dcfb19"</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">url_ixpantia &lt;-<span class="st"> "https://secure.ixpantia.com"</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">## Example function use:</span></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">issues &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_issues.html">get_issues</a></span>(<span class="dt">base_url =</span> url_ixpantia,</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">                       <span class="dt">api_key =</span> api_token,</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">                       <span class="dt">owner =</span> <span class="st">"ixpantia"</span>,</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">                       <span class="dt">repo =</span> <span class="st">"ixmandash"</span>)</a></code></pre></div>
+<p>This is going to be your API TOKEN. Then you can use a function like this:</p>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># Credentials</span>
+
+<span class="no">api_token</span> <span class="kw">&lt;-</span> <span class="st">"gfdsgfd8ba18a866bsdfgsdfgs3a2dc9303453b0c92dcfb19"</span>
+<span class="no">url_ixpantia</span> <span class="kw">&lt;-</span> <span class="st">"https://prueba.com"</span>
+
+<span class="co"># Example function use:</span>
+
+<span class="no">issues</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_issues.html">get_issues</a></span>(<span class="kw">base_url</span> <span class="kw">=</span> <span class="no">url_ixpantia</span>,
+                       <span class="kw">api_key</span> <span class="kw">=</span> <span class="no">api_token</span>,
+                       <span class="kw">owner</span> <span class="kw">=</span> <span class="st">"empresa"</span>,
+                       <span class="kw">repo</span> <span class="kw">=</span> <span class="st">"repo_prueba"</span>)
+
+<span class="fu">glimpse</span>(<span class="no">issues</span>)
+<span class="co">#&gt; Rows: 2</span>
+<span class="co">#&gt; Columns: 9</span>
+<span class="co">#&gt; $ number       &lt;int&gt; 3, 2</span>
+<span class="co">#&gt; $ title        &lt;chr&gt; "Primer tiquete para prueba", "Primer tiquete para pru...</span>
+<span class="co">#&gt; $ created_date &lt;chr&gt; "2020-07-15", "2020-07-15"</span>
+<span class="co">#&gt; $ created_time &lt;chr&gt; "23:43:42", "23:12:37"</span>
+<span class="co">#&gt; $ updated_date &lt;chr&gt; "2020-07-24", "2020-07-24"</span>
+<span class="co">#&gt; $ updated_time &lt;chr&gt; "14:41:47", "14:41:37"</span>
+<span class="co">#&gt; $ due_date     &lt;chr&gt; "2020-07-31T23:59:59Z", "2020-07-31T23:59:59Z"</span>
+<span class="co">#&gt; $ author       &lt;chr&gt; "juan", "juan"</span>
+<span class="co">#&gt; $ assignee     &lt;chr&gt; "juan", "juan"</span></pre></body></html></div>
 <p>For the examples below, we are going to use credentials stored in a .Renviron file, which we are going to call from this variables:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">example_key &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"example_key"</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">example_url &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"example_url"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">example_key</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"example_key"</span>)
+<span class="no">example_url</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span>(<span class="st">"example_url"</span>)</pre></body></html></div>
 </div>
 <div id="get-information-about-your-organization" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-information-about-your-organization" class="anchor"></a>Get information about your organization</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">organizations &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_an_organization.html">get_an_organization</a></span>(<span class="dt">base_url =</span> example_url,</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">                                     <span class="dt">api_key =</span> example_key,</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">                                     <span class="dt">org =</span> <span class="st">"ixpantia"</span>) </a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">organization</a></code></pre></div>
+<p>We can also obtain information from some organization defined in our gitea service:</p>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># Example function use</span>
+
+<span class="no">organizations</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_an_organization.html">get_an_organization</a></span>(<span class="kw">base_url</span> <span class="kw">=</span> <span class="no">example_url</span>,
+                                     <span class="kw">api_key</span> <span class="kw">=</span> <span class="no">example_key</span>,
+                                     <span class="kw">org</span> <span class="kw">=</span> <span class="st">"empresa"</span>)
+
+<span class="fu">glimpse</span>(<span class="no">organizations</span>)
+<span class="co">#&gt; Rows: 1</span>
+<span class="co">#&gt; Columns: 9</span>
+<span class="co">#&gt; $ id                            &lt;int&gt; 8</span>
+<span class="co">#&gt; $ username                      &lt;chr&gt; "empresa"</span>
+<span class="co">#&gt; $ full_name                     &lt;chr&gt; ""</span>
+<span class="co">#&gt; $ avatar_url                    &lt;chr&gt; "https://prueba.com/user/avatar/empre...</span>
+<span class="co">#&gt; $ description                   &lt;chr&gt; ""</span>
+<span class="co">#&gt; $ website                       &lt;chr&gt; ""</span>
+<span class="co">#&gt; $ location                      &lt;chr&gt; ""</span>
+<span class="co">#&gt; $ visibility                    &lt;chr&gt; "public"</span>
+<span class="co">#&gt; $ repo_admin_change_team_access &lt;lgl&gt; FALSE</span></pre></body></html></div>
 </div>
-<div id="get-info-from-one-project" class="section level2">
+<div id="get-repositories-information-from-one-organization" class="section level2">
 <h2 class="hasAnchor">
-<a href="#get-info-from-one-project" class="anchor"></a>Get info from one project</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">repos &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_list_repos_org.html">get_list_repos_org</a></span>(<span class="dt">base_url =</span> example_url, </a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">                   <span class="dt">api_key =</span> example_key, </a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">                   <span class="dt">org =</span> <span class="st">"ixpantia"</span>)</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">glimpse</span>(repos)</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; Observations: 15</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; Variables: 33</span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; $ id                          &lt;int&gt; 52, 63, 93, 159, 144, 65, 146, 139, 62, 1…</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; $ owner                       &lt;df[,10]&gt; &lt;data.frame[15 x 10]&gt;</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt; $ name                        &lt;chr&gt; "ixcom", "lacrmr", "ixblog", "ixtiempo", …</span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; $ full_name                   &lt;chr&gt; "ixpantia/ixcom", "ixpantia/lacrmr", "ixp…</span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; $ description                 &lt;chr&gt; "Website principal de ixpantia en www.ixp…</span></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; $ empty                       &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,…</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; $ private                     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,…</span></a>
-<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; $ fork                        &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,…</span></a>
-<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt; $ parent                      &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt; $ mirror                      &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,…</span></a>
-<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; $ size                        &lt;int&gt; 34271, 1952, 34431, 0, 1852, 3008, 272, 2…</span></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; $ html_url                    &lt;chr&gt; "https://secure.ixpantia.com/ixpantia/ixc…</span></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; $ ssh_url                     &lt;chr&gt; "git@secure.ixpantia.com:ixpantia/ixcom.g…</span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; $ clone_url                   &lt;chr&gt; "https://secure.ixpantia.com/ixpantia/ixc…</span></a>
-<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt; $ website                     &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "…</span></a>
-<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co">#&gt; $ stars_count                 &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></a>
-<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co">#&gt; $ forks_count                 &lt;int&gt; 2, 2, 3, 1, 1, 4, 3, 1, 3, 2, 1, 0, 0, 2,…</span></a>
-<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="co">#&gt; $ watchers_count              &lt;int&gt; 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,…</span></a>
-<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">#&gt; $ open_issues_count           &lt;int&gt; 13, 4, 12, 0, 4, 10, 3, 0, 9, 5, 1, 3, 3,…</span></a>
-<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co">#&gt; $ default_branch              &lt;chr&gt; "master", "master", "master", "master", "…</span></a>
-<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="co">#&gt; $ archived                    &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,…</span></a>
-<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="co">#&gt; $ created_at                  &lt;chr&gt; "2019-01-03T23:09:59Z", "2019-01-31T21:12…</span></a>
-<a class="sourceLine" id="cb4-30" data-line-number="30"><span class="co">#&gt; $ updated_at                  &lt;chr&gt; "2020-02-01T09:25:04Z", "2020-01-24T22:57…</span></a>
-<a class="sourceLine" id="cb4-31" data-line-number="31"><span class="co">#&gt; $ permissions                 &lt;df[,3]&gt; &lt;data.frame[15 x 3]&gt;</span></a>
-<a class="sourceLine" id="cb4-32" data-line-number="32"><span class="co">#&gt; $ has_issues                  &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,…</span></a>
-<a class="sourceLine" id="cb4-33" data-line-number="33"><span class="co">#&gt; $ has_wiki                    &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE…</span></a>
-<a class="sourceLine" id="cb4-34" data-line-number="34"><span class="co">#&gt; $ has_pull_requests           &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,…</span></a>
-<a class="sourceLine" id="cb4-35" data-line-number="35"><span class="co">#&gt; $ ignore_whitespace_conflicts &lt;lgl&gt; TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, …</span></a>
-<a class="sourceLine" id="cb4-36" data-line-number="36"><span class="co">#&gt; $ allow_merge_commits         &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,…</span></a>
-<a class="sourceLine" id="cb4-37" data-line-number="37"><span class="co">#&gt; $ allow_rebase                &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,…</span></a>
-<a class="sourceLine" id="cb4-38" data-line-number="38"><span class="co">#&gt; $ allow_rebase_explicit       &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,…</span></a>
-<a class="sourceLine" id="cb4-39" data-line-number="39"><span class="co">#&gt; $ allow_squash_merge          &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,…</span></a>
-<a class="sourceLine" id="cb4-40" data-line-number="40"><span class="co">#&gt; $ avatar_url                  &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "…</span></a></code></pre></div>
+<a href="#get-repositories-information-from-one-organization" class="anchor"></a>Get repositories information from one organization</h2>
+<p>And we can also see which repositories are associated with that same organization:</p>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># Example function use</span>
+
+<span class="no">repos</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_list_repos_org.html">get_list_repos_org</a></span>(<span class="kw">base_url</span> <span class="kw">=</span> <span class="no">example_url</span>,
+                            <span class="kw">api_key</span> <span class="kw">=</span> <span class="no">example_key</span>,
+                            <span class="kw">org</span> <span class="kw">=</span> <span class="st">"empresa"</span>)
+
+<span class="fu">glimpse</span>(<span class="no">repos</span>)
+<span class="co">#&gt; Rows: 2</span>
+<span class="co">#&gt; Columns: 37</span>
+<span class="co">#&gt; $ id                          &lt;int&gt; 52, 57</span>
+<span class="co">#&gt; $ owner                       &lt;df[,10]&gt; &lt;data.frame[2 x 10]&gt;</span>
+<span class="co">#&gt; $ name                        &lt;chr&gt; "repo_prueba", "git-core-test-2"</span>
+<span class="co">#&gt; $ full_name                   &lt;chr&gt; "empresa/repo_prueba", "empresa/git-cor...</span>
+<span class="co">#&gt; $ description                 &lt;chr&gt; "Repositorio de prueba", ""</span>
+<span class="co">#&gt; $ empty                       &lt;lgl&gt; FALSE, FALSE</span>
+<span class="co">#&gt; $ private                     &lt;lgl&gt; FALSE, FALSE</span>
+<span class="co">#&gt; $ fork                        &lt;lgl&gt; FALSE, FALSE</span>
+<span class="co">#&gt; $ template                    &lt;lgl&gt; FALSE, FALSE</span>
+<span class="co">#&gt; $ mirror                      &lt;lgl&gt; FALSE, FALSE</span>
+<span class="co">#&gt; $ size                        &lt;int&gt; 0, 0</span>
+<span class="co">#&gt; $ html_url                    &lt;chr&gt; "https://prueba.com/empresa/repo_prueba...</span>
+<span class="co">#&gt; $ ssh_url                     &lt;chr&gt; "git@prueba.com:empresa/repo_prueba.git...</span>
+<span class="co">#&gt; $ clone_url                   &lt;chr&gt; "https://prueba.com/empresa/repo_prueba...</span>
+<span class="co">#&gt; $ original_url                &lt;chr&gt; "", ""</span>
+<span class="co">#&gt; $ website                     &lt;chr&gt; "", ""</span>
+<span class="co">#&gt; $ stars_count                 &lt;int&gt; 0, 0</span>
+<span class="co">#&gt; $ forks_count                 &lt;int&gt; 1, 0</span>
+<span class="co">#&gt; $ watchers_count              &lt;int&gt; 4, 4</span>
+<span class="co">#&gt; $ open_issues_count           &lt;int&gt; 8, 0</span>
+<span class="co">#&gt; $ open_pr_counter             &lt;int&gt; 0, 0</span>
+<span class="co">#&gt; $ release_counter             &lt;int&gt; 0, 0</span>
+<span class="co">#&gt; $ default_branch              &lt;chr&gt; "master", "master"</span>
+<span class="co">#&gt; $ archived                    &lt;lgl&gt; FALSE, FALSE</span>
+<span class="co">#&gt; $ created_at                  &lt;chr&gt; "2020-07-15T23:11:39Z", "2020-07-18T22:...</span>
+<span class="co">#&gt; $ updated_at                  &lt;chr&gt; "2020-07-23T20:12:37Z", "2020-07-18T22:...</span>
+<span class="co">#&gt; $ permissions                 &lt;df[,3]&gt; &lt;data.frame[2 x 3]&gt;</span>
+<span class="co">#&gt; $ has_issues                  &lt;lgl&gt; TRUE, TRUE</span>
+<span class="co">#&gt; $ internal_tracker            &lt;df[,3]&gt; &lt;data.frame[2 x 3]&gt;</span>
+<span class="co">#&gt; $ has_wiki                    &lt;lgl&gt; TRUE, TRUE</span>
+<span class="co">#&gt; $ has_pull_requests           &lt;lgl&gt; TRUE, TRUE</span>
+<span class="co">#&gt; $ ignore_whitespace_conflicts &lt;lgl&gt; FALSE, FALSE</span>
+<span class="co">#&gt; $ allow_merge_commits         &lt;lgl&gt; TRUE, TRUE</span>
+<span class="co">#&gt; $ allow_rebase                &lt;lgl&gt; TRUE, TRUE</span>
+<span class="co">#&gt; $ allow_rebase_explicit       &lt;lgl&gt; TRUE, TRUE</span>
+<span class="co">#&gt; $ allow_squash_merge          &lt;lgl&gt; TRUE, TRUE</span>
+<span class="co">#&gt; $ avatar_url                  &lt;chr&gt; "", ""</span></pre></body></html></div>
 </div>
-<div id="overview-of-tiquets" class="section level2">
+<div id="user-information" class="section level2">
 <h2 class="hasAnchor">
-<a href="#overview-of-tiquets" class="anchor"></a>Overview of tiquets</h2>
+<a href="#user-information" class="anchor"></a>User information</h2>
+<p>But we can not only get information about projects and repositories, we can also see specific information about users:</p>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># Example function use</span>
+
+<span class="no">users</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_list_users.html">get_list_users</a></span>(<span class="kw">base_url</span> <span class="kw">=</span> <span class="no">example_url</span>,
+                        <span class="kw">api_key</span> <span class="kw">=</span> <span class="no">example_key</span>)
+
+<span class="fu">glimpse</span>(<span class="no">users</span>)
+<span class="co">#&gt; Rows: 4</span>
+<span class="co">#&gt; Columns: 11</span>
+<span class="co">#&gt; $ data.id         &lt;int&gt; 3, 25, 15, 9</span>
+<span class="co">#&gt; $ data.login      &lt;chr&gt; "pedro", "juan", "pedro", "maria"</span>
+<span class="co">#&gt; $ data.full_name  &lt;chr&gt; "", "", "", ""</span>
+<span class="co">#&gt; $ data.email      &lt;chr&gt; "pedro@correo.com", "juan@correo.com", "pedro@corre...</span>
+<span class="co">#&gt; $ data.avatar_url &lt;chr&gt; "https://prueba.com/user/avatar/pedro/-1", "https:/...</span>
+<span class="co">#&gt; $ data.language   &lt;chr&gt; "es-ES", "es-ES", "es-ES", "es-ES"</span>
+<span class="co">#&gt; $ data.is_admin   &lt;lgl&gt; FALSE, TRUE, FALSE, TRUE</span>
+<span class="co">#&gt; $ data.last_login &lt;chr&gt; "2020-07-18T20:01:18Z", "2020-07-23T20:12:11Z", "20...</span>
+<span class="co">#&gt; $ data.created    &lt;chr&gt; "2018-10-14T23:08:52Z", "2020-03-09T23:46:56Z", "20...</span>
+<span class="co">#&gt; $ data.username   &lt;chr&gt; "pedro", "juan", "pedro", "maria"</span>
+<span class="co">#&gt; $ ok              &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE</span></pre></body></html></div>
+</div>
+<div id="all-commits-from-a-specific-repository" class="section level2">
+<h2 class="hasAnchor">
+<a href="#all-commits-from-a-specific-repository" class="anchor"></a>All commits from a specific repository</h2>
+<p>We can also see the commits made to a certain repository in a very simple way</p>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># Example function use</span>
+
+<span class="no">commits</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_commits.html">get_commits</a></span>(<span class="kw">base_url</span> <span class="kw">=</span> <span class="no">example_url</span>,
+                     <span class="kw">api_key</span> <span class="kw">=</span> <span class="no">example_key</span>,
+                     <span class="kw">owner</span> <span class="kw">=</span> <span class="st">"empresa"</span>,
+                     <span class="kw">repo</span> <span class="kw">=</span> <span class="st">"repo_prueba"</span>)
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">commits</span>)
+<span class="co">#&gt;                                                                                                          url</span>
+<span class="co">#&gt; 1 https://prueba.com/api/v1/repos/empresa/repo_prueba/git/commits/77226be181cd8f00ba34rsfsgs26445e2df128fcf1</span>
+<span class="co">#&gt;                                          sha</span>
+<span class="co">#&gt; 1 77226be181cd8f00ba34rsfsgs26445e2df128fcf1</span>
+<span class="co">#&gt;                                                                                   html_url</span>
+<span class="co">#&gt; 1 https://prueba.com/empresa/repo_prueba/commit/77226be181cd8f00ba34rsfsgs26445e2df128fcf1</span>
+<span class="co">#&gt;                                                                                                   commit.url</span>
+<span class="co">#&gt; 1 https://prueba.com/api/v1/repos/empresa/repo_prueba/git/commits/77226be181cd8f00ba34rsfsgs26445e2df128fcf1</span>
+<span class="co">#&gt;   commit.author.name commit.author.email   commit.author.date</span>
+<span class="co">#&gt; 1               juan     juan@correo.com 2020-07-15T23:11:40Z</span>
+<span class="co">#&gt;   commit.committer.name commit.committer.email commit.committer.date</span>
+<span class="co">#&gt; 1                  juan        juan@correo.com  2020-07-15T23:11:40Z</span>
+<span class="co">#&gt;   commit.message</span>
+<span class="co">#&gt; 1 Initial commit</span>
+<span class="co">#&gt;                                                                                            commit.tree.url</span>
+<span class="co">#&gt; 1 https://prueba.com/api/v1/repos/empresa/repo_prueba/git/trees/77226be181cd8f00ba34rsfsgs26445e2df128fcf1</span>
+<span class="co">#&gt;                              commit.tree.sha author.id author.login</span>
+<span class="co">#&gt; 1 77226be181cd8f00ba34rsfsgs26445e2df128fcf1        25         juan</span>
+<span class="co">#&gt;   author.full_name    author.email                      author.avatar_url</span>
+<span class="co">#&gt; 1                  juan@correo.com https://prueba.com/user/avatar/juan/-1</span>
+<span class="co">#&gt;   author.language author.is_admin    author.last_login       author.created</span>
+<span class="co">#&gt; 1           es-ES            TRUE 2020-07-23T20:12:11Z 2020-03-09T23:46:56Z</span>
+<span class="co">#&gt;   author.username committer.id committer.login committer.full_name</span>
+<span class="co">#&gt; 1            juan           25            juan                    </span>
+<span class="co">#&gt;   committer.email                   committer.avatar_url committer.language</span>
+<span class="co">#&gt; 1 juan@correo.com https://prueba.com/user/avatar/juan/-1              es-ES</span>
+<span class="co">#&gt;   committer.is_admin committer.last_login    committer.created</span>
+<span class="co">#&gt; 1               TRUE 2020-07-23T20:12:11Z 2020-03-09T23:46:56Z</span>
+<span class="co">#&gt;   committer.username parents</span>
+<span class="co">#&gt; 1               juan    NULL</span></pre></body></html></div>
+<p>These are just some of the functionality of gitea, there are other information that we can obtain about a gitea service.</p>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#starting-with-gitear">Starting with <code>gitear</code></a></li>
-      <li><a href="#get-information-about-your-organization">Get information about your organization</a></li>
-      <li><a href="#get-info-from-one-project">Get info from one project</a></li>
-      <li><a href="#overview-of-tiquets">Overview of tiquets</a></li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
 
@@ -194,7 +279,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Returns a hook — get_org_hook • gitear</title>
+<title>Returns open milestones of a repository — get_milestones • gitear</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Returns a hook — get_org_hook" />
-<meta property="og:description" content="Get a hook information of a organizations" />
+<meta property="og:title" content="Returns open milestones of a repository — get_milestones" />
+<meta property="og:description" content="Returns open milestones in a specific repository" />
 
 
 
@@ -115,16 +115,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Returns a hook</h1>
+    <h1>Returns open milestones of a repository</h1>
     
-    <div class="hidden name"><code>get_org_hook.Rd</code></div>
+    <div class="hidden name"><code>get_milestones.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get a hook information of a organizations</p>
+    <p>Returns open milestones in a specific repository</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_org_hook</span>(<span class='no'>base_url</span>, <span class='no'>api_key</span>, <span class='no'>org</span>, <span class='no'>id_hook</span>)</pre>
+    <pre class="usage"><span class='fu'>get_milestones</span>(<span class='no'>base_url</span>, <span class='no'>api_key</span>, <span class='no'>owner</span>, <span class='no'>repo</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,12 +138,12 @@
       <td><p>The user's API token key for the gitea service</p></td>
     </tr>
     <tr>
-      <th>org</th>
-      <td><p>Name of the organization</p></td>
+      <th>owner</th>
+      <td><p>The owner of the repository</p></td>
     </tr>
     <tr>
-      <th>id_hook</th>
-      <td><p>Id of the hook to get information</p></td>
+      <th>repo</th>
+      <td><p>The name of the repository</p></td>
     </tr>
     </table>
 

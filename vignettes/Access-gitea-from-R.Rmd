@@ -4,7 +4,7 @@ author: "ixpantia"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Access_Gitea_from_R}
+  %\VignetteIndexEntry{Access Gitea from R}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
