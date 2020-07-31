@@ -20,6 +20,11 @@ test_that("We get a error when there is no owner", {
 })
 
 test_that("We get a error when there is no repository", {
+
+    mockery::stub(where = get_list_comments_repository,
+                  what = "tryCatch",
+                  how = "Failure")
+
     expect_error(get_list_comments_repository(base_url = base_url,
                                                 api_key = api_key,
                                                 owner = owner),

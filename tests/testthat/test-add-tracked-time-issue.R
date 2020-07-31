@@ -44,6 +44,11 @@ test_that("We get a error when there is no time", {
 })
 
 test_that("Error putting invalid url for API", {
+
+    mockery::stub(where = add_tracked_time_issue,
+                  what = "tryCatch",
+                  how = "Failure")
+
     expect_error(add_tracked_time_issue(base_url = "google.com",
                                         api_key = api_key, owner = owner,
                                         repo = repo, time = time,

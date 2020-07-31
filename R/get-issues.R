@@ -47,21 +47,28 @@ get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
 
         # Data frame wrangling
         if (full_info == FALSE) {
-            # Get users who created the ticket
-            users <- content_issues$user
-            users <- tibble::as_tibble(users) %>%
-                dplyr::select(username) %>%
-                dplyr::rename(author = username)
 
-            # Get users who have been assigned to the ticket
-            assignees <- content_issues$assignee
-            assignees <- tibble::as_tibble(assignees) %>%
-                dplyr::select(username) %>%
-                dplyr::rename(assignee = username)
+            if (is.data.frame(content_issues$user)) {
+                users <- tibble::as_tibble(content_issues$user) %>%
+                    dplyr::select(username) %>%
+                    dplyr::rename(author = username)
+            } else {
+                users <- data.frame()
+            }
+
+
+            if (is.list(content_issues$assignees)) {
+                assignees <- tibble::as_tibble(content_issues$assignee) %>%
+                    dplyr::select(username) %>%
+                    dplyr::rename(assignee = username)
+            } else {
+                assignees <- data.frame()
+            }
 
             # Join by position
             issues_content <- content_issues %>%
-                dplyr::select(number, title, created_at, updated_at, due_date) %>%
+                dplyr::select(number, title, body, created_at, updated_at,
+                              due_date) %>%
                 dplyr::bind_cols(users, assignees) %>%
                 tidyr::separate(col = created_at,
                                 into = c("created_date", "created_time"),

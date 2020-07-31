@@ -12,6 +12,11 @@ test_that("We get a error when there is no api_key", {
 })
 
 test_that("Error putting invalid url for API", {
+
+  mockery::stub(where = get_list_users,
+                what = "tryCatch",
+                how = "Failure")
+
   expect_error(get_list_users("google.com", api_key),
                "Error consulting the url: ")
 })

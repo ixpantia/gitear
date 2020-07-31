@@ -17,6 +17,11 @@ test_that("We get a error when there is no name of organization", {
 })
 
 test_that("Error putting invalid url for API", {
+
+    mockery::stub(where = get_list_repos_org,
+                  what = "tryCatch",
+                  how = "Failure")
+
     expect_error(get_list_repos_org("google.com", api_key, org),
                  "Error consulting the url: ")
 })

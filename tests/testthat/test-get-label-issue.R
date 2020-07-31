@@ -32,6 +32,11 @@ test_that("We get a error when there is no index issue", {
 })
 
 test_that("Error putting invalid url for API", {
+
+    mockery::stub(where = get_label_issue,
+                  what = "tryCatch",
+                  how = "Failure")
+
     expect_error(get_label_issue(base_url = "google.com",
                                  api_key = api_key, owner = owner,
                                  repo = repo, id_issue = id_issue),
