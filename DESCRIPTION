@@ -11,11 +11,16 @@ Description: 'Gitea' is a community managed, lightweight code hosting solution
   were projects and their respective git repositories can be managed 
   <https://gitea.io>. This package gives an interface to the 'Gitea' API to 
   access and manage repositories, issues and organizations directly in R. 
-Depends: R (>= 3.4.4)
+Depends: R (>= 3.5.0)
 Imports:
     httr,
     jsonlite,
-    magrittr
+    magrittr,
+    dplyr,
+    tidyr,
+    tibble,
+    stringr,
+    mockery
 License: MIT + file LICENCE
 Encoding: UTF-8
 LazyData: true

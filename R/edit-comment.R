@@ -16,33 +16,54 @@
 #'@export
 edit_comment <- function(base_url, api_key, owner, repo, id_comment, body){
     if (missing(base_url)) {
-        warning("Please add a valid URL")
+        stop("Please add a valid URL")
     } else if (missing(api_key)) {
-        warning("Please add a valid API token")
+        stop("Please add a valid API token")
     } else if (missing(owner)) {
-        warning("Please add a valid owner")
+        stop("Please add a valid owner")
     } else if (missing(repo)) {
-        warning("Please add a valid repository")
+        stop("Please add a valid repository")
     } else if (missing(id_comment)) {
-        warning("Please add a id of the comment")
+        stop("Please add a id of the comment")
     } else if (missing(body)) {
-        warning("Please add a valid body")
-    } else
-        try({
-            base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                                   owner, repo,"issues/comments",id_comment)
+        stop("Please add a valid body")
+    }
 
-            authorization <- paste("token", api_key)
+    base_url <- sub("/$", "", base_url)
+    gitea_url <- file.path(base_url,
+                           "api/v1",
+                           sub("^/", "", "/repos"),
+                           owner,
+                           repo,
+                           "issues/comments",
+                           id_comment)
 
-            request_body <- as.list(data.frame(body = body))
+    authorization <- paste("token", api_key)
 
-            r <- PATCH(gitea_url, add_headers(Authorization = authorization),
-                      content_type_json(), encode = "json", body = request_body)
+    request_body <- as.list(data.frame(body = body))
 
-            content_edited_comment <- content(r, as = "text")
-            content_edited_comment <- fromJSON(content_edited_comment)
+    r <- tryCatch(
+        PATCH(
+            gitea_url,
+            add_headers(Authorization = authorization),
+            content_type_json(),
+            encode = "json",
+            body = request_body
+        ),
+        error = function(cond) {
+            "Failure"
+        }
+    )
 
-            return (content_edited_comment)
-        })
+    if (class(r) != "response") {
+        stop(paste0("Error consulting the url: ", gitea_url))
+    }
+
+    # To convert http errors to R errors
+    stop_for_status(r)
+
+    content_edited_comment <- fromJSON(content(r, as = "text"))
+
+    return (content_edited_comment)
+
 }

@@ -13,18 +13,16 @@
 #'@export
 get_issues_closed_state <- function(base_url, api_key, owner, repo){
   if (missing(base_url)) {
-    warning("Please add a valid URL")
+    stop("Please add a valid URL")
   } else if (missing(api_key)) {
-      warning("Please add a valid API token")
+      stop("Please add a valid API token")
   } else if (missing(owner)) {
-      warning("if (missing(base_url)) {
-    Please add a valid owner")
+      stop("Please add a valid owner")
   } else if (missing(repo)) {
-      warning("Please add a valid repository")
-  } else
-    try({
+      stop("Please add a valid repository")
+  }
       page <- 1
-      content_issues <- tibble()
+      content_issues <- data.frame()
       while (TRUE) {
         base_url <- sub("/$", "", base_url)
         gitea_url <- file.path(base_url, "api/v1",
@@ -34,14 +32,20 @@ get_issues_closed_state <- function(base_url, api_key, owner, repo){
                                paste0("issues?state=closed&page=", page))
 
         authorization <- paste("token", api_key)
-        r <- GET(gitea_url, add_headers(Authorization = authorization),
-                 accept_json())
+
+        r <- tryCatch(GET(gitea_url,
+                          add_headers(Authorization = authorization),
+                          accept_json()),
+                      error = function(cond) {"Failure"})
+
+        if (class(r) != "response") {
+          stop(paste0("Error consulting the url: ", gitea_url))
+        }
 
         # To convert http errors to R errors
         stop_for_status(r)
 
-        page_issues <- content(r, as = "text")
-        page_issues <- jsonlite::fromJSON(page_issues)
+        page_issues <- fromJSON(content(r, as = "text"))
         page_issues <- jsonlite::flatten(as.data.frame(page_issues))
 
         if (page != 1 && nrow(page_issues) == 0) {
@@ -55,6 +59,8 @@ get_issues_closed_state <- function(base_url, api_key, owner, repo){
         }
         page <- page + 1
     }
-  })
+
+  content_issues <- dplyr::select_if(content_issues,
+                                     .predicate = function(x) !is.list(x))
   return(content_issues)
 }

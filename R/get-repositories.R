@@ -10,26 +10,37 @@
 #'@export
 get_repositories <- function(base_url, api_key){
     if (missing(base_url)) {
-        warning("Please add a valid URL")
+        stop("Please add a valid URL")
     } else if (missing(api_key)) {
-        warning("Please add a valid API token")
-    } else
-        try({
-            base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1",
-                                   sub("^/", "", "/repos/search"))
+        stop("Please add a valid API token")
+    }
 
-            authorization <- paste("token", api_key)
-            r <- GET(gitea_url, add_headers(Authorization = authorization),
-                     accept_json())
+    base_url <- sub("/$", "", base_url)
+    gitea_url <- file.path(base_url, "api/v1",
+                           sub("^/", "", "/repos/search"))
 
-            # To convert http errors to R errors
-            stop_for_status(r)
+    authorization <- paste("token", api_key)
+    r <- tryCatch(
+        GET(
+            gitea_url,
+            add_headers(Authorization = authorization),
+            accept_json()
+        ),
+        error = function(cond) {
+            "Failure"
+        }
+    )
 
-            content_repositories <- content(r, as = "text")
-            content_repositories <- fromJSON(content_repositories)
-            content_repositories <- as.data.frame(content_repositories)
+    if (class(r) != "response") {
+        stop(paste0("Error consulting the url: ", gitea_url))
+    }
 
-            return(content_repositories)
-        })
+    # To convert http errors to R errors
+    stop_for_status(r)
+
+    content_repositories <- fromJSON(content(r, as = "text"))
+    content_repositories <- as.data.frame(content_repositories)
+
+    return(content_repositories)
+
 }

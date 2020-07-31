@@ -1,35 +1,45 @@
 context("organizations")
 
-# get_organizations
-test_that("The connection to the test url gets a response", {
-    skip_on_cran()
 
-    base_url <- sub("/$", "", base_url)
-    gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/user/orgs"))
-
-    authorization <- paste("token", api_key)
-    r <- GET(gitea_url, add_headers(Authorization = authorization),
-             accept_json(), config = httr::config(ssl_verifypeer = FALSE))
-
-    expect_true(r$status_code %in% c(200, 403, 500))
-})
-
-test_that("We geta warning when there is no url", {
-    expect_warning(get_organizations(api_key = api_key),
+test_that("We get a error when there is no url", {
+    expect_error(get_organizations(api_key = api_key),
                    "Please add a valid URL")
 })
 
-test_that("We geta warning when there is no api_key", {
-    expect_warning(get_organizations(base_url = base_url),
+test_that("We get a error when there is no api_key", {
+    expect_error(get_organizations(base_url = base_url),
                    "Please add a valid API token")
 })
 
+test_that("Error putting invalid url for API", {
+    expect_error(get_organizations("google.com", api_key),
+                 "Error consulting the url: ")
+})
+
 test_that("The organizations is read correctly", {
+
+    mockery::stub(where = get_organizations,
+                  what = "GET",
+                  how = r)
+
+    mockery::stub(where = get_organizations,
+                  what = "fromJSON",
+                  how = content_organizations)
+
     test_organizations <- get_organizations(base_url, api_key)
     expect_true(exists("test_organizations"))
 })
 
 test_that("Obtaining organization list gives the expected result", {
+
+    mockery::stub(where = get_organizations,
+                  what = "GET",
+                  how = r)
+
+    mockery::stub(where = get_organizations,
+                  what = "fromJSON",
+                  how = content_organizations)
+
     value_list_org <- get_organizations(base_url, api_key)
     expect_equal(TRUE, !is.null(value_list_org))
     expect_that(value_list_org, is_a("data.frame"))

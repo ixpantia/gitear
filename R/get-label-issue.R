@@ -14,29 +14,36 @@
 #'@export
 get_label_issue <- function(base_url, api_key, owner, repo, id_issue){
     if (missing(base_url)) {
-        warning("Please add a valid URL")
+        stop("Please add a valid URL")
     } else if (missing(api_key)) {
-        warning("Please add a valid API token")
+        stop("Please add a valid API token")
     } else if (missing(owner)) {
-        warning("Please add a valid owner")
+        stop("Please add a valid owner")
     } else if (missing(repo)) {
-        warning("Please add a valid repository")
+        stop("Please add a valid repository")
     } else if (missing(id_issue)) {
-        warning("Please add a index of the issue")
-    } else
-        try({
+        stop("Please add a index of the issue")
+    }
             base_url <- sub("/$", "", base_url)
             gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
                                    owner, repo, "issues", id_issue, "labels")
 
             authorization <- paste("token", api_key)
-            r <- GET(gitea_url, add_headers(Authorization = authorization),
-                     accept_json())
+            r <- tryCatch(GET(gitea_url,
+                              add_headers(Authorization = authorization),
+                              accept_json()),
+                          error = function(cond) {"Failure"})
 
-            content_label_issue <- content(r, as = "text")
-            content_label_issue <- jsonlite::fromJSON(content_label_issue)
+            if (class(r) != "response") {
+                stop(paste0("Error consulting the url: ", gitea_url))
+            }
+
+            # To convert http errors to R errors
+            stop_for_status(r)
+
+            content_label_issue <- fromJSON(content(r, as = "text"))
             content_label_issue <- as.data.frame(content_label_issue)
 
             return(content_label_issue)
-        })
+
 }

@@ -13,27 +13,34 @@
 #'@export
 get_forks <- function(base_url, api_key, owner, repo) {
   if (missing(base_url)) {
-    warning("Please add a valid URL")
+    stop("Please add a valid URL")
   } else if (missing(api_key)) {
-    warning("Please add a valid API token")
+    stop("Please add a valid API token")
   } else if (missing(owner)) {
-    warning("Please add a valid owner")
+    stop("Please add a valid owner")
   } else if (missing(repo)) {
-    warning("Please add a valid repository")
-  } else
-    try({
+    stop("Please add a valid repository")
+  }
       base_url <- sub("/$", "", base_url)
       gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
                              owner, repo, "forks")
 
       authorization <- paste("token", api_key)
-      r <- GET(gitea_url, add_headers(Authorization = authorization),
-               accept_json())
+      r <- tryCatch(GET(gitea_url,
+                        add_headers(Authorization = authorization),
+                        accept_json()),
+                    error = function(cond) {"Failure"})
 
-      content_forks <- content(r, as = "text")
-      content_forks <- jsonlite::fromJSON(content_forks)
+      if (class(r) != "response") {
+        stop(paste0("Error consulting the url: ", gitea_url))
+      }
+
+      # To convert http errors to R errors
+      stop_for_status(r)
+
+      content_forks <- fromJSON(content(r, as = "text"))
       content_forks <- as.data.frame(content_forks)
 
       return(content_forks)
-    })
+
 }

@@ -13,27 +13,40 @@
 #'@export
 get_branches <- function(base_url, api_key, owner, repo){
   if (missing(base_url)) {
-    warning("Please add a valid URL")
+    stop("Please add a valid URL")
   } else if (missing(api_key)) {
-    warning("Please add a valid API token")
+    stop("Please add a valid API token")
   } else if (missing(owner)) {
-    warning("Please add a valid owner")
+    stop("Please add a valid owner")
   } else if (missing(repo)) {
-    warning("Please add a valid repository")
-  } else
-    try({
+    stop("Please add a valid repository")
+  }
       base_url <- sub("/$", "", base_url)
       gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
                              owner, repo, "branches")
 
       authorization <- paste("token", api_key)
-      r <- GET(gitea_url, add_headers(Authorization = authorization),
-               accept_json())
+      r <- tryCatch(
+        GET(
+          gitea_url,
+          add_headers(Authorization = authorization),
+          accept_json()
+        ),
+        error = function(cond) {
+          "Failure"
+        }
+      )
 
-      content_branches <- content(r, as = "text")
-      content_branches <- jsonlite::fromJSON(content_branches)
+      if (class(r) != "response") {
+        stop(paste0("Error consulting the url: ", gitea_url))
+      }
+
+      # To convert http errors to R errors
+      stop_for_status(r)
+
+      content_branches <- fromJSON(content(r, as = "text"))
       content_branches <- as.data.frame(content_branches)
 
       return(content_branches)
-    })
+
 }

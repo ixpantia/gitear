@@ -18,38 +18,53 @@
 #'@export
 edit_issue <- function(base_url, api_key, owner, repo, id_issue, body, state, title){
     if (missing(base_url)) {
-        warning("Please add a valid URL")
+        stop("Please add a valid URL")
     } else if (missing(api_key)) {
-        warning("Please add a valid API token")
+        stop("Please add a valid API token")
     } else if (missing(owner)) {
-        warning("Please add a valid owner")
+        stop("Please add a valid owner")
     } else if (missing(repo)) {
-        warning("Please add a valid repository")
+        stop("Please add a valid repository")
     } else if (missing(id_issue)) {
-        warning("Please add a index of the issue")
+        stop("Please add a index of the issue")
     } else if (missing(body)) {
-        warning("Please add a valid body")
+        stop("Please add a valid body")
     } else if (missing(state)) {
-        warning("Please add a valid state")
+        stop("Please add a valid state")
     } else if (missing(title)) {
-        warning("Please add a valid title")
-    } else
-        try({
-            base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                                   owner, repo, "issues", id_issue)
+        stop("Please add a valid title")
+    }
 
-            authorization <- paste("token", api_key)
+    base_url <- sub("/$", "", base_url)
+    gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
+                           owner, repo, "issues", id_issue)
 
-            request_body <- as.list(data.frame(body = body, state = state,
-                                               title = title))
+    authorization <- paste("token", api_key)
 
-            r <- PATCH(gitea_url, add_headers(Authorization = authorization),
-                      content_type_json(), encode = "json", body = request_body)
+    request_body <- as.list(data.frame(body = body, state = state,
+                                       title = title))
 
-            content_edit_issue <- content(r, as = "text")
-            content_edit_issue <- fromJSON(content_edit_issue)
+    r <- tryCatch(
+        PATCH(
+            gitea_url,
+            add_headers(Authorization = authorization),
+            content_type_json(),
+            encode = "json",
+            body = request_body
+        ),
+        error = function(cond) {
+            "Failure"
+        }
+    )
 
-            return (content_edit_issue)
-        })
+    if (class(r) != "response") {
+        stop(paste0("Error consulting the url: ", gitea_url))
+    }
+
+    # To convert http errors to R errors
+    stop_for_status(r)
+
+    content_edit_issue <- fromJSON(content(r, as = "text"))
+
+    return (content_edit_issue)
 }

@@ -13,6 +13,9 @@ knitr::opts_chunk$set(
 )
 library(gitear)
 library(dplyr)
+library(dplyr)
+library(jsonlite)
+library(mockery)
 ```
 
 # gitear <a href="url"><img src="img/gitear.png" align="right" width="30%"></a>
@@ -42,18 +45,38 @@ devtools::install_github("ixpantia/gitear")
 First go to your gitea self hosted service and grab your API Token. Then you
 should be able to the following:
 
-```{r example, eval = FALSE}
-library(gitear)
+```{r, echo = FALSE}
 
-## Credentials
+r <- readRDS(system.file("helper_data/response_example.RDS",
+                              package = "gitear"))
+
+content_issues <- fromJSON(system.file("helper_data/get_issues.json",
+                                      package = "gitear"))
+
+mockery::stub(where = get_issues,
+              what = "GET",
+              how = r)
+
+mockery::stub(where = get_issues,
+              what = "fromJSON",
+              how = content_issues)
+```
+
+```{r example}
+# Credentials
+
 api_token <- "gfdsgfd8ba18a866bsdfgsdfgs3a2dc9303453b0c92dcfb19"
-url_ixpantia <- "https://secure.ixpantia.com"
+url_ixpantia <- "https://prueba.com"
 
-## Example function use:
+# Example function use
+
 issues <- get_issues(base_url = url_ixpantia,
-                       api_key = api_token,
-                       owner = "ixpantia",
-                       repo = "ixmandash")
+                     api_key = api_token,
+                     owner = "empresa",
+                     repo = "repo_prueba")
+
+
+issues
 ```
 
 ## **Environmental variables:**
@@ -67,18 +90,21 @@ somebody getting your credentials, you can follow the next workflow:
  
 Your script could look something like this:
 
-```{r}
+```{r example_2}
 # Storing credentials in an object
+
 example_key <- Sys.getenv("example_key")
 example_url <- Sys.getenv("example_url")
 
 # Using a function from gitear
+
 issues <- get_issues(base_url = example_url,
                      api_key = example_key,
-                     owner = "ixpantia",
-                     repo = "lacrmr")
+                     owner = "empresa",
+                     repo = "repo_prueba")
 
 # Check the output
+
 glimpse(issues)
 ```
 

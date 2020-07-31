@@ -18,34 +18,53 @@
 #' @export
 create_issue <- function(base_url, api_key, owner, repo, title, body){
     if (missing(base_url)) {
-        warning("Please add a valid URL")
+        stop("Please add a valid URL")
     } else if (missing(api_key)) {
-        warning("Please add a valid API token")
+        stop("Please add a valid API token")
     } else if (missing(owner)) {
-        warning("Please add a valid owner")
+        stop("Please add a valid owner")
     } else if (missing(repo)) {
-        warning("Please add a valid repository")
+        stop("Please add a valid repository")
     } else if (missing(title)) {
-        warning("Please add a valid title")
+        stop("Please add a valid title")
     } else if (missing(body)) {
-        warning("Please add a valid body")
-    } else
-        try({
-            base_url <- sub("/$", "", base_url)
-            gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                                   owner, repo, "issues")
+        stop("Please add a valid body")
+    }
 
-            authorization <- paste("token", api_key)
+    base_url <- sub("/$", "", base_url)
+    gitea_url <- file.path(base_url,
+                           "api/v1",
+                           sub("^/", "", "/repos"),
+                           owner,
+                           repo,
+                           "issues")
 
-            request_body <- as.list(data.frame(title = title, body = body))
+    authorization <- paste("token", api_key)
 
-            r <- POST(gitea_url, add_headers(Authorization = authorization),
-                      content_type_json(), encode = "json", body = request_body)
+    request_body <- as.list(data.frame(title = title, body = body))
 
-            content_create_issue <- content(r, as = "text")
-            content_create_issue <- fromJSON(content_create_issue)
+    r <- tryCatch(
+        POST(
+            gitea_url,
+            add_headers(Authorization = authorization),
+            content_type_json(),
+            encode = "json",
+            body = request_body
+        ),
+        error = function(cond) {
+            "Failure"
+        }
+    )
 
-            return(content_create_issue)
+    if (class(r) != "response") {
+        stop(paste0("Error consulting the url: ", gitea_url))
+    }
 
-            })
+    # To convert http errors to R errors
+    stop_for_status(r)
+
+    content_create_issue <- fromJSON(content(r, as = "text"))
+
+    return(content_create_issue)
+
 }

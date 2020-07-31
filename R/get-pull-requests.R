@@ -13,27 +13,42 @@
 #'@export
 get_pull_requests <- function(base_url, api_key, owner, repo){
   if (missing(base_url)) {
-    warning("Please add a valid URL")
+    stop("Please add a valid URL")
   } else if (missing(api_key)) {
-    warning("Please add a valid API token")
+    stop("Please add a valid API token")
   } else if (missing(owner)) {
-    warning("Please add a valid owner")
+    stop("Please add a valid owner")
   } else if (missing(repo)) {
-    warning("Please add a valid repository")
-  } else
-    try({
-      base_url <- sub("/$", "", base_url)
-      gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                             owner, repo, "pulls")
+    stop("Please add a valid repository")
+  }
 
-      authorization <- paste("token", api_key)
-      r <- GET(gitea_url, add_headers(Authorization = authorization),
-               accept_json())
+  base_url <- sub("/$", "", base_url)
+  gitea_url <-
+    file.path(base_url, "api/v1", sub("^/", "", "/repos"),
+              owner, repo, "pulls")
 
-      content_pull_req <- content(r, as = "text")
-      content_pull_req <- jsonlite::fromJSON(content_pull_req)
-      content_pull_req <- as.data.frame(content_pull_req)
+  authorization <- paste("token", api_key)
+  r <- tryCatch(
+    GET(
+      gitea_url,
+      add_headers(Authorization = authorization),
+      accept_json()
+    ),
+    error = function(cond) {
+      "Failure"
+    }
+  )
 
-      return(content_pull_req)
-    })
+  if (class(r) != "response") {
+    stop(paste0("Error consulting the url: ", gitea_url))
+  }
+
+  # To convert http errors to R errors
+  stop_for_status(r)
+
+  content_pull_req <- fromJSON(content(r, as = "text"))
+  content_pull_req <- as.data.frame(content_pull_req)
+
+  return(content_pull_req)
+
 }

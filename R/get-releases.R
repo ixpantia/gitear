@@ -13,27 +13,46 @@
 #'@export
 get_releases <- function(base_url, api_key, owner, repo){
   if (missing(base_url)) {
-    warning("Please add a valid URL")
+    stop("Please add a valid URL")
   } else if (missing(api_key)) {
-    warning("Please add a valid API token")
+    stop("Please add a valid API token")
   } else if (missing(owner)) {
-    warning("Please add a valid owner")
+    stop("Please add a valid owner")
   } else if (missing(repo)) {
-    warning("Please add a valid repository")
-  } else
-    try({
-      base_url <- sub("/$", "", base_url)
-      gitea_url <- file.path(base_url, "api/v1", sub("^/", "", "/repos"),
-                             owner, repo, "releases")
+    stop("Please add a valid repository")
+  }
 
-      authorization <- paste("token", api_key)
-      r <- GET(gitea_url, add_headers(Authorization = authorization),
-               accept_json())
+  base_url <- sub("/$", "", base_url)
+  gitea_url <-
+    file.path(base_url,
+              "api/v1",
+              sub("^/", "", "/repos"),
+              owner,
+              repo,
+              "releases")
 
-      content_releases <- content(r, as = "text")
-      content_releases <- jsonlite::fromJSON(content_releases)
-      content_releases <- as.data.frame(content_releases)
+  authorization <- paste("token", api_key)
+  r <- tryCatch(
+    GET(
+      gitea_url,
+      add_headers(Authorization = authorization),
+      accept_json()
+    ),
+    error = function(cond) {
+      "Failure"
+    }
+  )
 
-      return(content_releases)
-    })
+  if (class(r) != "response") {
+    stop(paste0("Error consulting the url: ", gitea_url))
+  }
+
+  # To convert http errors to R errors
+  stop_for_status(r)
+
+  content_releases <- fromJSON(content(r, as = "text"))
+  content_releases <- as.data.frame(content_releases)
+
+  return(content_releases)
+
 }
