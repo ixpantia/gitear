@@ -1,6 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #' @import magrittr
+#' @import graphics
 #'
 #' @title Returns open issues from an specific repository
 #' @description Returns open issues in an specific repository

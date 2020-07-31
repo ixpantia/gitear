@@ -5,8 +5,8 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Access Gitea from R}
-  %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 editor_options: 
   chunk_output_type: console
 ---
@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
 library(gitear)
 library(dplyr)
 library(jsonlite)
+library(utf8)
 
 r <- readRDS(system.file("helper_data/response_example.RDS",
                               package = "gitear"))
