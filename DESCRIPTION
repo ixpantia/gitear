@@ -13,8 +13,7 @@ Description: 'Gitea' is a community managed, lightweight code hosting solution
   access and manage repositories, issues and organizations directly in R. 
 Depends:
     R (>= 3.5.0),
-    magrittr,
-    utf8
+    magrittr
 Imports:
     httr,
     jsonlite,
@@ -23,7 +22,8 @@ Imports:
     tibble,
     stringr,
     mockery,
-    graphics
+    graphics,
+    utf8
 License: GPL-3 | file LICENSE
 URL: https://ixpantia.github.io/gitear/
 BugReports: https://github.com/ixpantia/gitear/issues
