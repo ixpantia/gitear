@@ -23,7 +23,7 @@ Imports:
     stringr,
     mockery,
     graphics,
-    utf8
+    Rcpp
 License: GPL-3 | file LICENSE
 URL: https://ixpantia.github.io/gitear/
 BugReports: https://github.com/ixpantia/gitear/issues
@@ -33,7 +33,6 @@ Suggests:
     testthat,
     knitr,
     rmarkdown,
-    covr,
-    Rcpp
+    covr
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
