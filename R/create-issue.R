@@ -16,6 +16,16 @@
 #' @return list with results of the new issue
 #'
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' create_issue(base_url = "https://example.gitea.service.com",
+#'              api_key = "3749s8SKFMA0kdi88jnaj8ska",
+#'              owner = "company",
+#'              repo = "test_repo",
+#'              title = "Perform clean code task",
+#'              body = "Perform in an orderly manner and document steps")
+#' }
 create_issue <- function(base_url, api_key, owner, repo, title, body){
     if (missing(base_url)) {
         stop("Please add a valid URL")

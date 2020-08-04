@@ -14,7 +14,16 @@
 #' @param full_info TRUE or FALSE value. If FALSE this will select specific
 #' columns from the issues data
 #'
-#'@export
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' get_issues(base_url = "https://example.gitea.service.com",
+#'            api_key = "3749s8SKFMA0kdi88jnaj8ska",
+#'            owner = "company",
+#'            repo = "test_repo",
+#'            full_info = FALSE)
+#' }
 get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
     if (missing(base_url)) {
         stop("Please add a valid URL")

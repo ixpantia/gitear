@@ -63,8 +63,9 @@ test_that("Error putting invalid url for API", {
                   what = "tryCatch",
                   how = "Failure")
 
-    expect_error(edit_issue("google.com", api_key, owner, repo, id_issue,
-                            body, state, title),
+    expect_error(edit_issue("google.com", api_key = api_key,
+                            owner = owner, repo = repo, id_issue = id_issue,
+                            state = state, title = title, body = body),
                  "Error consulting the url: ")
 })
 
@@ -78,8 +79,9 @@ test_that("The edit an issue is read correctly", {
                   what = "fromJSON",
                   how = content_edit_issue)
 
-    test_edit_issue <- edit_issue(base_url, api_key, owner, repo, id_issue,
-                                    body, state, title)
+    test_edit_issue <- edit_issue(base_url = base_url, api_key = api_key,
+                                  owner = owner, repo = repo, id_issue = id_issue,
+                                  state = state, title = title, body = body)
     expect_true(exists("test_edit_issue"))
 })
 
@@ -93,8 +95,9 @@ test_that("Edit an issue gives the expected result", {
                   what = "fromJSON",
                   how = content_edit_issue)
 
-    value_edit_issue <- edit_issue(base_url, api_key, owner, repo, id_issue,
-                                     body, state, title)
+    value_edit_issue <- edit_issue(base_url = base_url, api_key = api_key,
+                                   owner = owner, repo = repo, id_issue = id_issue,
+                                   state = state, title = title, body = body)
 
     expect_equal(TRUE, !is.null(value_edit_issue))
     expect_that(value_edit_issue, is_a("list"))

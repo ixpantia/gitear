@@ -11,7 +11,16 @@
 #' @param repo The name of the repository
 #' @param id_issue Index of the issue
 #'
-#'@export
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' get_times_issue(base_url = "https://example.gitea.service.com",
+#'                 api_key = "3749s8SKFMA0kdi88jnaj8ska",
+#'                 owner = "company",
+#'                 repo = "test_repo",
+#'                 id_issue = 3)
+#' }
 get_times_issue <- function(base_url, api_key, owner, repo, id_issue){
     if (missing(base_url)) {
         stop("Please add a valid URL")

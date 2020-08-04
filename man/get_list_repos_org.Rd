@@ -16,3 +16,10 @@ get_list_repos_org(base_url, api_key, org)
 \description{
 Get a list of an organization's repositories
 }
+\examples{
+\dontrun{
+get_list_repos_org(base_url = "https://example.gitea.service.com",
+                    api_key = "3749s8SKFMA0kdi88jnaj8ska",
+                    org = "company")
+}
+}

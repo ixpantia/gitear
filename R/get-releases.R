@@ -10,7 +10,15 @@
 #' @param owner The owner of the repository
 #' @param repo The name of the repository
 #'
-#'@export
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' get_releases(base_url = "https://example.gitea.service.com",
+#'              api_key = "3749s8SKFMA0kdi88jnaj8ska",
+#'              owner = "company",
+#'              repo = "test_repo")
+#' }
 get_releases <- function(base_url, api_key, owner, repo){
   if (missing(base_url)) {
     stop("Please add a valid URL")

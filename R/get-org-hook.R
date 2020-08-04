@@ -10,7 +10,15 @@
 #' @param org Name of the organization
 #' @param id_hook Id of the hook to get information
 #'
-#'@export
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' get_org_hook(base_url = "https://example.gitea.service.com",
+#'              api_key = "3749s8SKFMA0kdi88jnaj8ska",
+#'              org = "company",
+#'              id_hook = 2)
+#' }
 get_org_hook <- function(base_url, api_key, org, id_hook){
     if (missing(base_url)) {
         stop("Please add a valid URL")

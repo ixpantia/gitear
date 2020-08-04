@@ -14,6 +14,16 @@
 #' @param body The text that is added as a comment to the issue
 #'
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' create_comment_issue(base_url = "https://example.gitea.service.com",
+#'                      api_key = "3749s8SKFMA0kdi88jnaj8ska",
+#'                      owner = "company",
+#'                      repo = "test_repo",
+#'                      id_issue = 2,
+#'                      body = "my first comment on this issue")
+#' }
 create_comment_issue <- function(base_url, api_key, owner, repo, id_issue, body){
     if (missing(base_url)) {
         stop("Please add a valid URL")

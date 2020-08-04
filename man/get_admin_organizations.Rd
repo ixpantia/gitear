@@ -19,3 +19,9 @@ Returns the list of organizations for a user with an
 This function works only in the case that the `api_key` is
 associated with a user with administrator role
 }
+\examples{
+\dontrun{
+get_admin_organizations(base_url = "https://example.gitea.service.com",
+                        api_key = "JA5jidikamJFM329i4rkdmHDMS")
+}
+}

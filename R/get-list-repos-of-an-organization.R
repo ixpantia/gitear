@@ -9,7 +9,14 @@
 #'
 #' @param org Name of the organization
 #'
-#'@export
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' get_list_repos_org(base_url = "https://example.gitea.service.com",
+#'                     api_key = "3749s8SKFMA0kdi88jnaj8ska",
+#'                     org = "company")
+#' }
 get_list_repos_org <- function(base_url, api_key, org){
     if (missing(base_url)) {
         stop("Please add a valid URL")

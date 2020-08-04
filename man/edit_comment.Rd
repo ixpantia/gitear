@@ -22,3 +22,13 @@ edit_comment(base_url, api_key, owner, repo, id_comment, body)
 \description{
 Edit a comment in a specific issue
 }
+\examples{
+\dontrun{
+edit_comment(base_url = "https://example.gitea.service.com",
+             api_key = "3749s8SKFMA0kdi88jnaj8ska",
+             owner = "company",
+             repo = "test_repo",
+             id_comment = 612,
+             body = "This is the correction of my comment")
+}
+}

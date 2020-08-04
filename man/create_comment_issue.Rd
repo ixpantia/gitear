@@ -22,3 +22,13 @@ create_comment_issue(base_url, api_key, owner, repo, id_issue, body)
 \description{
 Add a comment to an issue in a gitea server
 }
+\examples{
+\dontrun{
+create_comment_issue(base_url = "https://example.gitea.service.com",
+                     api_key = "3749s8SKFMA0kdi88jnaj8ska",
+                     owner = "company",
+                     repo = "test_repo",
+                     id_issue = 2,
+                     body = "my first comment on this issue")
+}
+}

@@ -4,7 +4,7 @@
 \alias{edit_issue}
 \title{Edit an issue}
 \usage{
-edit_issue(base_url, api_key, owner, repo, id_issue, body, state, title)
+edit_issue(base_url, api_key, owner, repo, id_issue, title, body, state)
 }
 \arguments{
 \item{base_url}{The base URL for your gitea server (no trailing '/')}
@@ -17,12 +17,24 @@ edit_issue(base_url, api_key, owner, repo, id_issue, body, state, title)
 
 \item{id_issue}{Index of the issue to edit}
 
+\item{title}{The new issue title text}
+
 \item{body}{The new issue body text}
 
 \item{state}{The issue state}
-
-\item{title}{The new issue title text}
 }
 \description{
 Edit an issue
+}
+\examples{
+\dontrun{
+edit_issue(base_url = "https://example.gitea.service.com",
+           api_key = "3749s8SKFMA0kdi88jnaj8ska",
+           owner = "company",
+           repo = "test_repo",
+           id_issue = 3,
+           title = "My new title for this issue",
+           body = "My new comment starts on this issue",
+           state = "open")
+}
 }

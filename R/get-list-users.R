@@ -7,7 +7,13 @@
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
 #'
-#'@export
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' get_list_users(base_url = "https://example.gitea.service.com",
+#'                api_key = "3749s8SKFMA0kdi88jnaj8ska")
+#' }
 get_list_users <- function(base_url, api_key) {
   if (missing(base_url)) {
     stop("Please add a valid URL")

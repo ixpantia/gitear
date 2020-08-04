@@ -18,3 +18,11 @@ get_branches(base_url, api_key, owner, repo)
 \description{
 Returns branches in a specific repository
 }
+\examples{
+\dontrun{
+get_branches(base_url = "https://example.gitea.service.com",
+             api_key = "3749s8SKFMA0kdi88jnaj8ska",
+             owner = "company",
+             repo = "test_repo")
+}
+}
