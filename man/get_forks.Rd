@@ -21,7 +21,7 @@ Returns forks in a specific repository
 \examples{
 \dontrun{
 get_forks(base_url = "https://example.gitea.service.com",
-          api_key = "3749s8SKFMA0kdi88jnaj8ska",
+          api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
           owner = "company",
           repo = "test_repo")
 }

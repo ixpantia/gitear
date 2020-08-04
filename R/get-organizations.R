@@ -12,7 +12,7 @@
 #' @examples
 #' \dontrun{
 #' get_organizations(base_url = "https://example.gitea.service.com",
-#'                   api_key = "3749s8SKFMA0kdi88jnaj8ska")
+#'                   api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288")
 #' }
 get_organizations <- function(base_url, api_key){
     if (missing(base_url)) {
@@ -64,7 +64,7 @@ get_organizations <- function(base_url, api_key){
 #' @examples
 #' \dontrun{
 #' get_admin_organizations(base_url = "https://example.gitea.service.com",
-#'                         api_key = "JA5jidikamJFM329i4rkdmHDMS")
+#'                         api_key = "b6026f861fd41a94c3389d54293de9d04bde6f7c")
 #' }
 get_admin_organizations <- function(base_url, api_key){
     if (missing(base_url)) {

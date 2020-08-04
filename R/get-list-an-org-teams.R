@@ -14,7 +14,7 @@
 #' @examples
 #' \dontrun{
 #' get_list_org_teams(base_url = "https://example.gitea.service.com",
-#'                    api_key = "3749s8SKFMA0kdi88jnaj8ska",
+#'                    api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
 #'                    org = "company")
 #' }
 get_list_org_teams <- function(base_url, api_key, org){

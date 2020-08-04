@@ -22,6 +22,6 @@ associated with a user with administrator role
 \examples{
 \dontrun{
 get_admin_organizations(base_url = "https://example.gitea.service.com",
-                        api_key = "JA5jidikamJFM329i4rkdmHDMS")
+                        api_key = "b6026f861fd41a94c3389d54293de9d04bde6f7c")
 }
 }
