@@ -18,3 +18,11 @@ get_issues_closed_state(base_url, api_key, owner, repo)
 \description{
 Returns the issues in closed state of a repository
 }
+\examples{
+\dontrun{
+get_issues_closed_state(base_url = "https://example.gitea.service.com",
+                        api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+                        owner = "company",
+                        repo = "test_repo")
+}
+}

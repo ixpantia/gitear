@@ -26,6 +26,11 @@ test_that("We get a error when there is no id", {
 
 
 test_that("Error putting invalid url for API", {
+
+    mockery::stub(where = get_org_hook,
+                  what = "tryCatch",
+                  how = "Failure")
+
     expect_error(get_org_hook("google.com", api_key, org, id_hook),
                  "Error consulting the url: ")
 })

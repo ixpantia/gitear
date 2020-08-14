@@ -1,6 +1,7 @@
 #' @import httr
 #' @import jsonlite
 #' @import magrittr
+#' @import graphics
 #'
 #' @title Returns open issues from an specific repository
 #' @description Returns open issues in an specific repository
@@ -13,7 +14,16 @@
 #' @param full_info TRUE or FALSE value. If FALSE this will select specific
 #' columns from the issues data
 #'
-#'@export
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' get_issues(base_url = "https://example.gitea.service.com",
+#'            api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+#'            owner = "company",
+#'            repo = "test_repo",
+#'            full_info = FALSE)
+#' }
 get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
     if (missing(base_url)) {
         stop("Please add a valid URL")
@@ -47,21 +57,28 @@ get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
 
         # Data frame wrangling
         if (full_info == FALSE) {
-            # Get users who created the ticket
-            users <- content_issues$user
-            users <- tibble::as_tibble(users) %>%
-                dplyr::select(username) %>%
-                dplyr::rename(author = username)
 
-            # Get users who have been assigned to the ticket
-            assignees <- content_issues$assignee
-            assignees <- tibble::as_tibble(assignees) %>%
-                dplyr::select(username) %>%
-                dplyr::rename(assignee = username)
+            if (is.data.frame(content_issues$user)) {
+                users <- tibble::as_tibble(content_issues$user) %>%
+                    dplyr::select(username) %>%
+                    dplyr::rename(author = username)
+            } else {
+                users <- data.frame()
+            }
+
+
+            if (is.list(content_issues$assignees)) {
+                assignees <- tibble::as_tibble(content_issues$assignee) %>%
+                    dplyr::select(username) %>%
+                    dplyr::rename(assignee = username)
+            } else {
+                assignees <- data.frame()
+            }
 
             # Join by position
             issues_content <- content_issues %>%
-                dplyr::select(number, title, created_at, updated_at, due_date) %>%
+                dplyr::select(number, title, body, created_at, updated_at,
+                              due_date) %>%
                 dplyr::bind_cols(users, assignees) %>%
                 tidyr::separate(col = created_at,
                                 into = c("created_date", "created_time"),

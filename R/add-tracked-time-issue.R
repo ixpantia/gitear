@@ -13,7 +13,17 @@
 #'
 #' @param time The time in seconds to add to the issue
 #'
-#'@export
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' add_tracked_time_issue(base_url = "https://example.gitea.service.com",
+#'                        api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+#'                        owner = "company",
+#'                        repo = "test_repo",
+#'                        id_issue = 2,
+#'                        time = 15)
+#' }
 add_tracked_time_issue <- function(base_url, api_key, owner, repo, id_issue, time){
     if (missing(base_url)) {
         stop("Please add a valid URL")

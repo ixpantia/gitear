@@ -18,7 +18,7 @@ library(jsonlite)
 library(mockery)
 ```
 
-# gitear <a href="url"><img src="img/gitear.png" align="right" width="30%"></a>
+# gitear <a href="https://ixpantia.github.io/gitear/"><img src="man/figures/gitear.png" align="right" width="30%"></a>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/gitear)](https://cran.r-project.org/package=gitear)

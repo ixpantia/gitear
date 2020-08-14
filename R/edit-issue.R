@@ -15,8 +15,20 @@
 #' @param state The issue state
 #' @param title The new issue title text
 #'
-#'@export
-edit_issue <- function(base_url, api_key, owner, repo, id_issue, body, state, title){
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' edit_issue(base_url = "https://example.gitea.service.com",
+#'            api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+#'            owner = "company",
+#'            repo = "test_repo",
+#'            id_issue = 3,
+#'            title = "My new title for this issue",
+#'            body = "My new comment starts on this issue",
+#'            state = "open")
+#' }
+edit_issue <- function(base_url, api_key, owner, repo, id_issue, title, body, state){
     if (missing(base_url)) {
         stop("Please add a valid URL")
     } else if (missing(api_key)) {

@@ -18,3 +18,11 @@ get_org_hook(base_url, api_key, org, id_hook)
 \description{
 Get a hook information of a organizations
 }
+\examples{
+\dontrun{
+get_org_hook(base_url = "https://example.gitea.service.com",
+             api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+             org = "company",
+             id_hook = 2)
+}
+}

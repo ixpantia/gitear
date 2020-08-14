@@ -35,6 +35,11 @@ test_that("We get a error when there is no index issue", {
 })
 
 test_that("Error putting invalid url for API", {
+
+    mockery::stub(where = get_list_comments_issue,
+                  what = "tryCatch",
+                  how = "Failure")
+
     expect_error(get_list_comments_issue("google.com", api_key,
                                          owner, repo, id_issue),
                  "Error consulting the url: ")

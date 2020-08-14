@@ -11,7 +11,16 @@
 #' @param repo The name of the repository
 #' @param id_issue Index of the issue
 #'
-#'@export
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' get_label_issue(base_url = "https://example.gitea.service.com",
+#'                 api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+#'                 owner = "company",
+#'                 repo = "test_repo",
+#'                 id_issue = 3)
+#' }
 get_label_issue <- function(base_url, api_key, owner, repo, id_issue){
     if (missing(base_url)) {
         stop("Please add a valid URL")

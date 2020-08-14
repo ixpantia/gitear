@@ -18,3 +18,11 @@ get_list_comments_repository(base_url, api_key, owner, repo)
 \description{
 Returns a list of all comments in a repository
 }
+\examples{
+\dontrun{
+get_list_comments_repository(base_url = "https://example.gitea.service.com",
+                             api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+                             owner = "company",
+                             repo = "test_repo")
+}
+}

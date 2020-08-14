@@ -16,3 +16,10 @@ get_list_org_members(base_url, api_key, org)
 \description{
 List an organization's members
 }
+\examples{
+\dontrun{
+get_list_org_members(base_url = "https://example.gitea.service.com",
+                     api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+                     org = "company")
+}
+}

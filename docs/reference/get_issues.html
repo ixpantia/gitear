@@ -101,7 +101,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/ixpantia/gitear/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -116,7 +121,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Returns open issues from an specific repository</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/ixpantia/gitear/blob/master/R/get-issues.R'><code>R/get-issues.R</code></a></small>
     <div class="hidden name"><code>get_issues.Rd</code></div>
     </div>
 
@@ -153,6 +158,14 @@ columns from the issues data</p></td>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>get_issues</span>(<span class='kw'>base_url</span> <span class='kw'>=</span> <span class='st'>"https://example.gitea.service.com"</span>,
+           <span class='kw'>api_key</span> <span class='kw'>=</span> <span class='st'>"ccaf5c9a22e854856d0c5b1b96c81e851bafb288"</span>,
+           <span class='kw'>owner</span> <span class='kw'>=</span> <span class='st'>"company"</span>,
+           <span class='kw'>repo</span> <span class='kw'>=</span> <span class='st'>"test_repo"</span>,
+           <span class='kw'>full_info</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

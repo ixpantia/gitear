@@ -16,3 +16,10 @@ get_an_organization(base_url, api_key, org)
 \description{
 Get information from an organization
 }
+\examples{
+\dontrun{
+get_an_organization(base_url = "https://example.gitea.service.com",
+                    api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+                    org = "company")
+}
+}

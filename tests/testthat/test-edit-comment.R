@@ -41,6 +41,11 @@ test_that("We get a error when there is no body", {
 })
 
 test_that("Error putting invalid url for API", {
+
+    mockery::stub(where = edit_comment,
+                  what = "tryCatch",
+                  how = "Failure")
+
     expect_error(edit_comment("google.com", api_key, owner, repo,
                               id_comment, body),
                  "Error consulting the url: ")

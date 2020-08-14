@@ -14,3 +14,9 @@ get_repositories(base_url, api_key)
 \description{
 Returns the repositories of the Gitea application
 }
+\examples{
+\dontrun{
+get_repositories(base_url = "https://example.gitea.service.com",
+                 api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288")
+}
+}

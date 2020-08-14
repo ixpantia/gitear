@@ -14,3 +14,9 @@ get_organizations(base_url, api_key)
 \description{
 Returns list the current user's organizations
 }
+\examples{
+\dontrun{
+get_organizations(base_url = "https://example.gitea.service.com",
+                  api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288")
+}
+}

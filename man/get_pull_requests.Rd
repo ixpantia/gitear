@@ -18,3 +18,11 @@ get_pull_requests(base_url, api_key, owner, repo)
 \description{
 Returns open and closed pull requests in a specific repository
 }
+\examples{
+\dontrun{
+get_pull_requests(base_url = "https://example.gitea.service.com",
+                  api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+                  owner = "company",
+                  repo = "test_repo")
+}
+}

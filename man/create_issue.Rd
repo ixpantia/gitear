@@ -25,3 +25,13 @@ list with results of the new issue
 \description{
 Create an new issue in a specific repository
 }
+\examples{
+\dontrun{
+create_issue(base_url = "https://example.gitea.service.com",
+             api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+             owner = "company",
+             repo = "test_repo",
+             title = "Perform clean code task",
+             body = "Perform in an orderly manner and document steps")
+}
+}

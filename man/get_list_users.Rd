@@ -14,3 +14,9 @@ get_list_users(base_url, api_key)
 \description{
 User list for a gitea server
 }
+\examples{
+\dontrun{
+get_list_users(base_url = "https://example.gitea.service.com",
+               api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288")
+}
+}

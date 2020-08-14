@@ -11,16 +11,19 @@ Description: 'Gitea' is a community managed, lightweight code hosting solution
   were projects and their respective git repositories can be managed 
   <https://gitea.io>. This package gives an interface to the 'Gitea' API to 
   access and manage repositories, issues and organizations directly in R. 
-Depends: R (>= 3.5.0)
+Depends:
+    R (>= 3.5.0),
+    magrittr
 Imports:
     httr,
     jsonlite,
-    magrittr,
     dplyr,
     tidyr,
     tibble,
     stringr,
-    mockery
+    mockery,
+    graphics,
+    Rcpp
 License: GPL-3 | file LICENSE
 URL: https://ixpantia.github.io/gitear/
 BugReports: https://github.com/ixpantia/gitear/issues

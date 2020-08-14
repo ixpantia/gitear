@@ -20,3 +20,12 @@ get_label_issue(base_url, api_key, owner, repo, id_issue)
 \description{
 Returns an issue's labels
 }
+\examples{
+\dontrun{
+get_label_issue(base_url = "https://example.gitea.service.com",
+                api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+                owner = "company",
+                repo = "test_repo",
+                id_issue = 3)
+}
+}

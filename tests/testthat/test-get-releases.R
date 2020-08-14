@@ -26,6 +26,11 @@ test_that("We get a error when there is no repository", {
 })
 
 test_that("Error putting invalid url for API", {
+
+  mockery::stub(where = get_releases,
+                what = "tryCatch",
+                how = "Failure")
+
   expect_error(get_releases("google.com", api_key, owner, repo),
                "Error consulting the url: ")
 })

@@ -16,3 +16,10 @@ get_org_list_hooks(base_url, api_key, org)
 \description{
 Returns a list of organization's webhooks
 }
+\examples{
+\dontrun{
+get_org_list_hooks(base_url = "https://example.gitea.service.com",
+             api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+             org = "company")
+}
+}

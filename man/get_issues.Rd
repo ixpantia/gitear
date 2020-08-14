@@ -21,3 +21,12 @@ columns from the issues data}
 \description{
 Returns open issues in an specific repository
 }
+\examples{
+\dontrun{
+get_issues(base_url = "https://example.gitea.service.com",
+           api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
+           owner = "company",
+           repo = "test_repo",
+           full_info = FALSE)
+}
+}
