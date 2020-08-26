@@ -24,7 +24,7 @@ Imports:
     mockery,
     graphics,
     Rcpp
-License: GPL-3 | file LICENSE
+License: GPL-3 
 URL: https://ixpantia.github.io/gitear/
 BugReports: https://github.com/ixpantia/gitear/issues
 Encoding: UTF-8
