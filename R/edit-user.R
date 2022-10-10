@@ -1,8 +1,8 @@
 #' @import httr
 #' @import jsonlite
 #'
-#' @description Edit an issue
-#' @title Edit an issue
+#' @description Edit a user
+#' @title Edit a user
 #'
 #' @param base_url The base URL for your gitea server (no trailing '/')
 #' @param api_key The user's API token key for the gitea service
@@ -10,7 +10,6 @@
 #' @param username  The user name
 #' @param active Whether the user should be active or not
 #' @param login_name The login name
-#' @param source_id The source ID
 #'
 #' @export
 #'
@@ -22,8 +21,7 @@
 #'           active = TRUE,
 #'           login_name = "user")
 #' }
-edit_user <- function(base_url, api_key, username, active, login_name,
-                      source_id){
+edit_user <- function(base_url, api_key, username, active, login_name){
   if (missing(base_url)) {
     stop("Please add a valid URL")
   } else if (missing(api_key)) {
