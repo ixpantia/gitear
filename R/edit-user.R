@@ -34,19 +34,17 @@ edit_user <- function(base_url, api_key, username, active, login_name,
     stop("Please add a if you want the user active or not")
   } else if (missing(login_name)) {
     stop("Please add a valid login name")
-  } else if (missing(source_id)) {
-    stop("Please add a valid login name")
   }
 
   base_url <- sub("/$", "", base_url)
 
   gitea_url <- file.path(base_url, "api/v1",
-                         sub("^/", "", "/admin/users"), user)
+                         sub("^/", "", "/admin/users"), username)
 
   authorization <- paste("token", api_key)
 
-  request_body <- as.list(data.frame(active = active, login_name = login_name,
-                                     source_id = source_id))
+  request_body <- as.list(data.frame(active = active,
+                                     login_name = login_name))
 
   r <- tryCatch(
     PATCH(
