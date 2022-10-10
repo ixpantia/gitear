@@ -19,7 +19,7 @@
 #' edit_user(base_url = "https://example.gitea.service.com",
 #'           api_key = "ccaf5c9a22e854856d0c5b1b96c81e851bafb288",
 #'           username = "user",
-#'           active = 1,
+#'           active = TRUE,
 #'           login_name = "user")
 #' }
 edit_user <- function(base_url, api_key, username, active, login_name,
