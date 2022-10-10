@@ -10,6 +10,7 @@
 #' @param username  The user name
 #' @param active Whether the user should be active or not
 #' @param login_name The login name
+#' @param source_id The source ID
 #'
 #' @export
 #'
@@ -21,7 +22,8 @@
 #'           active = 1,
 #'           login_name = "user")
 #' }
-edit_user <- function(base_url, api_key, username, active, login_name){
+edit_user <- function(base_url, api_key, username, active, login_name,
+                      source_id){
   if (missing(base_url)) {
     stop("Please add a valid URL")
   } else if (missing(api_key)) {
@@ -32,6 +34,8 @@ edit_user <- function(base_url, api_key, username, active, login_name){
     stop("Please add a if you want the user active or not")
   } else if (missing(login_name)) {
     stop("Please add a valid login name")
+  } else if (missing(source_id)) {
+    stop("Please add a valid login name")
   }
 
   base_url <- sub("/$", "", base_url)
@@ -41,7 +45,8 @@ edit_user <- function(base_url, api_key, username, active, login_name){
 
   authorization <- paste("token", api_key)
 
-  request_body <- as.list(data.frame(active = active, login_name = login_name))
+  request_body <- as.list(data.frame(active = active, login_name = login_name,
+                                     source_id = source_id))
 
   r <- tryCatch(
     PATCH(
