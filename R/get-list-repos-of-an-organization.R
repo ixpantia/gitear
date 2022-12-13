@@ -49,7 +49,7 @@ get_list_repos_org <- function(base_url, api_key, org){
     # To convert http errors to R errors
     stop_for_status(r)
 
-    content_list_repos_org <- fromJSON(content(r, as = "text"))
+    content_list_repos_org <- jsonlite::fromJSON(content(r, as = "text"))
     content_list_repos_org <- as.data.frame(content_list_repos_org)
 
     return(content_list_repos_org)

@@ -50,7 +50,7 @@ should be able to the following:
 r <- readRDS(system.file("helper_data/response_example.RDS",
                               package = "gitear"))
 
-content_issues <- fromJSON(system.file("helper_data/get_issues.json",
+content_issues <- jsonlite::fromJSON(system.file("helper_data/get_issues.json",
                                       package = "gitear"))
 
 mockery::stub(where = get_issues,

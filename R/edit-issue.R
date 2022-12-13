@@ -76,7 +76,7 @@ edit_issue <- function(base_url, api_key, owner, repo, id_issue, title, body, st
     # To convert http errors to R errors
     stop_for_status(r)
 
-    content_edit_issue <- fromJSON(content(r, as = "text"))
+    content_edit_issue <- jsonlite::fromJSON(content(r, as = "text"))
 
     return (content_edit_issue)
 }

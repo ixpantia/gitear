@@ -43,7 +43,7 @@ get_an_organization <- function(base_url, api_key, org){
         # To convert http errors to R errors
         stop_for_status(r)
 
-        content_an_organization <- fromJSON(content(r, as = "text"))
+        content_an_organization <- jsonlite::fromJSON(content(r, as = "text"))
         content_an_organization <- as.data.frame(content_an_organization)
 
         return(content_an_organization)

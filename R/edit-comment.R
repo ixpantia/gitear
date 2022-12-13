@@ -72,7 +72,7 @@ edit_comment <- function(base_url, api_key, owner, repo, id_comment, body){
     # To convert http errors to R errors
     stop_for_status(r)
 
-    content_edited_comment <- fromJSON(content(r, as = "text"))
+    content_edited_comment <- jsonlite::fromJSON(content(r, as = "text"))
 
     return (content_edited_comment)
 

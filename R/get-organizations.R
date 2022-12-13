@@ -44,7 +44,7 @@ get_organizations <- function(base_url, api_key){
     # To convert http errors to R errors
     stop_for_status(r)
 
-    content_organizations <- fromJSON(content(r, as = "text"))
+    content_organizations <- jsonlite::fromJSON(content(r, as = "text"))
 
     return(content_organizations)
 
@@ -96,7 +96,7 @@ get_admin_organizations <- function(base_url, api_key){
     # To convert http errors to R errors
     stop_for_status(r)
 
-    content_organizations <- fromJSON(content(r, as = "text"))
+    content_organizations <- jsonlite::fromJSON(content(r, as = "text"))
 
     return(content_organizations)
 

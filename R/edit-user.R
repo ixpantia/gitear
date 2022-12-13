@@ -64,7 +64,7 @@ edit_user <- function(base_url, api_key, username, active, login_name){
   # To convert http errors to R errors
   stop_for_status(r)
 
-  content_edit_user <- fromJSON(content(r, as = "text"))
+  content_edit_user <- jsonlite::fromJSON(content(r, as = "text"))
 
   return (content_edit_user)
 }

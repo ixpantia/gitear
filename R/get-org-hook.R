@@ -55,7 +55,7 @@ get_org_hook <- function(base_url, api_key, org, id_hook){
     stop_for_status(r)
 
     content_org_hook <- content(r, as = "text")
-    content_org_hook <- fromJSON(content_org_hook)
+    content_org_hook <- jsonlite::fromJSON(content_org_hook)
     content_org_hook <- as.data.frame(content_org_hook)
 
     return(content_org_hook)

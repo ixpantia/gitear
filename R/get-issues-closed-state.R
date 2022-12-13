@@ -53,7 +53,7 @@ get_issues_closed_state <- function(base_url, api_key, owner, repo){
         # To convert http errors to R errors
         stop_for_status(r)
 
-        page_issues <- fromJSON(content(r, as = "text"))
+        page_issues <- jsonlite::fromJSON(content(r, as = "text"))
         page_issues <- jsonlite::flatten(as.data.frame(page_issues))
 
         if (page != 1 && nrow(page_issues) == 0) {

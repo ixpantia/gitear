@@ -53,7 +53,7 @@ get_issues <- function(base_url, api_key, owner, repo, full_info = FALSE) {
         # To convert http errors to R errors
         stop_for_status(r)
 
-        content_issues <- fromJSON(content(r, as = "text"))
+        content_issues <- jsonlite::fromJSON(content(r, as = "text"))
 
         # Data frame wrangling
         if (full_info == FALSE) {

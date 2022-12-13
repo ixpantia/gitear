@@ -58,7 +58,7 @@ get_list_comments_repository <- function(base_url, api_key, owner, repo){
     # To convert http errors to R errors
     stop_for_status(r)
 
-    list_com_repository <- fromJSON(content(r, as = "text"))
+    list_com_repository <- jsonlite::fromJSON(content(r, as = "text"))
 
     return(list_com_repository)
 

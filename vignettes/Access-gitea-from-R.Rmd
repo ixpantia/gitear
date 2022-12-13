@@ -5,8 +5,8 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Access Gitea from R}
-  %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
+  %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
   chunk_output_type: console
 ---
@@ -24,19 +24,19 @@ library(jsonlite)
 r <- readRDS(system.file("helper_data/response_example.RDS",
                               package = "gitear"))
 
-content_an_organization <- fromJSON(system.file("helper_data/get_an_org.json",
+content_an_organization <- jsonlite::fromJSON(system.file("helper_data/get_an_org.json",
                                                 package = "gitear"))
 
-content_issues <- fromJSON(system.file("helper_data/get_issues.json",
+content_issues <- jsonlite::fromJSON(system.file("helper_data/get_issues.json",
                                       package = "gitear"))
 
-content_list_repos_org <- fromJSON(system.file("helper_data/get_repos_org.json",
+content_list_repos_org <- jsonlite::fromJSON(system.file("helper_data/get_repos_org.json",
                                                package = "gitear"))
 
-content_list_users <- fromJSON(system.file("helper_data/get_users.json",
+content_list_users <- jsonlite::fromJSON(system.file("helper_data/get_users.json",
                                            package = "gitear"))
 
-content_commits <- fromJSON(system.file("helper_data/get_commits.json",
+content_commits <- jsonlite::fromJSON(system.file("helper_data/get_commits.json",
                                         package = "gitear"))
 
 ```
