@@ -58,7 +58,7 @@ get_milestones <- function(base_url, api_key, owner, repo){
 
   # To convert http errors to R errors
   stop_for_status(r)
-  content_milestones <- fromJSON(content(r, as = "text"))
+  content_milestones <- jsonlite::fromJSON(content(r, as = "text"))
   content_milestones <- as.data.frame(content_milestones)
 
   return(content_milestones)

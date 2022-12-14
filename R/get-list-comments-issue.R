@@ -57,7 +57,7 @@ get_list_comments_issue <- function(base_url, api_key, owner, repo, id_issue){
     # To convert http errors to R errors
     stop_for_status(r)
 
-    content_list_comments_issue <- fromJSON(content(r, as = "text"))
+    content_list_comments_issue <- jsonlite::fromJSON(content(r, as = "text"))
 
     return(content_list_comments_issue)
 

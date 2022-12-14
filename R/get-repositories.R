@@ -44,7 +44,7 @@ get_repositories <- function(base_url, api_key){
     # To convert http errors to R errors
     stop_for_status(r)
 
-    content_repositories <- fromJSON(content(r, as = "text"))
+    content_repositories <- jsonlite::fromJSON(content(r, as = "text"))
     content_repositories <- as.data.frame(content_repositories)
 
     return(content_repositories)

@@ -52,7 +52,7 @@ get_branches <- function(base_url, api_key, owner, repo){
       # To convert http errors to R errors
       stop_for_status(r)
 
-      content_branches <- fromJSON(content(r, as = "text"))
+      content_branches <- jsonlite::fromJSON(content(r, as = "text"))
       content_branches <- as.data.frame(content_branches)
 
       return(content_branches)

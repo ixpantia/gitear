@@ -49,12 +49,12 @@ issues <- get_issues(base_url = url_ixpantia,
 
 
 issues
-#>   number                      title created_date created_time updated_date
-#> 1      3 Primer tiquete para prueba   2020-07-15     23:43:42   2020-07-24
-#> 2      2 Primer tiquete para prueba   2020-07-15     23:12:37   2020-07-24
-#>   updated_time             due_date author assignee
-#> 1     14:41:47 2020-07-31T23:59:59Z   juan     juan
-#> 2     14:41:37 2020-07-31T23:59:59Z   juan     juan
+#>   number                      title                          body created_date
+#> 1      3 Primer tiquete para prueba Este es el cuerpo del tiquete   2020-07-15
+#> 2      2 Primer tiquete para prueba Este es el cuerpo del tiquete   2020-07-15
+#>   created_time updated_date updated_time             due_date author assignee
+#> 1     23:43:42   2020-07-24     14:41:47 2020-07-31T23:59:59Z   juan     juan
+#> 2     23:12:37   2020-07-24     14:41:37 2020-07-31T23:59:59Z   juan     juan
 ```
 
 ## **Environmental variables:**
@@ -86,9 +86,10 @@ issues <- get_issues(base_url = example_url,
 
 glimpse(issues)
 #> Rows: 2
-#> Columns: 9
+#> Columns: 10
 #> $ number       <int> 3, 2
-#> $ title        <chr> "Primer tiquete para prueba", "Primer tiquete para pru...
+#> $ title        <chr> "Primer tiquete para prueba", "Primer tiquete para prueba"
+#> $ body         <chr> "Este es el cuerpo del tiquete", "Este es el cuerpo del t…
 #> $ created_date <chr> "2020-07-15", "2020-07-15"
 #> $ created_time <chr> "23:43:42", "23:12:37"
 #> $ updated_date <chr> "2020-07-24", "2020-07-24"

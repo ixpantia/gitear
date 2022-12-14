@@ -74,7 +74,7 @@ add_tracked_time_issue <- function(base_url, api_key, owner, repo, id_issue, tim
     stop_for_status(r)
 
 
-    content_tracked_time <- fromJSON(content(r, as = "text"))
+    content_tracked_time <- jsonlite::fromJSON(content(r, as = "text"))
 
     repo_info <-  as.data.frame(content_tracked_time$issue$repository)
 

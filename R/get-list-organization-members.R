@@ -49,7 +49,7 @@ get_list_org_members <- function(base_url, api_key, org){
     # To convert http errors to R errors
     stop_for_status(r)
 
-    content_list_org_members <- fromJSON(content(r, as = "text"))
+    content_list_org_members <- jsonlite::fromJSON(content(r, as = "text"))
     content_list_org_members <- as.data.frame(content_list_org_members)
 
     return(content_list_org_members)
