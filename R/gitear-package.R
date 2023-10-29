@@ -1,17 +1,13 @@
-#' \code{gitear} package
-#'
-#' 'Gitea' is a community managed, lightweight code hosting solution 
-#'  were projects and their respective git repositories can be managed 
-# ' <https://gitea.io>. This package gives an interface to the 'Gitea' API to 
-#'  access and manage repositories, issues and organizations directly in R. 
-#'
-#' @docType package
-#' @name gitear
+#' @keywords internal
+"_PACKAGE"
+
+## usethis namespace: start
 #' @importFrom dplyr %>%
+## usethis namespace: end
 NULL
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
-utils::globalVariables(c(".", 
+utils::globalVariables(c(".",
                         "username",
                         "number",
                         "created_at",
