@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# gitear <a href="https://ixpantia.github.io/gitear/"><img src="man/figures/gitear.png" align="right" width="30%"></a>
+# gitear <a><img src="https://storage.googleapis.com/ix-paquetes-internos/logo-gitear.png" align="right" width="30%"></a>
 
 <!-- badges: start -->
 
